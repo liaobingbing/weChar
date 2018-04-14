@@ -76,7 +76,8 @@ class ApiController extends ApiBaseController
                         $question=M()->query($sql);
                         if($question){
                             $data['code']=200;
-                            $data['img_url']=$question[0]['img_url'];
+                            $data['data']['subject1']=$question[0]['subject1'];
+                            $data['data']['subject2']=$question[0]['subject2'];
                             if($layer>18){
                                 $odds=($layer-18)*100;
                             }else{
@@ -84,9 +85,9 @@ class ApiController extends ApiBaseController
                             }
                             $rand=rand(0,1000);
                             if($rand>$odds){
-                                $data['answer']=$question[0]['answer'];
+                                $data['data']['answer']=$question[0]['answer'];
                             }else{
-                                $data['answer']=2;
+                                $data['data']['answer']=2;
                             }
                         }else{
                             $data['code']=400;
@@ -186,4 +187,25 @@ class ApiController extends ApiBaseController
         }
         $this->ajaxReturn($data,'JSON');
     }
+
+    //我的奖品
+    public function my_prize(){
+        $user_id=session('user_id');
+        if($user_id){
+            $user_game=M('user_game')->find($user_id);
+            if($user_game){
+                $data['code']=200;
+                $data['data']['avatar_url']=$user_game['avatar_url'];
+                $data['data']['get_number']=$user_game['get_number'];
+                $data['data']['chance_num']=$user_game['chance_num'];
+                $data['data']['challenge_num']=$user_game['challenge_num'];
+            }else{
+                $data['code']=401;
+            }
+        }else{
+            $data['code']=401;
+        }
+        $this->ajaxReturn($data,'JSON');
+    }
+
 }
