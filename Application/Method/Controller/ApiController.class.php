@@ -37,7 +37,7 @@ class ApiController extends ApiBaseController
     {
         $user_info = S('num_top');
         if(!$user_info){
-            $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->order('challenge_num desc')->select();
+            $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->order('challenge_num desc')->limit(200)->select();
         }
         $page=I('post.page');
         $page_size=10;
@@ -48,6 +48,7 @@ class ApiController extends ApiBaseController
         $arr=array('code'=>200,'msg'=>'sucess','data'=>$data);
         $this->ajaxReturn($arr);
     }
+    //缓存挑战次数
     public function cache_num()
     {
         $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->order('challenge_num desc')->select();
@@ -64,14 +65,14 @@ class ApiController extends ApiBaseController
     public function user_status()
     {
         $status['status']=0;
-        $uid=I('post.userid');
+        $uid=I('post.user_id');
         M('users')->where('id=%d',$uid)->save( $status);
         session(null);
         $arr=array('code'=>403,'msg'=>'已经被拉黑','data'=>"");
         $this->ajaxReturn($arr);
     }
 
-    //检查挑战次数
+    //检查机会次数
     public function check_chance_num(){
         $user_id=session('user_id');
         if($user_id){
@@ -103,7 +104,7 @@ class ApiController extends ApiBaseController
                 $user_game['challenge_num']+=1;
                 $info=M('user_game')->save($user_game);
                 if($info){
-                    $data['code']=400;
+                    $data['code']=200;
                     $data['msg']='开始成功';
                 }else{
                     $data['code']=400;

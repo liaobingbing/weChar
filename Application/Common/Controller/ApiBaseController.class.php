@@ -19,7 +19,7 @@ class ApiBaseController extends Controller
 
     // 初始化
     public function _initialize(){
-        //$this->is_login();
+        $this->is_login();
     }
 
     // 登录判断
