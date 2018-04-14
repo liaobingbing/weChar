@@ -159,3 +159,96 @@ function encode_div( $text, $key, $type = 'encode')
 
     return $result;
 }
+
+
+function emoji2unicode($emoji){
+    $tmpStr = json_encode($emoji); //暴露出unicode
+    $tmpStr=addslashes(substr($tmpStr,1,strlen($tmpStr)-2));
+    return $tmpStr;
+}
+function unicode2emoji($unicode){
+    $tmpStr = json_decode("\"".stripslashes($unicode)."\""); //暴露出unicode
+    return $tmpStr;
+}
+function is_base64($str){
+//这里多了个纯字母和纯数字的正则判断
+    if ($str === base64_encode(base64_decode($str))) {
+        return true;
+    }else{
+        return false;
+    }
+}
+function is($got, $expected, $name){
+
+    $passed = ($got === $expected) ? 1 : 0;
+
+    if ($passed){
+        echo "ok # $name\n";
+    }else{
+        echo "not ok # $name\n";
+        echo "# expected : ".byteify($expected)."\n";
+        echo "# got      : ".byteify($got)."\n";
+
+        $GLOBALS['failures']++;
+    }
+}
+
+function byteify($s){
+    $out = '';
+    for ($i=0; $i<strlen($s); $i++){
+        $c = ord(substr($s,$i,1));
+        if ($c >= 0x20 && $c <= 0x80){
+            $out .= chr($c);
+        }else{
+            $out .= sprintf('0x%02x ', $c);
+        }
+    }
+    return trim($out);
+}
+
+function utf8_bytes($cp){
+
+    if ($cp > 0x10000){
+        # 4 bytes
+        return	chr(0xF0 | (($cp & 0x1C0000) >> 18)).
+            chr(0x80 | (($cp & 0x3F000) >> 12)).
+            chr(0x80 | (($cp & 0xFC0) >> 6)).
+            chr(0x80 | ($cp & 0x3F));
+    }else if ($cp > 0x800){
+        # 3 bytes
+        return	chr(0xE0 | (($cp & 0xF000) >> 12)).
+            chr(0x80 | (($cp & 0xFC0) >> 6)).
+            chr(0x80 | ($cp & 0x3F));
+    }else if ($cp > 0x80){
+        # 2 bytes
+        return	chr(0xC0 | (($cp & 0x7C0) >> 6)).
+            chr(0x80 | ($cp & 0x3F));
+    }else{
+        # 1 byte
+        return chr($cp);
+    }
+}
+
+function voiceform($local_url){
+    $command="/usr/bin/ffprobe -v quiet -print_format json -show_format ";
+    $output="";
+    exec($command.$local_url,$output);
+    $output=json_decode(implode("",$output),true);
+    return $output;
+}
+function transSilk2Pcm($local_url,$dest=""){
+    $dest=str_replace("silk","pcm",$local_url);
+    $command1="/home/silk_v3/silk/decoder {$local_url} {$dest} -Fs_API 8000";
+    $output="";
+    exec($command1,$output);
+    $output=json_decode(implode("",$output),true);
+    return $output;
+}
+function transPcm2Amr($local_url){
+    $dest=str_replace("pcm","amr",$local_url);
+    $command1="/usr/bin/ffmpeg -y -f s16le -ar 8000 -ac 1 -i {$local_url} -ab 12.2k -ar 8000 -ac 1 {$dest}";
+    $output="";
+    exec($command1,$output);
+    $output=json_decode(implode("",$output),true);
+    return $output;
+}
