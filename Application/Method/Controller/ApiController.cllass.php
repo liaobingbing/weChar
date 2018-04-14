@@ -61,6 +61,53 @@ class ApiController extends ApiBaseController
         $this->ajaxReturn($arr);
     }
 
+    //检查挑战次数
+    public function check_chance_num(){
+        $user_id=session('user_id');
+        if($user_id){
+            $user_game=M('user_game')->find($user_id);
+            if($user_game){
+                if($user_game['chance_num']>0){
+                    $data['code']=200;
+                    $data['msg']='有挑战次数';
+                }else{
+                    $data['code']=400;
+                    $data['msg']='无挑战次数';
+                }
+            }else{
+                $data['code']=401;
+            }
+        }else{
+            $data['code']=401;
+        }
+        $this->ajaxReturn($data,'JSON');
+    }
+
+    //开始挑战
+    public function begin_challenge(){
+        $user_id=session('user_id');
+        if($user_id){
+            $user_game=M('user_game')->find($user_id);
+            if($user_game){
+                $user_game['chance_num']-=1;
+                $user_game['challenge_num']+=1;
+                $info=M('user_game')->save($user_game);
+                if($info){
+                    $data['code']=400;
+                    $data['msg']='开始成功';
+                }else{
+                    $data['code']=400;
+                    $data['msg']='开始失败';
+                }
+            }else{
+                $data['code']=401;
+            }
+        }else{
+            $data['code']=401;
+        }
+        $this->ajaxReturn($data,'JSON');
+    }
+
 
     //获取题目
     public function get_question(){
@@ -69,38 +116,35 @@ class ApiController extends ApiBaseController
             $user_game=M('user_game')->find($user_id);
 
             if($user_game){
-                if($user_game['chance_num']>0){
-                    $layer=I('post.layer',1);
-                    if($layer<=30){
-                        $sql='SELECT * FROM method_answer WHERE status=1 ORDER BY  RAND() LIMIT 1';
-                        $question=M()->query($sql);
-                        if($question){
-                            $data['code']=200;
-                            $data['data']['subject1']=$question[0]['subject1'];
-                            $data['data']['subject2']=$question[0]['subject2'];
-                            if($layer>18){
-                                $odds=($layer-18)*100;
-                            }else{
-                                $odds=0;
-                            }
-                            $rand=rand(0,1000);
-                            if($rand>$odds){
-                                $data['data']['answer']=$question[0]['answer'];
-                            }else{
-                                $data['data']['answer']=2;
-                            }
-                        }else{
-                            $data['code']=400;
-                            $data['msg']='题库出错';
-                        }
 
+                $layer=I('post.layer',1);
+                if($layer<=30){
+                    $sql='SELECT * FROM method_answer WHERE status=1 ORDER BY  RAND() LIMIT 1';
+                    $question=M()->query($sql);
+                    if($question){
+                        $data['code']=200;
+                        $data['msg']='获取成功';
+                        $data['data']['subject1']=$question[0]['subject1'];
+                        $data['data']['subject2']=$question[0]['subject2'];
+                        if($layer>18){
+                            $odds=($layer-18)*100;
+                        }else{
+                            $odds=0;
+                        }
+                        $rand=rand(0,1000);
+                        if($rand>$odds){
+                            $data['data']['answer']=$question[0]['answer'];
+                        }else{
+                            $data['data']['answer']=2;
+                        }
                     }else{
                         $data['code']=400;
-                        $data['msg']='没有此等级';
+                        $data['msg']='题库出错';
                     }
+
                 }else{
                     $data['code']=400;
-                    $data['msg']='没有挑战次数';
+                    $data['msg']='没有此等级';
                 }
 
             }else{
@@ -120,7 +164,7 @@ class ApiController extends ApiBaseController
         $user_id=session('user_id');
         if($user_id){
             $data['code']='200';
-            $data['msg']='成功';
+            $data['msg']='获取成功';
             $data['user_id']=$user_id;
         }else{
             $data['code']=401;
@@ -154,6 +198,7 @@ class ApiController extends ApiBaseController
                                     $has['share_time']=time();
                                     M('share_group')->save($has);
                                     $data['code']=200;
+                                    $data['msg']='分享成功';
                                 }else{
                                     $data['code']=400;
                                     $data['msg']='该群已分享过';
@@ -166,6 +211,7 @@ class ApiController extends ApiBaseController
                                 $group['share_time']=time();
                                 M('share_group')->add($group);
                                 $data['code']=200;
+                                $data['msg']='分享成功';
                             }
                         }else{
                             $data['code']=402;
@@ -195,6 +241,7 @@ class ApiController extends ApiBaseController
             $user_game=M('user_game')->find($user_id);
             if($user_game){
                 $data['code']=200;
+                $data['msg']='获取成功';
                 $data['data']['avatar_url']=$user_game['avatar_url'];
                 $data['data']['get_number']=$user_game['get_number'];
                 $data['data']['chance_num']=$user_game['chance_num'];
