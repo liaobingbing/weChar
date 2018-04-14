@@ -134,6 +134,7 @@ class ApiController extends ApiBaseController
                         $question=M()->query($sql);
                         if($question){
                             $data['code']=200;
+                            $data['msg']='获取成功';
                             $data['data']['subject1']=$question[0]['subject1'];
                             $data['data']['subject2']=$question[0]['subject2'];
                             if($layer>18){
@@ -212,6 +213,7 @@ class ApiController extends ApiBaseController
                                     $has['share_time']=time();
                                     M('share_group')->save($has);
                                     $data['code']=200;
+                                    $data['msg']='分享成功';
                                 }else{
                                     $data['code']=400;
                                     $data['msg']='该群已分享过';
@@ -224,6 +226,7 @@ class ApiController extends ApiBaseController
                                 $group['share_time']=time();
                                 M('share_group')->add($group);
                                 $data['code']=200;
+                                $data['msg']='分享成功';
                             }
                         }else{
                             $data['code']=402;
@@ -253,6 +256,7 @@ class ApiController extends ApiBaseController
             $user_game=M('user_game')->find($user_id);
             if($user_game){
                 $data['code']=200;
+                $data['msg']='获取成功';
                 $data['data']['avatar_url']=$user_game['avatar_url'];
                 $data['data']['get_number']=$user_game['get_number'];
                 $data['data']['chance_num']=$user_game['chance_num'];
