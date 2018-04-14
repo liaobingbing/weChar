@@ -100,12 +100,17 @@ class ApiController extends ApiBaseController
         if($user_id){
             $user_game=M('user_game')->find($user_id);
             if($user_game){
-                $user_game['chance_num']-=1;
-                $user_game['challenge_num']+=1;
-                $info=M('user_game')->save($user_game);
-                if($info){
-                    $data['code']=200;
-                    $data['msg']='开始成功';
+                if($user_game['chance_num']>0){
+                    $user_game['chance_num']-=1;
+                    $user_game['challenge_num']+=1;
+                    $info=M('user_game')->save($user_game);
+                    if($info){
+                        $data['code']=200;
+                        $data['msg']='开始成功';
+                    }else{
+                        $data['code']=400;
+                        $data['msg']='开始失败';
+                    }
                 }else{
                     $data['code']=400;
                     $data['msg']='开始失败';
