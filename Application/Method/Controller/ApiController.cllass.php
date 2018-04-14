@@ -255,4 +255,7 @@ class ApiController extends ApiBaseController
         $this->ajaxReturn($data,'JSON');
     }
 
+    public function set_session(){
+        session('user_id','1');
+    }
 }
