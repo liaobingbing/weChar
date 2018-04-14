@@ -161,6 +161,165 @@ function encode_div( $text, $key, $type = 'encode')
 }
 
 
+
+/**
+ * 随机数
+ * @param int $len
+ * @param string $type
+ * @param string $addChars
+ * @return bool|string
+ */
+function rand_string($len = 5, $type = '2', $addChars = '')
+{
+
+    $str = '';
+
+    switch ($type) {
+
+        case '0':
+
+            $chars = "ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghijklmnpqrstuvwxyz" . $addChars;
+            break;
+
+        case '1':
+
+            $chars = "0123456789";
+            break;
+
+        case '2':
+
+            $chars = "abcdefghijklmnpqrstuvwxyz123456789";
+            break;
+
+        default :
+
+            $chars = "ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghijklmnpqrstuvwxyz123456789" . $addChars;
+            break;
+
+    }
+
+    $chars = str_shuffle($chars);
+
+    $str = substr($chars, 1, $len);
+
+    return $str;
+
+}
+
+/**
+ * 返回当前访问的 url
+ * @return string
+ */
+function get_current_url()
+{
+    $result = $_SERVER['REQUEST_URI'] ? trim(C('pin_site_host'),'/').$_SERVER['REQUEST_URI'] :
+        trim(C('pin_site_host'),'/').$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
+
+    return $result;
+}
+
+
+/**
+ * 判断是否移动端访问
+ * @return bool
+ */
+function is_mobile(){
+    $result = false;
+    // 如果有HTTP_X_WAP_PROFILE则一定是移动设备
+    if ( isset($_SERVER['HTTP_X_WAP_PROFILE']) ) $result = true;
+
+    // 如果via信息含有wap则一定是移动设备,部分服务商会屏蔽该信息
+    if( isset ($_SERVER['HTTP_VIA']) ) $result = stristr($_SERVER['HTTP_VIA'], "wap") ? true : false;
+
+    // 脑残法，判断手机发送的客户端标志,兼容性有待提高
+    if (isset ($_SERVER['HTTP_USER_AGENT'])) {
+        $clientkeywords = array(
+            'nokia',
+            'sony',
+            'ericsson',
+            'mot',
+            'samsung',
+            'htc',
+            'sgh',
+            'lg',
+            'sharp',
+            'sie-',
+            'philips',
+            'panasonic',
+            'alcatel',
+            'lenovo',
+            'iphone',
+            'ipod',
+            'blackberry',
+            'meizu',
+            'android',
+            'netfront',
+            'symbian',
+            'ucweb',
+            'windowsce',
+            'palm',
+            'operamini',
+            'operamobi',
+            'openwave',
+            'nexusone',
+            'cldc',
+            'midp',
+            'wap',
+            'mobile'
+        );
+
+        // 从HTTP_USER_AGENT中查找手机浏览器的关键字
+
+        if (preg_match("/(" . implode('|', $clientkeywords) . ")/i", strtolower($_SERVER['HTTP_USER_AGENT']))) {
+
+            $result = true;
+
+        }
+
+    }
+
+    // 协议法，因为有可能不准确，放到最后判断
+
+    if(!$result){
+        if (isset ($_SERVER['HTTP_ACCEPT'])) {
+
+            // 如果只支持wml并且不支持html那一定是移动设备
+            // 如果支持wml和html但是wml在html之前则是移动设备
+            if ((strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') !== false)
+                && (strpos($_SERVER['HTTP_ACCEPT'], 'text/html') === false
+                    || (strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml')
+                        < strpos($_SERVER['HTTP_ACCEPT'], 'text/html')))) {
+
+                $result = true;
+            }
+        }
+    }
+
+    return $result;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*---------------------以下函数需整理------------------------------*/
+
 function emoji2unicode($emoji){
     $tmpStr = json_encode($emoji); //暴露出unicode
     $tmpStr=addslashes(substr($tmpStr,1,strlen($tmpStr)-2));
@@ -252,3 +411,5 @@ function transPcm2Amr($local_url){
     $output=json_decode(implode("",$output),true);
     return $output;
 }
+
+/*---------------------以上函数需整理------------------------------*/
