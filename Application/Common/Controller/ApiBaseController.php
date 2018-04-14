@@ -25,7 +25,6 @@ class ApiBaseController extends Controller
     // 登录判断
     public function is_login(){
         $user_id = session('user_id');
-
         if( !$user_id ){
             $result['code'] = 401;
             $result['msg']  = '未登录';

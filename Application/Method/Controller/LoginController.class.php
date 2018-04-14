@@ -36,6 +36,7 @@ class LoginController extends  ApiLoginController
                 $uid = M('method_users')->data($user_data)->add();
                 $user_game['uid']=$uid;
                 $user_game['nickname']=$login_data['nickName'];
+                $user_game['login_time'] = time();
                 $user_game['avatarUrl']=str_replace('/0','/132',$login_data['avatarUrl'] );
                 M('method_user_game')->add($user_game);
             }else{
