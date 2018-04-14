@@ -40,20 +40,25 @@ class LoginController extends  ApiLoginController
                 $user_game['avatarUrl']=str_replace('/0','/132',$login_data['avatarUrl'] );
                 M('method_user_game')->add($user_game);
             }else{
+                if($user['status']==0) {
+                    $data['code']=403;//已经被拉黑
+                    $data['msg']='已经被拉黑';
+                    $this->ajaxReturn($data,'JSON');
+                }
                 if($user['last_time']<strtotime(date("Y-m-d"),time())){
                     M('method_user_game')->where('uid='.$user['id'])->setField("chance_num",1);
                     M('method_users')->where('id='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$login_data['avatarUrl']));
                     M('method_user_game')->where('uid='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$login_data['avatarUrl']));
+                    $session_k=session_id();
+                    session('user_id',$user['id'],3600);
+                    session("openid",$openid);
+                    $data['code']=200;
+                    $data['msg']='success';
+                    $data['data']=array('session_key'=>$session_k);
+                    $this->ajaxReturn($data,'JSON');
                 }
-
             }
-            $session_k=session_id();
-            session('user_id',$user['id'],3600);
-            session("openid",$openid);
-            $data['code']=200;
-            $data['msg']='success';
-            $data['data']=array('session_key'=>$session_k);
-            $this->ajaxReturn($data,'JSON');
+
         }
         else{
             $this->ajaxReturn($login_data);
