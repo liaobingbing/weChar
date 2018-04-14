@@ -52,4 +52,130 @@ class ApiController extends ApiBaseController
          $arr=array('code'=>200,'msg'=>'sucess','data'=>$prize_info);
         $this->ajaxReturn($arr);
     }
+
+
+    //获取题目
+    public function get_question(){
+        $user_id=session('user_id');
+        if($user_id){
+            $user_game=M('method_user_game')->find($user_id);
+
+            if($user_game){
+                if($user_game['chance_num']>0){
+                    $layer=I('post.layer',1);
+                    if($layer<=30){
+                        $sql='SELECT * FROM method_answer WHERE status=1 ORDER BY  RAND() LIMIT 1';
+                        $question=M()->query($sql);
+                        if($question){
+                            $data['code']=200;
+                            $data['img_url']=$question[0]['answer'];
+                            if($layer>18){
+                                $odds=($layer-18)*100;
+                            }else{
+                                $odds=0;
+                            }
+                            $rand=rand(0,1000);
+                            if($rand>$odds){
+                                $data['answer']=$question[0]['answer'];
+                            }else{
+                                $data['answer']=2;
+                            }
+                        }else{
+                            $data['code']=400;
+                            $data['msg']='题库出错';
+                        }
+
+                    }else{
+                        $data['code']=400;
+                        $data['msg']='没有此等级';
+                    }
+                }else{
+                    $data['code']=400;
+                    $data['msg']='没有挑战次数';
+                }
+
+            }else{
+                $data['code']=401;
+            }
+        }else{
+            $data['code']=401;
+        }
+
+
+        $this->ajaxReturn($data,'JSON');
+    }
+
+
+    //获取用户ID
+    public function get_user_id(){
+        $user_id=session('user_id');
+        if($user_id){
+            $data['code']='200';
+            $data['msg']='成功';
+            $data['user_id']=$user_id;
+        }else{
+            $data['code']=401;
+        }
+        $this->ajaxReturn($data,'JSON');
+    }
+
+
+    //分享群
+    public function share_group(){
+        $user_id=session('user_id');
+        if($user_id){
+            $encryptedData = I("post.encryptedData");
+            $iv = I("post.iv");
+            if($encryptedData&&$iv){
+                $session_key=session('session_key');
+                if($session_key){
+                    $user_game=M('method_user_game')->find($user_id);
+                    if($user_game){
+                        vendor("wxaes.WXBizDataCrypt");
+                        $wxBizDataCrypt = new \WXBizDataCrypt(C("WECHAT_APPID"), $session_key);
+                        $data_arr = array();
+                        $errCode = $wxBizDataCrypt->decryptData($encryptedData, $iv, $data_arr);
+                        if($errCode==0){
+                            $json_data = json_decode($data_arr, true);
+                            $has=M('method_share_group')->where('uid='.$user_id.' and open_gid like "'.$json_data['openGId'].'"')->find();
+                            if($has){
+                                if($has['share_time']<strtotime(date("Y-m-d"),time())){
+                                    $user_game['chance_num']+=1;
+                                    M('method_user_game')->save($user_game);
+                                    $has['share_time']=time();
+                                    M('method_share_group')->save($has);
+                                    $data['code']=200;
+                                }else{
+                                    $data['code']=400;
+                                    $data['msg']='该群已分享过';
+                                }
+                            }else{
+                                $user_game['chance_num']+=1;
+                                M('method_user_game')->save($user_game);
+                                $group['uid']=$user_id;
+                                $group['openGId']=$json_data['openGId'];
+                                $group['share_time']=time();
+                                M('method_share_group')->add($group);
+                                $data['code']=200;
+                            }
+                        }else{
+                            $data['code']=402;
+                            $data['msg']='session_key过期，需重新登录获取';
+                        }
+                    }else{
+                        $data['code']=401;
+                    }
+
+                }else{
+                    $data['code']=401;
+                }
+            }else{
+                $data['code']=400;
+                $data['msg']='参数不全';
+            }
+        }else{
+            $data['code']=401;
+        }
+        $this->ajaxReturn($data,'JSON');
+    }
 }
