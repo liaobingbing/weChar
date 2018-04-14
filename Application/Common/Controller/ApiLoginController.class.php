@@ -30,6 +30,7 @@ class ApiLoginController extends Controller
                 }
                 if ($code_session['openid'] && $code_session['session_key']) {
                     $session_key = $code_session['session_key'];
+                    session('session_key',$session_key);
                     vendor("wxaes.WXBizDataCrypt");
                     $wxBizDataCrypt = new \WXBizDataCrypt(C("WECHAT_APPID"), $session_key);
                     $data_arr = array();

@@ -16,9 +16,9 @@ class ApiController extends ApiBaseController
     //统计挑战的次数
     public function count_challenge()
     {
-        $count_challenge=M('user_game')->count('challenge_num');
+        $count_challenge=M('user_game')->sum('challenge_num');
         if($count_challenge<=5000){
-            $count_challenge=rand(5000,10000);
+            $count_challenge=$count_challenge+5000;
         }
         $data['code']=200;
         $data['msg']='success';
@@ -35,7 +35,10 @@ class ApiController extends ApiBaseController
     //毅力榜
     public function num_top()
     {
-        $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->order('challenge_num desc')->select();
+        $user_info = S('num_top');
+        if(!$user_info){
+            $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->order('challenge_num desc')->select();
+        }
         $page=I('post.page');
         $page_size=10;
         //$count=count($user_info);
@@ -45,7 +48,12 @@ class ApiController extends ApiBaseController
         $arr=array('code'=>200,'msg'=>'sucess','data'=>$data);
         $this->ajaxReturn($arr);
     }
-    //娃娃奖品列表
+    public function cache_num()
+    {
+        $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->order('challenge_num desc')->select();
+        S("num_top",$user_info);
+    }
+    //娃娃奖品图片列表
     public function prize_list()
     {
         $prize_info=M('prize')->select();
@@ -58,7 +66,7 @@ class ApiController extends ApiBaseController
     public function get_question(){
         $user_id=session('user_id');
         if($user_id){
-            $user_game=M('method_user_game')->find($user_id);
+            $user_game=M('user_game')->find($user_id);
 
             if($user_game){
                 if($user_game['chance_num']>0){
@@ -68,7 +76,7 @@ class ApiController extends ApiBaseController
                         $question=M()->query($sql);
                         if($question){
                             $data['code']=200;
-                            $data['img_url']=$question[0]['answer'];
+                            $data['img_url']=$question[0]['img_url'];
                             if($layer>18){
                                 $odds=($layer-18)*100;
                             }else{
@@ -129,7 +137,7 @@ class ApiController extends ApiBaseController
             if($encryptedData&&$iv){
                 $session_key=session('session_key');
                 if($session_key){
-                    $user_game=M('method_user_game')->find($user_id);
+                    $user_game=M('user_game')->find($user_id);
                     if($user_game){
                         vendor("wxaes.WXBizDataCrypt");
                         $wxBizDataCrypt = new \WXBizDataCrypt(C("WECHAT_APPID"), $session_key);
@@ -137,13 +145,13 @@ class ApiController extends ApiBaseController
                         $errCode = $wxBizDataCrypt->decryptData($encryptedData, $iv, $data_arr);
                         if($errCode==0){
                             $json_data = json_decode($data_arr, true);
-                            $has=M('method_share_group')->where('uid='.$user_id.' and open_gid like "'.$json_data['openGId'].'"')->find();
+                            $has=M('share_group')->where('uid='.$user_id.' and open_gid like "'.$json_data['openGId'].'"')->find();
                             if($has){
                                 if($has['share_time']<strtotime(date("Y-m-d"),time())){
                                     $user_game['chance_num']+=1;
-                                    M('method_user_game')->save($user_game);
+                                    M('user_game')->save($user_game);
                                     $has['share_time']=time();
-                                    M('method_share_group')->save($has);
+                                    M('share_group')->save($has);
                                     $data['code']=200;
                                 }else{
                                     $data['code']=400;
@@ -151,11 +159,11 @@ class ApiController extends ApiBaseController
                                 }
                             }else{
                                 $user_game['chance_num']+=1;
-                                M('method_user_game')->save($user_game);
+                                M('user_game')->save($user_game);
                                 $group['uid']=$user_id;
-                                $group['openGId']=$json_data['openGId'];
+                                $group['open_gid']=$json_data['openGId'];
                                 $group['share_time']=time();
-                                M('method_share_group')->add($group);
+                                M('share_group')->add($group);
                                 $data['code']=200;
                             }
                         }else{
