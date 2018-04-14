@@ -41,8 +41,8 @@ class LoginController extends  ApiLoginController
                 M('method_user_game')->add($user_game);
             }else{
                 if($user['status']==0) {
-                    $data['code']=403;//已经被拉�?
-                    $data['msg']='已经被拉�?';
+                    $data['code']=403;//已经被拉黑
+                    $data['msg']='已经被拉黑';
                     $this->ajaxReturn($data,'JSON');
                 }
                 if($user['last_time']<strtotime(date("Y-m-d"),time())){
@@ -67,7 +67,7 @@ class LoginController extends  ApiLoginController
     }
 
 
-    //����session
+    //设置session
     public function set_session(){
         session('user_id',1);
     }
