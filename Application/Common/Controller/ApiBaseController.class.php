@@ -53,7 +53,6 @@ class ApiBaseController extends Controller
     public function get_session_id(){
         //设置 session 过期时间
         session('expire',$this->session_time);
-        session('new',true);
         $session_id = session_id();
 
         return $session_id;
