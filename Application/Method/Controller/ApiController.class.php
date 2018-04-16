@@ -13,6 +13,7 @@ use Common\Controller\ApiBaseController;
 
 class ApiController extends ApiBaseController
 {
+    private  $key="kuaiyu666666";
     //统计挑战的次数
     public function count_challenge()
     {
@@ -51,8 +52,11 @@ class ApiController extends ApiBaseController
     //缓存挑战次数
     public function cache_num()
     {
-        $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->order('challenge_num desc')->select();
-        S("num_top",$user_info);
+        $key=I('get.key');
+        if($key==$this->key){
+            $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->order('challenge_num desc')->select();
+            S("num_top",$user_info);
+        }
     }
     //娃娃奖品图片列表
     public function prize_list()
