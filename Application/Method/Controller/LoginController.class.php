@@ -33,12 +33,12 @@ class LoginController extends  ApiLoginController
                 $user_data['country'] = $login_data['country'];
                 $user_data['avatarUrl'] =  str_replace('/0','/132',$login_data['avatarUrl'] );
                 $user_data['name'] = $login_data['nickName'];
-                $uid = M('method_users')->data($user_data)->add();
+                $uid = M('users')->data($user_data)->add();
                 $user_game['uid']=$uid;
                 $user_game['nickname']=$login_data['nickName'];
                 $user_game['login_time'] = time();
                 $user_game['avatarUrl']=str_replace('/0','/132',$login_data['avatarUrl'] );
-                M('method_user_game')->add($user_game);
+                M('user_game')->add($user_game);
             }else{
                 if($user['status']==0) {
                     $data['code']=403;//已经被拉黑
@@ -46,9 +46,9 @@ class LoginController extends  ApiLoginController
                     $this->ajaxReturn($data,'JSON');
                 }
                 if($user['last_time']<strtotime(date("Y-m-d"),time())){
-                    M('method_user_game')->where('uid='.$user['id'])->setField("chance_num",1);
-                    M('method_users')->where('id='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$login_data['avatarUrl']));
-                    M('method_user_game')->where('uid='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$login_data['avatarUrl']));
+                    M('user_game')->where('uid='.$user['id'])->setField("chance_num",1);
+                    M('users')->where('id='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$login_data['avatarUrl']));
+                    M('user_game')->where('uid='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$login_data['avatarUrl']));
                     $session_k=session_id();
                     session('user_id',$user['id'],3600);
                     session("openid",$openid);
