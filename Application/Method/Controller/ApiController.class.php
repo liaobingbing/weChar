@@ -32,9 +32,9 @@ class ApiController extends ApiBaseController
         //SELECT avatarUrl,gt_number as number,nickname FROM method_test_game WHERE id >= ((SELECT MAX(id) FROM method_test_game)-(SELECT MIN(id) FROM method_test_game)) * RAND() + (SELECT MIN(id) FROM method_test_game)  order by  number desc LIMIT 5;
         $sql1="SELECT avatarUrl,gt_number,nickname FROM method_test_game order by gt_number desc limit 3";
         $data1=M()->query($sql1);
-         $sql2="SELECT avatarUrl,gt_number,nickname FROM method_test_game WHERE id >= ((SELECT MAX(id) FROM method_test_game)-(SELECT MIN(id) FROM method_test_game)) * RAND() + (SELECT MIN(id) FROM method_test_game)  order by  gt_number desc LIMIT 5";
+         $sql2="SELECT avatarUrl,gt_number,nickname FROM method_test_game WHERE id >= ((SELECT MAX(id) FROM method_test_game)-(SELECT MIN(id) FROM method_test_game)) * RAND() + (SELECT MIN(id) FROM method_test_game)  order by  gt_number desc LIMIT 8";
         $data2=M()->query($sql2);
-        $user_info=array_merge($data1,$data2);
+        $user_info=$data1+$data2;
          // $user_info=M('user_game')->field('get_number,avatar_url,nickname')->order('get_number desc')->limit(5)->select();
         $arr=array('code'=>200,'msg'=>'sucess','data'=>$user_info);
         $this->ajaxReturn($arr);
