@@ -22,7 +22,10 @@ return array(
     'DB_DEBUG'  =>  TRUE, // 数据库调试模式 开启后可以记录SQL日志
 
     // 小程序APP
-    'WECHAT_APPID'      =>  'wx2c35140111330a22',
-    'WECHAT_APPSECRET'  =>  '8b4bb7291ccc2a19f302b604dcec7482',
+    'WECHAT_APPID'      =>  'wxd20342734dbd865c',
+    'WECHAT_APPSECRET'  =>  '9da9a1d544e5de5795dc5b867b15315a',
+
+    'LOG_RECORD' => true, // 开启日志记录
+    'LOG_LEVEL'  =>'EMERG,ALERT,CRIT,ERR', // 只记录EMERG ALERT CRIT ERR 错误
 
 );

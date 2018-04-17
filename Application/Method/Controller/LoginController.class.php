@@ -19,7 +19,7 @@ class LoginController extends  ApiLoginController
         $code=I('post.code');
         $encryptedData=I('post.encryptedData');
         $iv=I('post.iv');
-        $login_data=$this->login($code,$encryptedData,$iv);
+        $login_data=$this->get_weixin($code,$encryptedData,$iv);
         if($login_data['code']!=400){
             $openid = $login_data['openId'];
             $user = $userdao->findByOpenid($openid);
@@ -31,7 +31,7 @@ class LoginController extends  ApiLoginController
                 $user_data['login_time'] = time();
                 $user_data['province'] = $login_data['province'];
                 $user_data['country'] = $login_data['country'];
-                $user_data['avatarUrl'] =  str_replace('/0','/132',$login_data['avatarUrl'] );
+                $user_data['avatar_url'] =  str_replace('/0','/132',$login_data['avatarUrl'] );
                 $user_data['name'] = $login_data['nickName'];
                 $uid = M('users')->data($user_data)->add();
                 $user_game['uid']=$uid;

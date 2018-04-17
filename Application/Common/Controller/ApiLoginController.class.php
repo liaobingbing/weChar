@@ -13,7 +13,7 @@ use Think\Controller;
 
 class ApiLoginController extends Controller
 {
-    public  function login($code=null,$encryptedData=null,$iv=null){
+    public  function get_weixin($code=null,$encryptedData=null,$iv=null){
             if($code&&$encryptedData&&$iv){
                 $arr=array(
                     'appid'=>C('WECHAT_APPID'),
