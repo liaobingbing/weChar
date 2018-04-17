@@ -49,15 +49,16 @@ class LoginController extends  ApiLoginController
                     M('user_game')->where('uid='.$user['id'])->setField("chance_num",1);
                     M('users')->where('id='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$login_data['avatarUrl']));
                     M('user_game')->where('uid='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$login_data['avatarUrl']));
-                    $session_k=session_id();
-                    session('user_id',$user['id'],3600);
-                    session("openid",$openid);
-                    $data['code']=200;
-                    $data['msg']='success';
-                    $data['data']=array('session_key'=>$session_k);
-                    $this->ajaxReturn($data,'JSON');
+
                 }
             }
+            $session_k=session_id();
+            session('user_id',$user['id'],3600);
+            session("openid",$openid);
+            $data['code']=200;
+            $data['msg']='success';
+            $data['data']=array('session_key'=>$session_k);
+            $this->ajaxReturn($data,'JSON');
 
         }
         else{
