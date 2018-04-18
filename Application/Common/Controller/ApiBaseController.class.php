@@ -14,12 +14,12 @@ class ApiBaseController extends Controller
 {
     // 签到标记 需拼接openid eg: $openid.$sign_key
     protected $sign_key = '_sign_status';
-    // session 保存时间
-    protected $session_time = 60*60*24*3;
+    // session 保存时间 一天:86400
+    protected $session_time = 86400;
 
     // 初始化
     public function _initialize(){
-        $this->is_login();
+        //$this->is_login();
     }
 
     // 登录判断
