@@ -222,7 +222,6 @@ class ApiController extends ApiBaseController
         if($user_id){
             $encryptedData = I("post.encryptedData");
             $iv = I("post.iv");
-            $share_type=I('post.share_type');
             if($encryptedData&&$iv){
                 $session_key=session('session_key');
                 if($session_key){
@@ -237,10 +236,8 @@ class ApiController extends ApiBaseController
                             $has=M('share_group')->where('uid='.$user_id.' and open_gid like "'.$json_data['openGId'].'"')->find();
                             if($has){
                                 if($has['share_time']<strtotime(date("Y-m-d"),time())){
-                                    if($share_type==1){
-                                        $user_game['chance_num']+=1;
-                                        M('user_game')->save($user_game);
-                                    }
+                                    $user_game['chance_num']+=1;
+                                    M('user_game')->save($user_game);
                                     $has['share_time']=time();
                                     M('share_group')->save($has);
                                     $data['code']=200;
@@ -250,10 +247,8 @@ class ApiController extends ApiBaseController
                                     $data['msg']='该群已分享过';
                                 }
                             }else{
-                                if($share_type==1){
-                                    $user_game['chance_num']+=1;
-                                    M('user_game')->save($user_game);
-                                }
+                                $user_game['chance_num']+=1;
+                                M('user_game')->save($user_game);
                                 $group['uid']=$user_id;
                                 $group['open_gid']=$json_data['openGId'];
                                 $group['share_time']=time();
