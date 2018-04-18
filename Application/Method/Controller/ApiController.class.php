@@ -222,7 +222,7 @@ class ApiController extends ApiBaseController
         if($user_id){
             $encryptedData = I("post.encryptedData");
             $iv = I("post.iv");
-            $share_type=I('post.share_type');
+            $share_type=I('post.share_type',1);
             if($encryptedData&&$iv){
                 $session_key=session('session_key');
                 if($session_key){
