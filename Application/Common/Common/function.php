@@ -299,8 +299,17 @@ function is_mobile(){
 
 }
 
+/**
+ * 初始session 并获取sessionid
+ * @param int $expire
+ * @return string
+ */
+function get_session_id($expire = 3600){
 
+    session(array('name'=>'session_id','expire'=>$expire));
 
+    return session_id();
+}
 
 
 

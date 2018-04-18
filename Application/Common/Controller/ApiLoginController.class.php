@@ -13,6 +13,13 @@ use Think\Controller;
 
 class ApiLoginController extends Controller
 {
+    /**
+     * 调用微信登录接口 获取用户信息
+     * @param null $code
+     * @param null $encryptedData
+     * @param null $iv
+     * @return mixed
+     */
     public  function get_weixin($code=null,$encryptedData=null,$iv=null){
             if($code&&$encryptedData&&$iv){
                 $arr=array(
@@ -21,8 +28,7 @@ class ApiLoginController extends Controller
                     'js_code'=>$code,
                     'grant_type'=>'authorization_code'
                 );
-                $code_session = $this->post_url('https://api.weixin.qq.com/sns/jscode2session', $arr);
-                $code_session = json_decode($code_session, true);
+                $code_session = post_url('https://api.weixin.qq.com/sns/jscode2session', $arr);
                 if($code_session['errcode']==40163){
                     $data['code']=400;
                     $data['msg']='code been used';
@@ -58,20 +64,8 @@ class ApiLoginController extends Controller
             }
 
     }
-    public function post_url($url,$data){
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_TIMEOUT,15);   //只需要设置一个秒的数量就可以
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        // post数据
-        curl_setopt($ch, CURLOPT_POST, 1);
-        // post的变量
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        $output = curl_exec($ch);
-        curl_close($ch);
-        //打印获得的数据
-        //print_r($output);
-        return $output;
-    }
+
+
+
+
 }
