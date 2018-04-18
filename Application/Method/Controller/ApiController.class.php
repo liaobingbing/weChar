@@ -286,6 +286,7 @@ class ApiController extends ApiBaseController
                 $data['code']=200;
                 $data['msg']='获取成功';
                 $data['data']['avatar_url']=$user_game['avatar_url'];
+                $data['data']['nickname']=$user_game['nickname'];
                 $data['data']['get_number']=$user_game['get_number'];
                 $data['data']['chance_num']=$user_game['chance_num'];
                 $data['data']['challenge_num']=$user_game['challenge_num'];
