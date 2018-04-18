@@ -1,0 +1,939 @@
+[ 2018-04-18T09:22:03+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000315s ]
+
+[ 2018-04-18T09:22:13+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000197s ]
+
+[ 2018-04-18T09:28:23+08:00 ] 127.0.0.1 /index.php/Admin/song/statistics
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000266s ]
+
+[ 2018-04-18T09:28:30+08:00 ] 127.0.0.1 /index.php/Admin/song/statistics
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000196s ]
+
+[ 2018-04-18T09:28:33+08:00 ] 127.0.0.1 /index.php/Admin/song/statistics
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000193s ]
+
+[ 2018-04-18T09:29:11+08:00 ] 127.0.0.1 /index.php/Admin/song/statistics
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000193s ]
+
+[ 2018-04-18T09:29:13+08:00 ] 127.0.0.1 /index.php/Admin/song/statistics
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000327s ]
+
+[ 2018-04-18T09:29:16+08:00 ] 127.0.0.1 /index.php/Admin/song/statistics
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000229s ]
+
+[ 2018-04-18T09:29:20+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000192s ]
+
+[ 2018-04-18T09:29:22+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000274s ]
+
+[ 2018-04-18T09:29:23+08:00 ] 127.0.0.1 /index.php/Admin/Song/song_list.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000225s ]
+
+[ 2018-04-18T09:29:25+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000203s ]
+
+[ 2018-04-18T09:29:40+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000197s ]
+
+[ 2018-04-18T09:29:41+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000204s ]
+
+[ 2018-04-18T09:29:42+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000230s ]
+
+[ 2018-04-18T09:29:43+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000194s ]
+
+[ 2018-04-18T09:29:43+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000250s ]
+
+[ 2018-04-18T09:29:43+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000236s ]
+
+[ 2018-04-18T09:29:43+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000193s ]
+
+[ 2018-04-18T09:29:44+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000195s ]
+
+[ 2018-04-18T09:29:44+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000212s ]
+
+[ 2018-04-18T09:29:44+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000194s ]
+
+[ 2018-04-18T09:29:44+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000196s ]
+
+[ 2018-04-18T09:29:44+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000194s ]
+
+[ 2018-04-18T09:29:45+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000191s ]
+
+[ 2018-04-18T09:29:45+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000193s ]
+
+[ 2018-04-18T09:33:01+08:00 ] 127.0.0.1 /index.php/Admin/Song/song_list.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000278s ]
+
+[ 2018-04-18T09:33:06+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000192s ]
+
+[ 2018-04-18T09:33:07+08:00 ] 127.0.0.1 /index.php/Admin/Song/song_list.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000214s ]
+
+[ 2018-04-18T09:33:10+08:00 ] 127.0.0.1 /index.php/Admin/Song/song_add.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000256s ]
+
+[ 2018-04-18T09:33:34+08:00 ] 127.0.0.1 /index.php/Admin/Song/song_list.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000199s ]
+
+[ 2018-04-18T09:33:35+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000197s ]
+
+[ 2018-04-18T09:33:37+08:00 ] 127.0.0.1 /index.php/Admin/Song/song_list.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000244s ]
+
+[ 2018-04-18T09:33:54+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000195s ]
+
+[ 2018-04-18T09:37:21+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000263s ]
+
+[ 2018-04-18T09:37:30+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000193s ]
+
+[ 2018-04-18T09:38:12+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000292s ]
+
+[ 2018-04-18T09:38:15+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000189s ]
+
+[ 2018-04-18T09:38:20+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000192s ]
+
+[ 2018-04-18T09:38:21+08:00 ] 127.0.0.1 /index.php/Admin/Song/song_list.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000193s ]
+
+[ 2018-04-18T09:38:23+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000192s ]
+
+[ 2018-04-18T09:38:41+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000195s ]
+
+[ 2018-04-18T09:41:24+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000236s ]
+
+[ 2018-04-18T09:41:26+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000193s ]
+
+[ 2018-04-18T09:42:22+08:00 ] 127.0.0.1 /index.php/Admin/Admin/logout.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000321s ]
+
+[ 2018-04-18T09:42:22+08:00 ] 127.0.0.1 /index.php/Admin/Login/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000197s ]
+
+[ 2018-04-18T09:42:22+08:00 ] 127.0.0.1 /index.php/Admin/Login/verify.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000226s ]
+
+[ 2018-04-18T09:42:27+08:00 ] 127.0.0.1 /index.php/Admin/Login/do_login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000198s ]
+
+[ 2018-04-18T09:42:27+08:00 ] 127.0.0.1 /index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000191s ]
+
+[ 2018-04-18T09:42:27+08:00 ] 127.0.0.1 /index.php/Admin/Index/welcome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000196s ]
+
+[ 2018-04-18T09:42:30+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000238s ]
+
+[ 2018-04-18T09:44:01+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000257s ]
+
+[ 2018-04-18T09:44:30+08:00 ] 127.0.0.1 /index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000225s ]
+
+[ 2018-04-18T09:44:30+08:00 ] 127.0.0.1 /index.php/Admin/Login/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000207s ]
+
+[ 2018-04-18T09:44:30+08:00 ] 127.0.0.1 /index.php/Admin/Login/verify.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000387s ]
+
+[ 2018-04-18T09:44:39+08:00 ] 127.0.0.1 /index.php/Admin/Login/do_login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000246s ]
+
+[ 2018-04-18T09:44:39+08:00 ] 127.0.0.1 /index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000226s ]
+
+[ 2018-04-18T09:44:39+08:00 ] 127.0.0.1 /index.php/Admin/Index/welcome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000202s ]
+
+[ 2018-04-18T09:44:42+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000284s ]
+
+[ 2018-04-18T09:44:44+08:00 ] 127.0.0.1 /index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000269s ]
+
+[ 2018-04-18T09:44:44+08:00 ] 127.0.0.1 /index.php/Admin/Index/welcome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000324s ]
+
+[ 2018-04-18T09:44:44+08:00 ] 127.0.0.1 /index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000204s ]
+
+[ 2018-04-18T09:44:44+08:00 ] 127.0.0.1 /index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000302s ]
+
+[ 2018-04-18T09:44:44+08:00 ] 127.0.0.1 /index.php/Admin/Index/welcome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000203s ]
+
+[ 2018-04-18T09:44:44+08:00 ] 127.0.0.1 /index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000310s ]
+
+[ 2018-04-18T09:44:44+08:00 ] 127.0.0.1 /index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000210s ]
+
+[ 2018-04-18T09:44:44+08:00 ] 127.0.0.1 /index.php/Admin/Index/welcome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000298s ]
+
+[ 2018-04-18T09:44:45+08:00 ] 127.0.0.1 /index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000225s ]
+
+[ 2018-04-18T09:44:49+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000478s ]
+
+[ 2018-04-18T09:47:04+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000280s ]
+
+[ 2018-04-18T09:51:59+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000243s ]
+
+[ 2018-04-18T09:52:02+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000194s ]
+
+[ 2018-04-18T09:53:27+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000292s ]
+
+[ 2018-04-18T09:56:02+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000251s ]
+
+[ 2018-04-18T09:56:27+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000287s ]
+
+[ 2018-04-18T09:57:09+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000296s ]
+
+[ 2018-04-18T09:57:50+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000222s ]
+
+[ 2018-04-18T10:00:22+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000273s ]
+
+[ 2018-04-18T10:25:50+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000245s ]
+
+[ 2018-04-18T10:35:02+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000233s ]
+
+[ 2018-04-18T10:35:43+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000195s ]
+
+[ 2018-04-18T10:36:19+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000236s ]
+
+[ 2018-04-18T10:36:46+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000217s ]
+
+[ 2018-04-18T10:36:48+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000193s ]
+
+[ 2018-04-18T10:37:18+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000222s ]
+
+[ 2018-04-18T10:42:36+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000243s ]
+
+[ 2018-04-18T10:44:03+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000202s ]
+
+[ 2018-04-18T10:44:44+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000242s ]
+
+[ 2018-04-18T10:45:15+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000221s ]
+
+[ 2018-04-18T10:45:41+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000223s ]
+
+[ 2018-04-18T10:46:09+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000330s ]
+
+[ 2018-04-18T10:46:16+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000190s ]
+
+[ 2018-04-18T10:46:35+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000283s ]
+
+[ 2018-04-18T10:47:16+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000309s ]
+
+[ 2018-04-18T10:48:00+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000377s ]
+
+[ 2018-04-18T10:48:08+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000204s ]
+
+[ 2018-04-18T10:49:30+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000244s ]
+
+[ 2018-04-18T10:49:40+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000247s ]
+
+[ 2018-04-18T10:50:03+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000193s ]
+
+[ 2018-04-18T10:50:11+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000234s ]
+
+[ 2018-04-18T10:51:17+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000199s ]
+
+[ 2018-04-18T10:51:20+08:00 ] 127.0.0.1 /index.php/Admin/Song/song_list.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000283s ]
+
+[ 2018-04-18T10:51:21+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000210s ]
+
+[ 2018-04-18T11:00:04+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000249s ]
+
+[ 2018-04-18T11:53:17+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000277s ]
+
+[ 2018-04-18T11:54:17+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000245s ]
+
+[ 2018-04-18T11:54:33+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000446s ]
+
+[ 2018-04-18T11:54:48+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000232s ]
+
+[ 2018-04-18T11:55:31+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000379s ]
+
+[ 2018-04-18T11:56:25+08:00 ] 127.0.0.1 /index.php/Admin/Index/charts-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000309s ]
+ERR: 非法操作:charts-1
+
+[ 2018-04-18T11:56:25+08:00 ] 127.0.0.1 /index.php/Admin/Index/charts-2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000384s ]
+ERR: 非法操作:charts-2
+
+[ 2018-04-18T11:57:32+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000242s ]
+
+[ 2018-04-18T11:57:41+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000207s ]
+
+[ 2018-04-18T13:52:39+08:00 ] 127.0.0.1 /index.php/Admin/Song/song_list.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000285s ]
+
+[ 2018-04-18T13:52:40+08:00 ] 127.0.0.1 /index.php/Admin/Song/song_list.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000458s ]
+
+[ 2018-04-18T13:52:40+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000236s ]
+
+[ 2018-04-18T13:59:04+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000402s ]
+
+[ 2018-04-18T13:59:06+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000198s ]
+
+[ 2018-04-18T13:59:14+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000339s ]
+
+[ 2018-04-18T13:59:17+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000282s ]
+
+[ 2018-04-18T13:59:24+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000263s ]
+
+[ 2018-04-18T13:59:31+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000297s ]
+
+[ 2018-04-18T14:04:22+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000354s ]
+
+[ 2018-04-18T14:06:41+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000353s ]
+
+[ 2018-04-18T14:07:55+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000223s ]
+
+[ 2018-04-18T14:08:30+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000196s ]
+
+[ 2018-04-18T14:08:56+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000288s ]
+
+[ 2018-04-18T14:09:26+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000196s ]
+
+[ 2018-04-18T14:16:58+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000252s ]
+
+[ 2018-04-18T14:17:43+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000224s ]
+ERR: Think\Controller:save_statistics方法不存在！
+
+[ 2018-04-18T14:17:56+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000199s ]
+
+[ 2018-04-18T14:18:34+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000319s ]
+
+[ 2018-04-18T14:24:08+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000232s ]
+
+[ 2018-04-18T14:24:19+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000431s ]
+
+[ 2018-04-18T14:44:55+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000249s ]
+
+[ 2018-04-18T14:52:46+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000255s ]
+
+[ 2018-04-18T14:53:58+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000268s ]
+
+[ 2018-04-18T14:55:55+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000484s ]
+
+[ 2018-04-18T15:06:02+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000256s ]
+
+[ 2018-04-18T15:08:37+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000350s ]
+
+[ 2018-04-18T15:21:22+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000326s ]
+
+[ 2018-04-18T15:23:14+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000291s ]
+
+[ 2018-04-18T15:26:46+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000250s ]
+
+[ 2018-04-18T15:27:20+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000197s ]
+
+[ 2018-04-18T15:28:30+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000240s ]
+
+[ 2018-04-18T15:28:38+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000193s ]
+ERR: 1146:Table 'kuaiyu_xcx.app_daily_recorad' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `app_daily_recorad`
+ERR: 1146:Table 'kuaiyu_xcx.app_daily_recorad' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `app_daily_recorad`
+
+[ 2018-04-18T15:28:44+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000196s ]
+
+[ 2018-04-18T15:30:06+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000330s ]
+
+[ 2018-04-18T15:30:22+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000379s ]
+
+[ 2018-04-18T15:31:22+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000267s ]
+
+[ 2018-04-18T15:31:39+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000397s ]
+
+[ 2018-04-18T15:33:10+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000228s ]
+
+[ 2018-04-18T15:35:45+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000419s ]
+ERR: 1364:Field 'id' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `app_daily_record` (`ref_date`,`session_cnt`,`visit_pv`,`visit_uv`,`visit_uv_new`,`stay_time_uv`,`stay_time_session`,`visit_depth`,`app_id`) VALUES ('20180417','67','232','12','2','1135.9167','203.4478','2.1045','1')
+ERR: 1364:Field 'id' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `app_daily_record` (`ref_date`,`session_cnt`,`visit_pv`,`visit_uv`,`visit_uv_new`,`stay_time_uv`,`stay_time_session`,`visit_depth`,`app_id`) VALUES ('20180417','67','232','12','2','1135.9167','203.4478','2.1045','1')
+
+[ 2018-04-18T15:37:42+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000242s ]
+ERR: 1364:Field 'id' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `app_daily_record` (`ref_date`,`session_cnt`,`visit_pv`,`visit_uv`,`visit_uv_new`,`stay_time_uv`,`stay_time_session`,`visit_depth`,`app_id`) VALUES ('20180417','67','232','12','2','1135.9167','203.4478','2.1045','1')
+ERR: 1364:Field 'id' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `app_daily_record` (`ref_date`,`session_cnt`,`visit_pv`,`visit_uv`,`visit_uv_new`,`stay_time_uv`,`stay_time_session`,`visit_depth`,`app_id`) VALUES ('20180417','67','232','12','2','1135.9167','203.4478','2.1045','1')
+
+[ 2018-04-18T15:38:43+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000500s ]
+
+[ 2018-04-18T15:39:25+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000202s ]
+
+[ 2018-04-18T15:42:37+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000253s ]
+
+[ 2018-04-18T15:43:25+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000198s ]
+
+[ 2018-04-18T15:43:29+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000270s ]
+
+[ 2018-04-18T15:44:36+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000228s ]
+
+[ 2018-04-18T15:45:39+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000233s ]
+
+[ 2018-04-18T15:48:17+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000395s ]
+
+[ 2018-04-18T15:48:19+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000269s ]
+
+[ 2018-04-18T15:48:44+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000196s ]
+
+[ 2018-04-18T15:50:27+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000392s ]
+ERR: 1264:Out of range value for column 'stay_time_uv' at row 1
+ [ SQL语句 ] : INSERT INTO `app_daily_record` (`ref_date`,`session_cnt`,`visit_pv`,`visit_uv`,`visit_uv_new`,`stay_time_uv`,`stay_time_session`,`visit_depth`,`app_id`) VALUES ('20180414','16','19','5','5','94','29.375','1','1')
+ERR: 1264:Out of range value for column 'stay_time_uv' at row 1
+ [ SQL语句 ] : INSERT INTO `app_daily_record` (`ref_date`,`session_cnt`,`visit_pv`,`visit_uv`,`visit_uv_new`,`stay_time_uv`,`stay_time_session`,`visit_depth`,`app_id`) VALUES ('20180414','16','19','5','5','94','29.375','1','1')
+
+[ 2018-04-18T15:51:13+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000299s ]
+
+[ 2018-04-18T15:53:26+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000323s ]
+
+[ 2018-04-18T15:53:54+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000196s ]
+
+[ 2018-04-18T15:53:55+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000239s ]
+
+[ 2018-04-18T15:54:22+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000364s ]
+
+[ 2018-04-18T15:54:46+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000297s ]
+
+[ 2018-04-18T15:55:15+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000228s ]
+
+[ 2018-04-18T15:56:19+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000370s ]
+
+[ 2018-04-18T15:56:23+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000196s ]
+
+[ 2018-04-18T15:57:05+08:00 ] 127.0.0.1 /index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000306s ]
+
+[ 2018-04-18T15:57:05+08:00 ] 127.0.0.1 /index.php/Admin/Index/welcome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000378s ]
+
+[ 2018-04-18T15:57:09+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000334s ]
+
+[ 2018-04-18T15:57:27+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000209s ]
+
+[ 2018-04-18T15:57:38+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000203s ]
+
+[ 2018-04-18T16:24:47+08:00 ] 127.0.0.1 /index.php/Admin/Song/song_list.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000246s ]
+
+[ 2018-04-18T16:25:04+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000274s ]
+
+[ 2018-04-18T16:35:26+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000271s ]
+
+[ 2018-04-18T16:35:28+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000298s ]
+
+[ 2018-04-18T16:35:36+08:00 ] 127.0.0.1 /index.php/Admin/Song/statistics.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000259s ]
+
