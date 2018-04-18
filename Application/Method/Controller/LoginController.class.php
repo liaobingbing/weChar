@@ -37,7 +37,7 @@ class LoginController extends  ApiLoginController
                 $user_game['uid']=$uid;
                 $user_game['nickname']=$login_data['nickName'];
                 $user_game['login_time'] = time();
-                $user_game['avatarUrl']=str_replace('/0','/132',$login_data['avatarUrl'] );
+                $user_game['avatar_url']=str_replace('/0','/132',$login_data['avatarUrl'] );
                 M('user_game')->add($user_game);
             }else{
                 if($user['status']==0) {
@@ -47,8 +47,8 @@ class LoginController extends  ApiLoginController
                 }
                 if($user['last_time']<strtotime(date("Y-m-d"),time())){
                     M('user_game')->where('uid='.$user['id'])->setField("chance_num",1);
-                    M('users')->where('id='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$login_data['avatarUrl']));
-                    M('user_game')->where('uid='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$login_data['avatarUrl']));
+                    M('users')->where('id='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
+                    M('user_game')->where('uid='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
 
                 }
             }
