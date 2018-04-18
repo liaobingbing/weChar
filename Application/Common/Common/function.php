@@ -61,7 +61,7 @@ function post_url($url,$parameter)
     curl_setopt($ch, CURLOPT_POSTFIELDS, $parameter);
     $output = curl_exec($ch);
     curl_close($ch);
-
+    $output = json_decode($output,true);
     return $output;
 }
 
