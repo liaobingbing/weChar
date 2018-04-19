@@ -6,7 +6,7 @@
  * Time: 14:12
  */
 
-namespace Method\Controller;
+namespace Confuse\Controller;
 
 
 use Common\Controller\ApiBaseController;

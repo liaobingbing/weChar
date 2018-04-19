@@ -6,7 +6,7 @@
  * Time: 10:43
  */
 
-namespace Method\Model;
+namespace Confuse\Model;
 
 
 use Think\Model;
