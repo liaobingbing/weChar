@@ -7,7 +7,7 @@ return array(
 
     'DB_HOST'   => 'www.ky311.com', // 线上服务器地址
 
-    'DB_NAME'   => 'kuaiyu_confuse', // 数据库名
+    'DB_NAME'   => 'kuaiyu_49', // 数据库名
 
     'DB_USER'   => 'root', // 用户名
 
@@ -15,15 +15,15 @@ return array(
 
     'DB_PORT'   => 3306, // 端口
 
-    'DB_PREFIX' => 'method_', // 数据库表前缀
+    'DB_PREFIX' => 'sort_', // 数据库表前缀
 
     'DB_CHARSET'=> 'utf8', // 字符集
 
     'DB_DEBUG'  =>  TRUE, // 数据库调试模式 开启后可以记录SQL日志
 
     // 小程序APP
-    'WECHAT_APPID'      =>  'wxb15bd36a0179edf2',
-    'WECHAT_APPSECRET'  =>  'ee3adf23be67e07780a4e1794126bb0e',
+    'WECHAT_APPID'      =>  'wx243d834e1b24c74c',
+    'WECHAT_APPSECRET'  =>  '034041a08c3d9522c4df12b8da142260',
 
     'LOG_RECORD' => true, // 开启日志记录
     'LOG_LEVEL'  =>'EMERG,ALERT,CRIT,ERR', // 只记录EMERG ALERT CRIT ERR 错误

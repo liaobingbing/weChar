@@ -6,11 +6,11 @@
  * Time: 10:47
  */
 
-namespace Method\Controller;
+namespace Sort\Controller;
 
 
 use Common\Controller\ApiLoginController;
-use Method\Model\UsersModel;
+use Sort\Model\UsersModel;
 
 class LoginController extends  ApiLoginController
 {

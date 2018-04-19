@@ -6,7 +6,7 @@
  * Time: 10:43
  */
 
-namespace Method\Model;
+namespace Sort\Model;
 
 
 use Think\Model;
