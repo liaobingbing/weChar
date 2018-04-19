@@ -7,7 +7,7 @@ return array(
 
     'DB_HOST'   => 'www.ky311.com', // 线上服务器地址
 
-    'DB_NAME'   => 'kuaiyu_confuse', // 数据库名
+    'DB_NAME'   => 'kuaiyu_method', // 数据库名
 
     'DB_USER'   => 'root', // 用户名
 
