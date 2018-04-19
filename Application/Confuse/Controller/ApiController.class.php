@@ -282,6 +282,7 @@ class ApiController extends ApiBaseController
         $user_id=session('user_id');
         if($user_id){
             $user_game=M('user_game')->find($user_id);
+            $share_group_num = M('share_group')->where('uid='.$user_id)->count('open_gid');
             if($user_game){
                 $data['code']=200;
                 $data['msg']='获取成功';
@@ -290,6 +291,7 @@ class ApiController extends ApiBaseController
                 $data['data']['get_number']=$user_game['get_number'];
                 $data['data']['chance_num']=$user_game['chance_num'];
                 $data['data']['challenge_num']=$user_game['challenge_num'];
+                $data['data']['share_group_num']=$share_group_num;
             }else{
                 $data['code']=401;
             }
