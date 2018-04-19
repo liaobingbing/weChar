@@ -6,7 +6,7 @@
  * Time: 10:47
  */
 
-namespace Method\Controller;
+namespace Confuse\Controller;
 
 
 use Common\Controller\ApiLoginController;
