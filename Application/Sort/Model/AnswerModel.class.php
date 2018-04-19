@@ -6,7 +6,7 @@
  * Time: 10:45
  */
 
-namespace Confuse\Model;
+namespace Sort\Model;
 
 
 use Think\Model;

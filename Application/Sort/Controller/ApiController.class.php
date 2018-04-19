@@ -6,7 +6,7 @@
  * Time: 14:12
  */
 
-namespace Confuse\Controller;
+namespace Sort\Controller;
 
 
 use Common\Controller\ApiBaseController;
@@ -32,9 +32,9 @@ class ApiController extends ApiBaseController
         $user_info = S('intelligence_top');
         if(!$user_info){
             //SELECT avatarUrl,gt_number as number,nickname FROM method_test_game WHERE id >= ((SELECT MAX(id) FROM method_test_game)-(SELECT MIN(id) FROM method_test_game)) * RAND() + (SELECT MIN(id) FROM method_test_game)  order by  number desc LIMIT 5;
-            $sql1="SELECT avatarUrl,gt_number,nickname FROM confuse_test_game order by gt_number desc limit 3";
+            $sql1="SELECT avatarUrl,gt_number,nickname FROM method_test_game order by gt_number desc limit 3";
             $data1=M()->query($sql1);
-            $sql2="SELECT avatarUrl,gt_number,nickname FROM confuse_test_game WHERE id >= ((SELECT MAX(id) FROM confuse_test_game)-(SELECT MIN(id) FROM confuse_test_game)) * RAND() + (SELECT MIN(id) FROM confuse_test_game)  order by  gt_number desc LIMIT 8";
+            $sql2="SELECT avatarUrl,gt_number,nickname FROM method_test_game WHERE id >= ((SELECT MAX(id) FROM method_test_game)-(SELECT MIN(id) FROM method_test_game)) * RAND() + (SELECT MIN(id) FROM method_test_game)  order by  gt_number desc LIMIT 8";
             $data2=M()->query($sql2);
             $user_info=$data1+$data2;
             foreach($user_info as $k=>$v){
@@ -69,9 +69,9 @@ class ApiController extends ApiBaseController
             foreach($user_info as $k=>$v){
                 $user_info[$k]['ranking']=$k+1;
             }
-            $sql1="SELECT avatarUrl,gt_number,nickname FROM confuse_test_game order by gt_number desc limit 3";
+            $sql1="SELECT avatarUrl,gt_number,nickname FROM method_test_game order by gt_number desc limit 3";
             $data1=M()->query($sql1);
-            $sql2="SELECT avatarUrl,gt_number,nickname FROM confuse_test_game WHERE id >= ((SELECT MAX(id) FROM confuse_test_game)-(SELECT MIN(id) FROM confuse_test_game)) * RAND() + (SELECT MIN(id) FROM confuse_test_game)  order by  gt_number desc LIMIT 8";
+            $sql2="SELECT avatarUrl,gt_number,nickname FROM method_test_game WHERE id >= ((SELECT MAX(id) FROM method_test_game)-(SELECT MIN(id) FROM method_test_game)) * RAND() + (SELECT MIN(id) FROM method_test_game)  order by  gt_number desc LIMIT 8";
             $data2=M()->query($sql2);
             $user_info2=$data1+$data2;
             foreach($user_info2 as $k=>$v){
@@ -162,7 +162,7 @@ class ApiController extends ApiBaseController
 
                 $layer=I('post.layer',1);
                 if($layer<=30){
-                    $sql='SELECT * FROM confuse_answer WHERE status=1 ORDER BY  RAND() LIMIT 1';
+                    $sql='SELECT * FROM method_answer WHERE status=1 ORDER BY  RAND() LIMIT 1';
                     $question=M()->query($sql);
                     if($question){
                         $data['code']=200;
@@ -222,6 +222,7 @@ class ApiController extends ApiBaseController
         if($user_id){
             $encryptedData = I("post.encryptedData");
             $iv = I("post.iv");
+            $share_type=I('post.share_type',1);
             if($encryptedData&&$iv){
                 $session_key=session('session_key');
                 if($session_key){
@@ -236,8 +237,10 @@ class ApiController extends ApiBaseController
                             $has=M('share_group')->where('uid='.$user_id.' and open_gid like "'.$json_data['openGId'].'"')->find();
                             if($has){
                                 if($has['share_time']<strtotime(date("Y-m-d"),time())){
-                                    $user_game['chance_num']+=1;
-                                    M('user_game')->save($user_game);
+                                    if($share_type==1){
+                                        $user_game['chance_num']+=1;
+                                        M('user_game')->save($user_game);
+                                    }
                                     $has['share_time']=time();
                                     M('share_group')->save($has);
                                     $data['code']=200;
@@ -247,8 +250,10 @@ class ApiController extends ApiBaseController
                                     $data['msg']='该群已分享过';
                                 }
                             }else{
-                                $user_game['chance_num']+=1;
-                                M('user_game')->save($user_game);
+                                if($share_type==1){
+                                    $user_game['chance_num']+=1;
+                                    M('user_game')->save($user_game);
+                                }
                                 $group['uid']=$user_id;
                                 $group['open_gid']=$json_data['openGId'];
                                 $group['share_time']=time();
@@ -282,7 +287,6 @@ class ApiController extends ApiBaseController
         $user_id=session('user_id');
         if($user_id){
             $user_game=M('user_game')->find($user_id);
-            $share_group_num = M('share_group')->where('uid='.$user_id)->count('open_gid');
             if($user_game){
                 $data['code']=200;
                 $data['msg']='获取成功';
@@ -291,7 +295,6 @@ class ApiController extends ApiBaseController
                 $data['data']['get_number']=$user_game['get_number'];
                 $data['data']['chance_num']=$user_game['chance_num'];
                 $data['data']['challenge_num']=$user_game['challenge_num'];
-                $data['data']['share_group_num']=$share_group_num;
             }else{
                 $data['code']=401;
             }
