@@ -15,9 +15,9 @@ use FindWord\Model\UsersModel;
 class LoginController extends ApiLoginController
 {
     public function login(){
-        $code=I('post.code');
-        $encryptedData=I('post.encryptedData');
-        $iv=I('post.iv');
+        $code=I('code');
+        $encryptedData=I('encryptedData');
+        $iv=I('iv');
         $result = array('code'=>400,'msg'=>'失败');
         // 调用微信登录接口 获取用户信息
         $user_info = $this->get_weixin($code,$encryptedData,$iv);

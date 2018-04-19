@@ -15,10 +15,11 @@ class UsersModel extends Model
 {
 
 
-    public function do_login($data){
-
-    }
-
+    /**
+     * 添加新用户
+     * @param $data
+     * @return mixed
+     */
     public function add_user($data){
         $user['openid'] = $data['openId'];
         $user['unionid'] = $data['unionId'];
@@ -41,6 +42,11 @@ class UsersModel extends Model
         return $user;
     }
 
+    /**
+     * 更新用户数据
+     * @param $data
+     * @return mixed
+     */
     public function update_user($data){
         $user = $this->find_by_openid($data['openId']);
         $user['gender'] = $data['gender'];
@@ -60,8 +66,21 @@ class UsersModel extends Model
         return $user;
     }
 
-    public function find_by_openid($openid){
-        $user = M('Users')->where(array('openid'=>$openid))->find();
+    /**
+     * 根据openid 获取用户信息
+     * @param $openid
+     * @param null $field
+     * @return mixed
+     */
+    public function find_by_openid($openid,$field=null){
+
+        if($field){
+            $user = M('Users')->field($field)->where(array('openid'=>$openid))->find();
+
+        }else{
+            $user = M('Users')->where(array('openid'=>$openid))->find();
+
+        }
 
         return $user;
     }
