@@ -100,7 +100,7 @@ class ApiController extends ApiBaseController
     }
 
     //检查机会次数
-    public function check_chance_num(){
+    /*public function check_chance_num(){
         $user_id=session('user_id');
         if($user_id){
             $user_game=M('user_game')->find($user_id);
@@ -119,7 +119,7 @@ class ApiController extends ApiBaseController
             $data['code']=401;
         }
         $this->ajaxReturn($data,'JSON');
-    }
+    }*/
 
     //开始挑战
     public function begin_challenge(){
@@ -157,9 +157,7 @@ class ApiController extends ApiBaseController
         $user_id=session('user_id');
         if($user_id){
             $user_game=M('user_game')->find($user_id);
-
             if($user_game){
-
                 $layer=I('post.layer',1);
                 if($layer<=30){
                     $sql='SELECT * FROM confuse_answer WHERE status=1 ORDER BY  RAND() LIMIT 1';
