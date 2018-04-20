@@ -167,6 +167,7 @@ class ApiController extends ApiBaseController
                     if($question){
                         $data['code']=200;
                         $data['msg']='获取成功';
+                        $data['data']['nex_layer']=$layer+1;
                         $data['data']['subject1']=$question[0]['subject1'];
                         $data['data']['subject2']=$question[0]['subject2'];
                         if($layer>18){
