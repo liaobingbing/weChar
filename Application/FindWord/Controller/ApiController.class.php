@@ -30,11 +30,7 @@ class ApiController extends ApiBaseController
     public function index(){
         $user_id = session('user_id');
         $result = array();
-        $UserGame = M('UserGame');
-        if($UserGame->where("uid=$user_id")->setInc('chance_num')){
-            $result['code'] = 200;
-            $result['msg']  = '分享成功';
-        }
+
 
 
         $this->ajaxReturn($result);
@@ -203,6 +199,21 @@ class ApiController extends ApiBaseController
         $prize_list = M('Prize')->page($page,$len)->select();
         $result = array('code'=>200,'msg'=>'获取成功');
         $result['data'] = $prize_list;
+
+        $this->ajaxReturn($result);
+    }
+
+    // 将用户禁用
+    public function disable(){
+        $user_id = session('user_id');
+        $result = array('code'=>400, 'msg'=> '禁用失败');
+        $re = M('Users')->where("id={$user_id}")->setField('status',0);
+
+        if($re){
+            session(null);
+            $result['code'] = 401;
+            $result['msg']  = '已禁用';
+        }
 
         $this->ajaxReturn($result);
     }

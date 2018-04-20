@@ -43,7 +43,8 @@ class QuestionsModel extends Model
         foreach($questions as $k => $v){
             $rand = rand(0,1);
             $result[$k] = $v;
-            $result[$k]['answer'] = array_keys($v)[$rand];
+            $key = array_keys($v);
+            $result[$k]['answer'] = $key[$rand];
         }
 
         return $result;
