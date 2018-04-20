@@ -161,9 +161,9 @@ class ApiController extends ApiBaseController
                 $layer=I('post.layer',1);
                 if($layer<=30){
                     if($layer<=20){
-                        $sql='SELECT * FROM method_answer WHERE status=1 and id<=110 ORDER BY  RAND() LIMIT 1';
+                        $sql='SELECT * FROM method_answer WHERE status=1 and id<=72 ORDER BY  RAND() LIMIT 1';
                     }else {
-                        $sql='SELECT * FROM method_answer WHERE status=1 and id>110 ORDER BY  RAND() LIMIT 1';
+                        $sql='SELECT * FROM method_answer WHERE status=1 and id>73 ORDER BY  RAND() LIMIT 1';
                     }
                     $question=M()->query($sql);
                     if($question){
