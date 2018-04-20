@@ -20,14 +20,13 @@ class ApiController extends ApiBaseController
 {
     // 首页
     public function index(){
+        $result = array();
         $Questions = new QuestionsModel();
         $Users = new UsersModel();
         $UserGame = new UserGameModel();
         $ShareGroup = new ShareGroupModel();
 
         $Login =new ApiLoginController();
-        $result = $Login->wx_biz_data_crypt(1,2,3,'123');
-
 
 
         $this->ajaxReturn($result);
@@ -64,5 +63,7 @@ class ApiController extends ApiBaseController
         $this->ajaxReturn($result);
     }
 
+    // 分享群操作
+    //public function
 
 }

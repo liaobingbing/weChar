@@ -23,7 +23,7 @@ return array(
 
     // 小程序APP
     'WECHAT_APPID'      =>  'wx2bd2b34cbbebf754',
-    'WECHAT_APPSECRET'  =>  '53af2d32698bf80f36d0eeaed34ca595',
+    'WECHAT_APPSECRET'  =>  'af43cad3c3e465d16dc523a0708a443d',
 
     'LOG_RECORD' => true, // 开启日志记录
     'LOG_LEVEL'  =>'EMERG,ALERT,CRIT,ERR', // 只记录EMERG ALERT CRIT ERR 错误

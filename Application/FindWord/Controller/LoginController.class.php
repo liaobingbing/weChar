@@ -15,57 +15,32 @@ use FindWord\Model\UsersModel;
 class LoginController extends ApiLoginController
 {
     public function login(){
-        $code=I('code');
-        $encryptedData=I('encryptedData');
+
+        $code = I('code');
+        $encryptedDate=I('encryptedDate');
         $iv=I('iv');
         $result = array('code'=>400,'msg'=>'失败');
-        // 调用微信登录接口 获取用户信息
-        $user_info = $this->get_weixin($code,$encryptedData,$iv);
 
-        if( $user_info['code'] != 400){
+
+        $data = $this->do_login($code,$encryptedDate,$iv);
+
+        if($data['code'] == 200){
             $Users = new UsersModel();
-            $user = $Users->find_by_openid($user_info['code']);
+            $session_id = $Users->do_login($data);
 
-            if(!$user){
-                $user = $Users->add_user($user_info);
-
-                $session_id = get_session_id(60*60*24);
-                session('user_id',$user['id']);
-                session('openid',$user['openid']);
-
-                $result['code'] = 200;
-                $result['msg']  = '登录成功';
-                $result['data'] = array('session_id'=>$session_id);
-
-
-            }else{
-                if ($user['status'] == 0){
-                    $result['code'] = 403;
-                    $result['msg']  = '已拉黑';
-                    session(null);
-                }else{
-                    $today_0 = date('Y-m-d',time());
-
-                    if($user['update_time'] < $today_0){
-                        $user = $Users->update_user($user_info);
-
-                        $session_id = get_session_id(60*60*24);
-                        session('user_id',$user['id']);
-                        session('openid',$user['openid']);
-
-                        $result['code'] = 200;
-                        $result['msg']  = '登录成功';
-                        $result['data'] = array('session_id'=>$session_id);
-                    }
-                }
-            }
-
-        }else{
-            $result = $user_info;
+           if($session_id){
+               $result['code']  =   200;
+               $result['msg']   =   '登录成功';
+               $result['data']  =   array('session_id'=>$session_id);
+           }else{
+               $result['code']  = 403;
+               $result['msg'] = '该用户已禁用';
+           }
         }
-
 
         $this->ajaxReturn($result);
 
     }
+
+
 }
