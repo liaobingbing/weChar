@@ -53,7 +53,7 @@ class ApiLoginController extends Controller
                 }else {
 
                     $data['code']=400;
-                    $data['msg']=$code_session['errcode'];
+                    $data['msg']=$code_session;
                     return $data;
 
                 }
@@ -63,6 +63,79 @@ class ApiLoginController extends Controller
                 return $data;
             }
 
+    }
+
+    /**
+     * 获取微信用户信息
+     * @param $code
+     * @param $encryptedDate
+     * @param $iv
+     * @return mixed
+     */
+    public function do_login($code,$encryptedDate,$iv){
+
+        $code_session = $this->wx_session_key($code);
+
+        if($code_session['openid'] && $code_session['session_key']){
+
+            // 解密
+            $session_key = $code_session['session_key'];
+            $data = $this->wx_biz_data_crypt($encryptedDate,$iv,$session_key);
+
+            if( $data['errCode'] == 0){
+                $json_data = json_decode($data['data'], true);
+                $result = $json_data;
+                $result['code'] = 200;
+                $result['session_key'] = $code_session['session_key'];
+            }else{
+                $result['code'] = 400;
+                $result['msg']  = '获取失败';
+            }
+
+        }else{
+            $result['code'] = 400;
+            $result['msg'] = $code_session['errmsg'];
+        }
+
+        return $result;
+    }
+
+    /**
+     * 获取微信返回的session_key
+     * @param $code
+     * @return mixed
+     */
+    public function wx_session_key($code){
+        $url = 'https://api.weixin.qq.com/sns/jscode2session';
+        $parameter = array(
+            'appid'     =>  C('WECHAT_APPID'),
+            'secret'    =>  C('WECHAT_APPSECRET'),
+            'js_code'   =>  $code,
+            'grant_type'=>  'authorization_code'
+        );
+
+        $code_session = post_url($url,$parameter);
+
+        return $code_session;
+    }
+
+    /**
+     * 对微信数据进行解密
+     * @param $encryptedData
+     * @param $iv
+     * @param $session_key
+     * @return mixed
+     */
+    public function wx_biz_data_crypt($encryptedData,$iv,$session_key){
+        vendor("wxaes.WXBizDataCrypt");
+        $wxBizDataCrypt = new \WXBizDataCrypt(C("WECHAT_APPID"), $session_key);
+
+        $errCode = $wxBizDataCrypt->decryptData($encryptedData, $iv, $data);
+
+        $resutl['errCode'] = $errCode;
+        $resutl['data']    = $data;
+
+        return $resutl;
     }
 
 

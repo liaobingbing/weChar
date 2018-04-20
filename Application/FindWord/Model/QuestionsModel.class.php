@@ -15,15 +15,16 @@ class QuestionsModel extends Model
 {
     /**
      * 获取题库
+     * @param int $expire 缓存时间
      * @return mixed
      */
-    public function get_questions(){
+    public function get_questions($expire = 86200){
         $key = 'find_word_questions';
         $question = S($key);
 
         if( !$question ){
             $question = M('Questions')->field('option_1,option_2')->select();
-            S($key,$question,24*60*60);
+            S($key,$question,$expire);
         }
 
         return $question;
@@ -42,7 +43,8 @@ class QuestionsModel extends Model
         foreach($questions as $k => $v){
             $rand = rand(0,1);
             $result[$k] = $v;
-            $result[$k]['answer'] = array_keys($v)[$rand];
+            $key = array_keys($v);
+            $result[$k]['answer'] = $key[$rand];
         }
 
         return $result;
