@@ -14,13 +14,14 @@ use FindWord\Model\UsersModel;
 
 class LoginController extends ApiLoginController
 {
+    // 用户登录接口
     public function login(){
 
         $code = I('code');
         $encryptedDate=I('encryptedDate');
         $iv=I('iv');
-        $result = array('code'=>400,'msg'=>'失败');
 
+        $result = array('code'=>400,'msg'=>'失败');
 
         $data = $this->do_login($code,$encryptedDate,$iv);
 
@@ -36,11 +37,35 @@ class LoginController extends ApiLoginController
                $result['code']  = 403;
                $result['msg'] = '该用户已禁用';
            }
+        }else{
+            $result = $data;
         }
 
         $this->ajaxReturn($result);
 
     }
+
+    // 测试 - 登录接口
+    public function test_login(){
+        $Users = new UsersModel();
+        $user = $Users->find_by_user_id(1);
+
+        session(null);
+        $session_id = get_session_id();
+        session('user_id',$user['id']);
+        session('openid',$user['openid']);
+        if($session_id){
+            print_r(session());
+            echo '登录成功';
+        }
+    }
+
+    // 测试 - 登录退出
+    public function test_logout(){
+        session(null);
+        echo '退出成功';
+    }
+
 
 
 }

@@ -67,8 +67,8 @@ class UsersModel extends Model
         $uid = M('Users')->save($user);
 
         if($uid){
-            $user_game['nickname']=$data['nickName'];
-            $user_game['avatar_url']=str_replace('/0','/132',$data['avatarUrl'] );
+            $user_game['nickname']     =   $data['nickName'];
+            $user_game['avatar_url']   =   str_replace('/0','/132',$data['avatarUrl'] );
             M('UserGame')->where(array('uid'=>$uid))->save($user_game);
             $result = $user;
         }
@@ -84,6 +84,8 @@ class UsersModel extends Model
     public function do_login($data){
 
         $user = $this->find_by_openid($data['openId']);
+        $result = false;
+
         if($user){
             if ($user['status'] != 0){
                 $re = $this->update_user($data);
@@ -115,19 +117,34 @@ class UsersModel extends Model
     }
 
     /**
-     * 根据openid 获取用户信息
-     * @param $openid
-     * @param null $field
-     * @return mixed
-     */
+ * 根据openid 获取用户信息
+ * @param $openid
+ * @param null $field
+ * @return mixed
+ */
     public function find_by_openid($openid,$field=null){
 
         if($field){
             $user = M('Users')->field($field)->where(array('openid'=>$openid))->find();
-
         }else{
             $user = M('Users')->where(array('openid'=>$openid))->find();
+        }
 
+        return $user;
+    }
+
+    /**
+     * 根据 user_id 获取用户信息
+     * @param $user_id
+     * @param null $field
+     * @return mixed
+     */
+    public function find_by_user_id($user_id,$field=null){
+
+        if($field){
+            $user = M('Users')->field($field)->where(array('id'=>$user_id))->find();
+        }else{
+            $user = M('Users')->where(array('id'=>$user_id))->find();
         }
 
         return $user;
