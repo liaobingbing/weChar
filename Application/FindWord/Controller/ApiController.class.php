@@ -45,9 +45,8 @@ class ApiController extends ApiBaseController
         $user_id = session('user_id');
         $UserGame = new UserGameModel();
 
-        $re = $UserGame->check_chance_num($user_id);
-
         $result = array('code'=>400,'msg'=>'无挑战次数');
+        $re = $UserGame->check_chance_num($user_id);
 
         if($re){
             $result = array('code'=>200,'msg'=>'有挑战次数');
@@ -58,14 +57,21 @@ class ApiController extends ApiBaseController
 
     // 获取题目
     public function get_question(){
-        $Questions = new QuestionsModel();
+        $user_id = session('user_id');
+        $UserGame = M('UserGame');
+        $chance_num = $UserGame->where(array('uid'=>$user_id))->getField('chance_num');
+        $result = array('code'=>400,'msg'=>'挑战次数不足');
 
-        $questions = $Questions->get_rand_questions();
-        $result = array('code'=>400,'msg'=>'获取失败');
+        if($chance_num > 0){
+            $Questions = new QuestionsModel();
+            $questions = $Questions->get_rand_questions();
 
-        if($questions){
-            $result = array('code'=>200,'msg'=>'获取成功');
-            $result['data'] = $questions;
+            if($questions){
+                $UserGame->where(array('uid'=>$user_id))->setDec('chance_num');
+                $UserGame->where(array('uid'=>$user_id))->setInc('challenge_num');
+                $result = array('code'=>200,'msg'=>'获取成功');
+                $result['data'] = $questions;
+            }
         }
 
         $this->ajaxReturn($result);
@@ -159,5 +165,46 @@ class ApiController extends ApiBaseController
         return $result;
     }
 
+    // 毅力榜
+    public function challenge_top(){
+        $UserGame = new UserGameModel();
+        $rankings = $UserGame->get_rankings('challenge_num',8);
+        $result = array('code'=>400, 'msg'=>'获取失败');
+
+        if($rankings){
+            $result['code'] = 200;
+            $result['msg']  = '获取成功';
+            $result['data'] = $rankings;
+        }
+
+        $this->ajaxReturn($result);
+    }
+
+    // 毅力榜
+    public function get_prize_top(){
+        $UserGame = new UserGameModel();
+        $rankings = $UserGame->get_rankings('get_prize',8);
+        $result = array('code'=>400, 'msg'=>'获取失败');
+
+        if($rankings){
+            $result['code'] = 200;
+            $result['msg']  = '获取成功';
+            $result['data'] = $rankings;
+        }
+
+        $this->ajaxReturn($result);
+    }
+
+    // 奖品列表
+    public function prize_list(){
+        $page = I('page',1);
+        $len  = I('len',10);
+
+        $prize_list = M('Prize')->page($page,$len)->select();
+        $result = array('code'=>200,'msg'=>'获取成功');
+        $result['data'] = $prize_list;
+
+        $this->ajaxReturn($result);
+    }
 
 }

@@ -49,4 +49,26 @@ class UserGameModel extends Model
 
         return $resutl;
     }
+
+    /**
+     * 获取排名
+     * @param $field '字段'
+     * @param $len    '长度'
+     * @param int $expire '时间'
+     * @return mixed
+     */
+    public function get_rankings($field,$len,$expire=300){
+        $key = 'find_word_rankings_'.$field;
+        $rankings = S($key);
+
+        if(!$rankings){
+            $rankings = M('UserGame')->field("{$field},avatar_url,nickname")->order('challenge_num desc')->cache($key,$expire)->limit($len)->select();
+        }
+
+        foreach ($rankings as $k => $v){
+            $rankings[$k]['ranking'] = $k + 1;
+        }
+
+        return $rankings;
+    }
 }

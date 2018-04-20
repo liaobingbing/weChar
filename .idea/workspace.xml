@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="114d0a38-7816-49d4-ab40-56b565067cf7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Application/Common/Controller/ApiBaseController.class.php" afterPath="$PROJECT_DIR$/Application/Common/Controller/ApiBaseController.class.php" />
-      <change beforePath="$PROJECT_DIR$/Application/Common/Controller/ApiLoginController.class.php" afterPath="$PROJECT_DIR$/Application/Common/Controller/ApiLoginController.class.php" />
       <change beforePath="$PROJECT_DIR$/Application/FindWord/Controller/ApiController.class.php" afterPath="$PROJECT_DIR$/Application/FindWord/Controller/ApiController.class.php" />
-      <change beforePath="$PROJECT_DIR$/Application/FindWord/Controller/LoginController.class.php" afterPath="$PROJECT_DIR$/Application/FindWord/Controller/LoginController.class.php" />
-      <change beforePath="$PROJECT_DIR$/Application/FindWord/Model/QuestionsModel.class.php" afterPath="$PROJECT_DIR$/Application/FindWord/Model/QuestionsModel.class.php" />
-      <change beforePath="$PROJECT_DIR$/Application/FindWord/Model/UsersModel.class.php" afterPath="$PROJECT_DIR$/Application/FindWord/Model/UsersModel.class.php" />
+      <change beforePath="$PROJECT_DIR$/Application/FindWord/Model/UserGameModel.class.php" afterPath="$PROJECT_DIR$/Application/FindWord/Model/UserGameModel.class.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,47 +17,106 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="ApiController.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Application/FindWord/Controller/ApiController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="89" column="33" lean-forward="false" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
-              <folding>
-                <element signature="e#624#944#0#PHP" expanded="false" />
-                <element signature="e#966#1317#0#PHP" expanded="false" />
-                <element signature="e#1335#1693#0#PHP" expanded="false" />
-                <element signature="e#1713#2073#0#PHP" expanded="false" />
-                <element signature="e#2093#2797#0#PHP" expanded="false" />
-                <element signature="e#2816#4397#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QuestionsModel.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/FindWord/Model/QuestionsModel.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="45" column="51" lean-forward="false" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserGameModel.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/FindWord/Model/UserGameModel.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="22" column="35" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="35" />
-              <folding>
-                <element signature="e#285#580#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.47269303">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="ApiController.class.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Application/FindWord/Controller/ApiController.class.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="437">
+                  <caret line="80" column="20" lean-forward="false" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="20" />
+                  <folding>
+                    <element signature="e#401#608#0#PHP" expanded="false" />
+                    <element signature="e#624#944#0#PHP" expanded="false" />
+                    <element signature="e#966#1316#0#PHP" expanded="false" />
+                    <element signature="e#1334#2082#0#PHP" expanded="false" />
+                    <element signature="e#2102#2462#0#PHP" expanded="false" />
+                    <element signature="e#2482#3186#0#PHP" expanded="false" />
+                    <element signature="e#3205#4786#0#PHP" expanded="false" />
+                    <element signature="e#4803#5184#0#PHP" expanded="false" />
+                    <element signature="e#5201#5578#0#PHP" expanded="false" />
+                    <element signature="e#5596#5880#0#PHP" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="UserGameModel.class.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Application/FindWord/Model/UserGameModel.class.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="570">
+                  <caret line="56" column="29" lean-forward="false" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
+                  <folding>
+                    <element signature="e#285#580#0#PHP" expanded="false" />
+                    <element signature="e#659#906#0#PHP" expanded="false" />
+                    <element signature="e#1045#1491#0#PHP" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ShareGroupModel.class.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Application/FindWord/Model/ShareGroupModel.class.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="627">
+                  <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#269#773#0#PHP" expanded="false" />
+                    <element signature="e#873#1356#0#PHP" expanded="false" />
+                    <element signature="e#1454#1865#0#PHP" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="QuestionsModel.class.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Application/FindWord/Model/QuestionsModel.class.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="661">
+                  <caret line="45" column="51" lean-forward="false" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="ApiController.class.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Application/Method/Controller/ApiController.class.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-96">
+                  <caret line="91" column="31" lean-forward="false" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="31" />
+                  <folding>
+                    <element signature="e#260#598#0#PHP" expanded="false" />
+                    <element signature="e#613#1853#0#PHP" expanded="false" />
+                    <element signature="e#1868#2351#0#PHP" expanded="false" />
+                    <element signature="e#2369#3384#0#PHP" expanded="false" />
+                    <element signature="e#3615#3889#0#PHP" expanded="false" />
+                    <element signature="e#3908#4507#0#PHP" expanded="false" />
+                    <element signature="e#4524#5457#0#PHP" expanded="false" />
+                    <element signature="e#5475#7095#0#PHP" expanded="false" />
+                    <element signature="e#7115#7410#0#PHP" expanded="false" />
+                    <element signature="e#7427#10397#0#PHP" expanded="false" />
+                    <marker date="1524189038289" expanded="true" signature="998:1087" ph="SELECT avata... method_test_game" />
+                    <marker date="1524189038289" expanded="true" signature="1147:1380" ph="SELECT avata... method_test_game" />
+                    <marker date="1524189038289" expanded="true" signature="1219:1255" ph="SELECT MAX(i... method_test_game" />
+                    <marker date="1524189038289" expanded="true" signature="1258:1294" ph="SELECT MIN(i... method_test_game" />
+                    <marker date="1524189038289" expanded="true" signature="1309:1345" ph="SELECT MIN(i... method_test_game" />
+                    <marker date="1524189038289" expanded="true" signature="2716:2805" ph="SELECT avata... method_test_game" />
+                    <marker date="1524189038289" expanded="true" signature="2865:3098" ph="SELECT avata... method_test_game" />
+                    <marker date="1524189038289" expanded="true" signature="2937:2973" ph="SELECT MAX(i... method_test_game" />
+                    <marker date="1524189038289" expanded="true" signature="2976:3012" ph="SELECT MIN(i... method_test_game" />
+                    <marker date="1524189038289" expanded="true" signature="3027:3063" ph="SELECT MIN(i... method_test_game" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -83,11 +138,13 @@
         <option value="$PROJECT_DIR$/Application/FindWord/Conf/config.php" />
         <option value="$PROJECT_DIR$/Application/Common/Controller/ApiBaseController.class.php" />
         <option value="$PROJECT_DIR$/Application/FindWord/Controller/LoginController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Method/Controller/ApiController.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Controller/ApiLoginController.class.php" />
         <option value="$PROJECT_DIR$/Application/FindWord/Model/UsersModel.class.php" />
-        <option value="$PROJECT_DIR$/Application/FindWord/Controller/ApiController.class.php" />
         <option value="$PROJECT_DIR$/Application/FindWord/Model/QuestionsModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/FindWord/Model/ShareGroupModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/FindWord/Model/UserGameModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Method/Controller/ApiController.class.php" />
+        <option value="$PROJECT_DIR$/Application/FindWord/Controller/ApiController.class.php" />
       </list>
     </option>
   </component>
@@ -147,13 +204,6 @@
               <item name="weChat" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Application" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Common" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Conf" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="weChat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="weChat" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Common" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -161,13 +211,6 @@
               <item name="weChat" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Application" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="FindWord" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="weChat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="weChat" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="FindWord" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Conf" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="weChat" type="b2602c69:ProjectViewProjectNode" />
@@ -380,7 +423,7 @@
       <workItem from="1524046201936" duration="1409000" />
       <workItem from="1524100688544" duration="3677000" />
       <workItem from="1524122027060" duration="6850000" />
-      <workItem from="1524129198439" duration="24004000" />
+      <workItem from="1524129198439" duration="30199000" />
     </task>
     <task id="LOCAL-00001" summary="完成 FindWord 登录模块">
       <created>1524189015784</created>
@@ -389,11 +432,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524189015784</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="完善 FindWord API模块 完成状态验证,签到验证,群分享接口">
+      <created>1524196649079</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1524196649079</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33543000" />
+    <option name="totallyTimeSpent" value="39738000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -453,7 +503,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="完成 FindWord 登录模块" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成 FindWord 登录模块" />
+    <MESSAGE value="完善 FindWord API模块 完成状态验证,签到验证,群分享接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善 FindWord API模块 完成状态验证,签到验证,群分享接口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -467,12 +518,16 @@
         <state relative-caret-position="1064">
           <caret line="66" column="6" lean-forward="false" selection-start-line="66" selection-start-column="6" selection-end-line="66" selection-end-column="6" />
           <folding>
+            <element signature="e#401#608#0#PHP" expanded="false" />
             <element signature="e#624#944#0#PHP" expanded="false" />
-            <element signature="e#966#1317#0#PHP" expanded="false" />
-            <element signature="e#1335#1693#0#PHP" expanded="false" />
-            <element signature="e#1713#2073#0#PHP" expanded="false" />
-            <element signature="e#2093#2797#0#PHP" expanded="false" />
-            <element signature="e#2816#4397#0#PHP" expanded="false" />
+            <element signature="e#966#1316#0#PHP" expanded="false" />
+            <element signature="e#1334#2082#0#PHP" expanded="false" />
+            <element signature="e#2102#2462#0#PHP" expanded="false" />
+            <element signature="e#2482#3186#0#PHP" expanded="false" />
+            <element signature="e#3205#4786#0#PHP" expanded="false" />
+            <element signature="e#4803#5184#0#PHP" expanded="false" />
+            <element signature="e#5201#5578#0#PHP" expanded="false" />
+            <element signature="e#5596#5880#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -659,26 +714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Method/Controller/ApiController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="136" column="26" lean-forward="true" selection-start-line="136" selection-start-column="26" selection-end-line="136" selection-end-column="26" />
-          <folding>
-            <element signature="e#5475#7095#0#PHP" expanded="false" />
-            <marker date="1524189038289" expanded="true" signature="998:1087" ph="SELECT avata... method_test_game" />
-            <marker date="1524189038289" expanded="true" signature="1147:1380" ph="SELECT avata... method_test_game" />
-            <marker date="1524189038289" expanded="true" signature="1219:1255" ph="SELECT MAX(i... method_test_game" />
-            <marker date="1524189038289" expanded="true" signature="1258:1294" ph="SELECT MIN(i... method_test_game" />
-            <marker date="1524189038289" expanded="true" signature="1309:1345" ph="SELECT MIN(i... method_test_game" />
-            <marker date="1524189038289" expanded="true" signature="2716:2805" ph="SELECT avata... method_test_game" />
-            <marker date="1524189038289" expanded="true" signature="2865:3098" ph="SELECT avata... method_test_game" />
-            <marker date="1524189038289" expanded="true" signature="2937:2973" ph="SELECT MAX(i... method_test_game" />
-            <marker date="1524189038289" expanded="true" signature="2976:3012" ph="SELECT MIN(i... method_test_game" />
-            <marker date="1524189038289" expanded="true" signature="3027:3063" ph="SELECT MIN(i... method_test_game" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Common/Controller/ApiBaseController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
@@ -692,17 +727,6 @@
         <state relative-caret-position="119">
           <caret line="1090" column="35" lean-forward="false" selection-start-line="1090" selection-start-column="27" selection-end-line="1090" selection-end-column="35" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/FindWord/Model/ShareGroupModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding>
-            <element signature="e#269#773#0#PHP" expanded="false" />
-            <element signature="e#873#1356#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -732,7 +756,7 @@
     <entry file="file://$PROJECT_DIR$/Application/Common/Controller/ApiLoginController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
-          <caret line="74" column="55" lean-forward="false" selection-start-line="74" selection-start-column="55" selection-end-line="74" selection-end-column="55" />
+          <caret line="74" column="55" lean-forward="true" selection-start-line="74" selection-start-column="55" selection-end-line="74" selection-end-column="55" />
           <folding>
             <element signature="e#341#2108#0#PHP" expanded="false" />
             <element signature="e#2234#3077#0#PHP" expanded="false" />
@@ -742,35 +766,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/FindWord/Model/UserGameModel.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/FindWord/Model/ShareGroupModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="22" column="35" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="35" />
+        <state relative-caret-position="627">
+          <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
           <folding>
-            <element signature="e#285#580#0#PHP" expanded="false" />
+            <element signature="e#269#773#0#PHP" expanded="false" />
+            <element signature="e#873#1356#0#PHP" expanded="false" />
+            <element signature="e#1454#1865#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/FindWord/Model/QuestionsModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
+        <state relative-caret-position="661">
           <caret line="45" column="51" lean-forward="false" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Method/Controller/ApiController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-96">
+          <caret line="91" column="31" lean-forward="false" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="31" />
+          <folding>
+            <element signature="e#260#598#0#PHP" expanded="false" />
+            <element signature="e#613#1853#0#PHP" expanded="false" />
+            <element signature="e#1868#2351#0#PHP" expanded="false" />
+            <element signature="e#2369#3384#0#PHP" expanded="false" />
+            <element signature="e#3615#3889#0#PHP" expanded="false" />
+            <element signature="e#3908#4507#0#PHP" expanded="false" />
+            <element signature="e#4524#5457#0#PHP" expanded="false" />
+            <element signature="e#5475#7095#0#PHP" expanded="false" />
+            <element signature="e#7115#7410#0#PHP" expanded="false" />
+            <element signature="e#7427#10397#0#PHP" expanded="false" />
+            <marker date="1524189038289" expanded="true" signature="998:1087" ph="SELECT avata... method_test_game" />
+            <marker date="1524189038289" expanded="true" signature="1147:1380" ph="SELECT avata... method_test_game" />
+            <marker date="1524189038289" expanded="true" signature="1219:1255" ph="SELECT MAX(i... method_test_game" />
+            <marker date="1524189038289" expanded="true" signature="1258:1294" ph="SELECT MIN(i... method_test_game" />
+            <marker date="1524189038289" expanded="true" signature="1309:1345" ph="SELECT MIN(i... method_test_game" />
+            <marker date="1524189038289" expanded="true" signature="2716:2805" ph="SELECT avata... method_test_game" />
+            <marker date="1524189038289" expanded="true" signature="2865:3098" ph="SELECT avata... method_test_game" />
+            <marker date="1524189038289" expanded="true" signature="2937:2973" ph="SELECT MAX(i... method_test_game" />
+            <marker date="1524189038289" expanded="true" signature="2976:3012" ph="SELECT MIN(i... method_test_game" />
+            <marker date="1524189038289" expanded="true" signature="3027:3063" ph="SELECT MIN(i... method_test_game" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Application/FindWord/Controller/ApiController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="89" column="33" lean-forward="false" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
+        <state relative-caret-position="437">
+          <caret line="80" column="20" lean-forward="false" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="20" />
           <folding>
+            <element signature="e#401#608#0#PHP" expanded="false" />
             <element signature="e#624#944#0#PHP" expanded="false" />
-            <element signature="e#966#1317#0#PHP" expanded="false" />
-            <element signature="e#1335#1693#0#PHP" expanded="false" />
-            <element signature="e#1713#2073#0#PHP" expanded="false" />
-            <element signature="e#2093#2797#0#PHP" expanded="false" />
-            <element signature="e#2816#4397#0#PHP" expanded="false" />
+            <element signature="e#966#1316#0#PHP" expanded="false" />
+            <element signature="e#1334#2082#0#PHP" expanded="false" />
+            <element signature="e#2102#2462#0#PHP" expanded="false" />
+            <element signature="e#2482#3186#0#PHP" expanded="false" />
+            <element signature="e#3205#4786#0#PHP" expanded="false" />
+            <element signature="e#4803#5184#0#PHP" expanded="false" />
+            <element signature="e#5201#5578#0#PHP" expanded="false" />
+            <element signature="e#5596#5880#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/FindWord/Model/UserGameModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="56" column="29" lean-forward="false" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
+          <folding>
+            <element signature="e#285#580#0#PHP" expanded="false" />
+            <element signature="e#659#906#0#PHP" expanded="false" />
+            <element signature="e#1045#1491#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
