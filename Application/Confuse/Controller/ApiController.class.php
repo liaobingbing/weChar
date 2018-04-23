@@ -151,12 +151,12 @@ class ApiController extends ApiBaseController
                         $data['data']['nex_layer']=$layer+1;
                         $data['data']['subject1']=$question[0]['subject1'];
                         $data['data']['subject2']=$question[0]['subject2'];
-                        if($layer>18){
-                            $odds=($layer-18)*100;
+                        if($layer>23){
+                            $odds=($layer-23)*100;
                         }else{
                             $odds=0;
                         }
-                        $rand=rand(0,1000);
+                        $rand=rand(0,500);
                         if($rand>$odds){
                             $data['data']['answer']=$question[0]['answer'];
                         }else{
