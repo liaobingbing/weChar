@@ -16,15 +16,6 @@ use Method\Model\UsersModel;
 class ApiController extends ApiBaseController
 {
 
-    //背景音乐
-    public function get_bgm(){
-        $data['code']=200;
-        $data['msg']='获取成功';
-        $data['data']['ready_bgm']='http://img.ky121.com/mp3/ready.mp3';
-        $data['data']['success_bgm']='http://img.ky121.com/mp3/success.mp3';
-        $data['data']['fail_bgm']='http://img.ky121.com/mp3/fail.mp3';
-    }
-
     //统计挑战的次数
     public function count_challenge()
     {
