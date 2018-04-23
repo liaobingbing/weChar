@@ -21,4 +21,13 @@ class UsersModel extends  Model
         }
         return $user;
     }
+
+    public function findGame($user_id){
+        $user=M('user_game')->where("uid='{$user_id}'")->find();
+        if($user) {
+            $user['nickname'] = unicode2emoji($user['nickname']);
+//            $user['avatarUrl'] = str_replace('/0','/96',$user['avatarUrl'] );
+        }
+        return $user;
+    }
 }

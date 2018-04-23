@@ -10,10 +10,11 @@ namespace Confuse\Controller;
 
 
 use Common\Controller\ApiBaseController;
+use Confuse\Model\UsersModel;
 
 class ApiController extends ApiBaseController
 {
-    private  $key="kuaiyu666666";
+
     //统计挑战的次数
     public function count_challenge()
     {
@@ -60,27 +61,7 @@ class ApiController extends ApiBaseController
         $arr=array('code'=>200,'msg'=>'success','data'=>$user_info);
         $this->ajaxReturn($arr);
     }
-    //缓存挑战次数
-    public function cache_num()
-    {
-        $key=I('get.key');
-        if($key==$this->key){
-            $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->order('challenge_num desc')->limit(8)->select();
-            foreach($user_info as $k=>$v){
-                $user_info[$k]['ranking']=$k+1;
-            }
-            $sql1="SELECT avatarUrl,gt_number,nickname FROM confuse_test_game order by gt_number desc limit 3";
-            $data1=M()->query($sql1);
-            $sql2="SELECT avatarUrl,gt_number,nickname FROM confuse_test_game WHERE id >= ((SELECT MAX(id) FROM confuse_test_game)-(SELECT MIN(id) FROM confuse_test_game)) * RAND() + (SELECT MIN(id) FROM confuse_test_game)  order by  gt_number desc LIMIT 8";
-            $data2=M()->query($sql2);
-            $user_info2=$data1+$data2;
-            foreach($user_info2 as $k=>$v){
-                $user_info2[$k]['ranking']=$k+1;
-            }
-            S("num_top",$user_info);
-            S("intelligence_top",$user_info2);
-        }
-    }
+
     //娃娃奖品图片列表
     public function prize_list()
     {
@@ -125,7 +106,8 @@ class ApiController extends ApiBaseController
     public function begin_challenge(){
         $user_id=session('user_id');
         if($user_id){
-            $user_game=M('user_game')->find($user_id);
+            $userdao=new UsersModel();
+            $user_game=$userdao->findGame($user_id);
             if($user_game){
                 if($user_game['chance_num']>0){
                     $user_game['chance_num']-=1;
@@ -156,7 +138,8 @@ class ApiController extends ApiBaseController
     public function get_question(){
         $user_id=session('user_id');
         if($user_id){
-            $user_game=M('user_game')->find($user_id);
+            $userdao=new UsersModel();
+            $user_game=$userdao->findGame($user_id);
             if($user_game){
                 $layer=I('post.layer',1);
                 if($layer<=30){
@@ -224,7 +207,8 @@ class ApiController extends ApiBaseController
             if($encryptedData&&$iv){
                 $session_key=session('session_key');
                 if($session_key){
-                    $user_game=M('user_game')->find($user_id);
+                    $userdao=new UsersModel();
+                    $user_game=$userdao->findGame($user_id);
                     if($user_game){
                         vendor("wxaes.WXBizDataCrypt");
                         $wxBizDataCrypt = new \WXBizDataCrypt(C("WECHAT_APPID"), $session_key);
@@ -280,7 +264,8 @@ class ApiController extends ApiBaseController
     public function my_prize(){
         $user_id=session('user_id');
         if($user_id){
-            $user_game=M('user_game')->find($user_id);
+            $userdao=new UsersModel();
+            $user_game=$userdao->findGame($user_id);
             $share_group_num = M('share_group')->where('uid='.$user_id)->count('open_gid');
             if($user_game){
                 $data['code']=200;
