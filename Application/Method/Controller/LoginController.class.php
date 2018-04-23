@@ -49,7 +49,7 @@ class LoginController extends  ApiLoginController
                     $data['msg']='已经被拉黑';
                     $this->ajaxReturn($data,'JSON');
                 }
-                if($user['last_time']<strtotime(date("Y-m-d"),time())){
+                if($user['login_time']<strtotime(date("Y-m-d"),time())){
                     M('user_game')->where('uid='.$user['id'])->setField("chance_num",1);
                     M('users')->where('id='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
                     M('user_game')->where('uid='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
