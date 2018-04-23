@@ -160,7 +160,7 @@ class ApiController extends ApiBaseController
                         if($rand>$odds){
                             $data['data']['answer']=$question[0]['answer'];
                         }else{
-                            $data['data']['answer']=2;
+                            $data['data']['answer']=3;
                         }
                     }else{
                         $data['code']=400;
