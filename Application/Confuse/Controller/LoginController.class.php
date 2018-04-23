@@ -10,7 +10,7 @@ namespace Confuse\Controller;
 
 
 use Common\Controller\ApiLoginController;
-use Method\Model\UsersModel;
+use Confuse\Model\UsersModel;
 
 class LoginController extends  ApiLoginController
 {
