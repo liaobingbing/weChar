@@ -71,4 +71,21 @@ class UserGameModel extends Model
 
         return $rankings;
     }
+
+    /**
+     * 签到操作
+     * @param $user_id
+     */
+    public function do_sign($user_id){
+        $UserGame = M('UserGame');
+        $sign_time = $UserGame->where("uid=$user_id")->getField('sign_time');
+        $today_0 = strtotime(date('Y-m-d',time()));
+        $expire = $today_0 + 24*60*60 - time();
+
+        if($sign_time < $today_0){
+            $user_game['chance_num'] = 1;
+            $user_game['sign_time']  = time();
+            $UserGame->where("uid=$user_id")->save($user_game);
+        }
+    }
 }
