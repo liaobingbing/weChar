@@ -150,7 +150,7 @@ class AnswerModel extends Model{
                         $user_game['gold_num']+=C('SHARE_GOLD');
                         M('user_game')->save($user_game);
                         $has['share_time']=time();
-                        M('mx_share_group')->save($has);
+                        M('share_group')->save($has);
                         $info['add_status']=1;
                         $info['add_gold_num']=C('SHARE_GOLD');
                         $info['user_gold_num']=$user_game['gold_num'];
