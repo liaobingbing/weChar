@@ -73,8 +73,8 @@ class ApiController extends ApiBaseController
     public function user_status()
     {
         $status['status']=0;
-        $uid=('post.user_id');
-        $info=M('users')->where('id=%d',$uid)->save( $status);
+        $uid=I('post.user_id');
+        $info=M('users')->where('id='.$uid)->save( $status);
         if($info) {
             $arr=array('code'=>403,'msg'=>'已经被拉黑','data'=>"");
             session(null);
