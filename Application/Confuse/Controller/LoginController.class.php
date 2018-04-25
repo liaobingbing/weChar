@@ -53,9 +53,11 @@ class LoginController extends  ApiLoginController
                     M('user_game')->where('uid='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
 
                 }
+                M('users')->where('id='.$user['id'])->setField("login_time",time());
+                $uid=$user['id'];
             }
             $session_k=session_id();
-            session('user_id',$user['id'],3600);
+            session('user_id',$uid,3600);
             session("openid",$openid);
             $data['code']=200;
             $data['msg']='success';
