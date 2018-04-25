@@ -82,7 +82,7 @@ class ApiController extends ApiBaseController
         }else{
             $arr=array('code'=>400,'msg'=>'拉黑失败','data'=>"");
         }
-        return  $$this->ajaxReturn($arr);
+        return  $this->ajaxReturn($arr);
     }
 
     //检查机会次数
