@@ -1,5 +1,5 @@
 <?php
-namespace Star\Controller;
+namespace Film\Controller;
 
 use Common\Controller\ApiBaseController;
 use Film\Model\AnswerModel;
