@@ -64,11 +64,16 @@ class ApiController extends ApiBaseController
 
             if($questions){
                 $UserGame->where(array('uid'=>$user_id))->setDec('chance_num');
-                $UserGame->where(array('uid'=>$user_id))->setInc('challenge_num');
-                $result = array('code'=>200,'msg'=>'获取成功');
-                $result['data'] = $questions;
-            }
+            $UserGame->where(array('uid'=>$user_id))->setInc('challenge_num');
+            $result = array('code'=>200,'msg'=>'获取成功');
+            $result['data'] = $questions;
         }
+        }
+
+        $Questions = new QuestionsModel();
+        $questions = $Questions->get_rand_questions();
+        $result = array('code'=>200,'msg'=>'获取成功');
+        $result['data'] = $questions;
 
         $this->ajaxReturn($result);
     }

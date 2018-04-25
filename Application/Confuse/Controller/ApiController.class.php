@@ -73,8 +73,8 @@ class ApiController extends ApiBaseController
     public function user_status()
     {
         $status['status']=0;
-        $uid=('post.user_id');
-        $info=M('users')->where('id=%d',$uid)->save( $status);
+        $uid=I('post.user_id');
+        $info=M('users')->where('id='.$uid)->save( $status);
         if($info) {
             $arr=array('code'=>403,'msg'=>'已经被拉黑','data'=>"");
             session(null);
@@ -82,7 +82,7 @@ class ApiController extends ApiBaseController
         }else{
             $arr=array('code'=>400,'msg'=>'拉黑失败','data'=>"");
         }
-        return  $this->ajaxReturn($arr);
+          $this->ajaxReturn($arr);
     }
 
     //检查机会次数

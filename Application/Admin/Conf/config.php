@@ -12,6 +12,7 @@ return array(
     // 七牛 AK 与 SK
     'QI_NIU_ACCESS_KEY'     =>  'a4L1s02Tf4adQYm9-VZtlqrX0gR8ugAV8F_d2Fd9',
     'QI_NIU_SECRET_KEY'     =>  'FWcEZVOnlvdm4k_Vmmj2L1veHVXECt6dhsekGNc0',
+    'QI_NIU_URL_PREFIX'     =>  'http://img.ky121.com',    // 七牛云文件前缀
 
     //数据库配置信息
     'DB_TYPE'   => 'mysql', // 数据库类型

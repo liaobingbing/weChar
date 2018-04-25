@@ -39,7 +39,7 @@ class UserGameModel extends Model
      * @return bool
      */
     public function check_chance_num($user_id){
-        $chance_num = M('UserGame')->getField('chance_num');
+        $chance_num = M('UserGame')->where(array('uid'=>$user_id))->getField('chance_num');
 
         if($chance_num > 0){
             $resutl = true;
@@ -80,7 +80,6 @@ class UserGameModel extends Model
         $UserGame = M('UserGame');
         $sign_time = $UserGame->where("uid=$user_id")->getField('sign_time');
         $today_0 = strtotime(date('Y-m-d',time()));
-        $expire = $today_0 + 24*60*60 - time();
 
         if($sign_time < $today_0){
             $user_game['chance_num'] = 1;
@@ -88,4 +87,6 @@ class UserGameModel extends Model
             $UserGame->where("uid=$user_id")->save($user_game);
         }
     }
+
+
 }
