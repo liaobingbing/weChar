@@ -47,6 +47,7 @@ class LoginController extends  ApiLoginController
                 if($user['status']==0) {
                     $data['code']=403;//已经被拉黑
                     $data['msg']='已经被拉黑';
+                    $data['data']['user_id']=$user['id'];
                     $this->ajaxReturn($data,'JSON');
                 }
                 if($user['login_time']<strtotime(date("Y-m-d"),time())){

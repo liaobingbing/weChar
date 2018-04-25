@@ -120,7 +120,7 @@ class AnswerModel extends Model{
 
     //获取求组答案
     public function get_help_answer($uid,$layer){
-        $info=M('mx_user_help')->where('uid=%d and layer=%d',$uid,$layer)->field('help_answer,user_avatarUrl')->select();
+        $info=M('user_help')->where('uid=%d and layer=%d',$uid,$layer)->field('help_answer,user_avatarUrl')->select();
         if($info){
             $top=0;
             foreach($info as $k=>$v){
