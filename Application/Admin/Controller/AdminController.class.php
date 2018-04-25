@@ -107,8 +107,14 @@ class AdminController extends Controller
     }
 
 
-    // 七牛上传 未完成
-    public function qiniu_upload($file,$frefix){
+    /**
+     * 七牛上传 成功返回文件url路径
+     * @param $file '一个文件数组'
+     * @param $prefix '七牛前缀'
+     * @return string
+     * @throws \Exception
+     */
+    public function qiniu_upload($file,$prefix){
 
          // 用于签名的公钥和私钥
          $accessKey = C('QI_NIU_ACCESS_KEY');
@@ -127,18 +133,17 @@ class AdminController extends Controller
          $uploadMgr = new UploadManager();
          // 上传文件到七牛
 
-         $filePath = $file['prelude']['tmp_name'];
-         $key = $frefix.$file['prelude']['name'];
+         $filePath = $file['tmp_name'];
+         $suffix   = pathinfo($file['name'], PATHINFO_EXTENSION);
+         $key = $prefix.time().'.'.$suffix;
 
          list($ret,$err) = $uploadMgr->putFile($token,$key,$filePath);
 
          if ($err !== null) {
-             $result = $err;
+             $result = false;
          } else {
-             $result = $ret;
+             $result = C('QI_NIU_URL_PREFIX').'/'.$ret['key'];
          }
-
-
 
         return $result;
     }
