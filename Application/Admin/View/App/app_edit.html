@@ -6,33 +6,34 @@
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>小程序名称：</label>
 				<div class="formControls col-xs-8 col-sm-6">
-					<input type="text" class="input-text" value="" placeholder="" name="name">
+					<input type="text" class="input-text" value="{$app.name}" placeholder="" name="name">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>描述：</label>
 				<div class="formControls col-xs-8 col-sm-6">
-					<input type="text" class="input-text" value="" placeholder="" name="desc">
+					<input type="text" class="input-text" value="{$app.desc}" placeholder="" name="desc">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>AppID：</label>
 				<div class="formControls col-xs-8 col-sm-6">
-					<input type="text" class="input-text" value="" placeholder="" name="appid">
+					<input type="text" class="input-text" value="{$app.appid}" placeholder="{$app.appid}" readonly="readonly">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>排序：</label>
-				<div class="formControls col-xs-8 col-sm-6">
-					<input type="text" class="input-text" value="5" placeholder="" name="sort">
+				<div class="formControls col-xs-4 col-sm-6">
+					<input type="text" class="input-text" value="{$app.sort}" placeholder="" name="sort">
 				</div>
 			</div>
 
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>LOGO：</label>
-				<div class="formControls col-xs-8 col-sm-6">
+				<div class="formControls col-xs-8 col-sm-3">
 					<input type="file" class="input-text" autocomplete="off"  placeholder="" name="logo">
 				</div>
+				<img width="50px" height="50px" src="{$app.logo}">
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-3">类别：</label>
@@ -40,7 +41,11 @@
 				<select class="select" size="1" name="type">
 					<option value="" selected>请选择类别</option>
 					<volist name="type" id="t_vo">
-						<option value="{$t_vo.id}">{$t_vo.name}</option>
+						<eq name="app.type" value="$t_vo.id">
+							<option value="{$t_vo.id}" selected>{$t_vo.name}</option>
+						<else/>
+							<option value="{$t_vo.id}" >{$t_vo.name}</option>
+						</eq>
 					</volist>
 				</select>
 				</span> </div>
@@ -48,17 +53,28 @@
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>状态：</label>
 				<div class="formControls col-xs-8 col-sm-9 skin-minimal">
-					<div class="radio-box">
-						<input name="status" type="radio" id="sex-1" checked value="1">
-						<label for="sex-1">显示</label>
-					</div>
-					<div class="radio-box">
-						<input type="radio" id="sex-2" name="status" value="0">
-						<label for="sex-2">隐藏</label>
-					</div>
+					<eq name="app.status" value="1">
+						<div class="radio-box">
+							<input name="status" type="radio" id="sex-1" value="1" checked>
+							<label for="sex-1">显示</label>
+						</div>
+						<div class="radio-box">
+							<input type="radio" id="sex-2" name="status" value="0">
+							<label for="sex-2">隐藏</label>
+						</div>
+						<else/>
+						<div class="radio-box">
+							<input name="status" type="radio" id="sex-1" value="1">
+							<label for="sex-1">显示</label>
+						</div>
+						<div class="radio-box">
+							<input type="radio" id="sex-2" name="status" value="0" checked>
+							<label for="sex-2">隐藏</label>
+						</div>
+					</eq>
 				</div>
 			</div>
-
+			<input type="hidden" value="{$app.id}" name="id">
 			<div class="row cl">
 				<div class="col-xs-8 col-sm-6 col-xs-offset-4 col-sm-offset-3">
 					<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
@@ -91,9 +107,9 @@ $(function(){
                 minlength:0,
                 maxlength:50
             },
-            logo:{
+            /*logo:{
                 required:true,
-            },
+            },*/
             appid:{
                 required:true,
             },
@@ -112,12 +128,12 @@ $(function(){
 		submitHandler:function(form){
 			$(form).ajaxSubmit({
 				type: 'post',
-				url: "{:U('Admin/App/do_add')}" ,
+				url: "{:U('Admin/App/do_edit')}" ,
 				success: function(data){
-				    console.log(data.code);
+				    console.log(data);
 
 				    if ( data.code == 200 ){
-						layer.msg('添加成功!',{icon:1,time:1000});
+                        layer.msg(data.msg,{icon:1,time:2000});
 						setTimeout(function () {
                             var index = parent.layer.getFrameIndex(window.name);
                             /*parent.$('.btn-refresh').click();
@@ -126,12 +142,12 @@ $(function(){
                             parent.layer.close(index);
                         },1000)
 					}else{
-                        layer.msg(data.msg,{icon:3,time:2000});
+                        layer.msg(data.msg,{icon:2,time:2000});
 					}
 
 				},
                 error: function(XmlHttpRequest, textStatus, errorThrown){
-					layer.msg('error!',{icon:5,time:1000});
+					layer.msg('error!',{icon:1,time:1000});
 				}
 			});
 		}

@@ -74,6 +74,20 @@
 <aside class="Hui-aside">
 	<div class="menu_dropdown bk_2">
 		<dl >
+			<dt><i class="Hui-iconfont">&#xe616;</i>小程序管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a data-href="<?php echo U('Admin/App/app_list');?>" data-title="小程序列表" href="javascript:void(0)">小程序列表</a></li>
+				</ul>
+				<ul>
+					<li><a data-href="<?php echo U('Admin/Song/statistics');?>" data-title="数据统计" href="javascript:void(0)">数据统计</a></li>
+				</ul>
+
+			</dd>
+
+		</dl>
+
+		<dl >
 			<dt><i class="Hui-iconfont">&#xe616;</i> 猜歌管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
