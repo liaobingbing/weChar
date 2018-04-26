@@ -210,8 +210,8 @@ class ApiController extends ApiBaseController
         $re = M('Users')->where("id={$user_id}")->setField('status',0);
 
         if($re){
-            session(null);
-            $result['code'] = 401;
+            session('user_status',1);
+            $result['code'] = 403;
             $result['msg']  = '已禁用';
         }
 

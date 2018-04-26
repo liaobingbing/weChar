@@ -25,12 +25,12 @@ class LoginController extends ApiLoginController
     public function login(){
 
         $code = I('code');
-        $encryptedDate=I('encryptedDate');
+        $encryptedData=I('encryptedData');
         $iv=I('iv');
 
         $result = array('code'=>400,'msg'=>'失败');
 
-        $data = $this->do_login($code,$encryptedDate,$iv);
+        $data = $this->do_login($code,$encryptedData,$iv);
 
         if($data['code'] == 200){
             $Users = new UsersModel();
@@ -39,7 +39,7 @@ class LoginController extends ApiLoginController
            if($session_id){
                $result['code']  =   200;
                $result['msg']   =   '登录成功';
-               $result['data']  =   array('session_id'=>$session_id);
+               $result['data']  =   array('session_id'=>$session_id, 'session_key' => session('session_key'));
            }else{
                $result['code']  = 403;
                $result['msg'] = '该用户已禁用';

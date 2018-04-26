@@ -21,25 +21,25 @@ class UsersModel extends Model
      * @return mixed
      */
     public function add_user($data){
-        $user['openid'] = $data['openId'];
+        $user['openid']  = $data['openId'];
         $user['unionid'] = $data['unionId'];
-        $user['gender'] = $data['gender'];
-        $user['city'] = $data['city'];
+        $user['gender']  = $data['gender'];
+        $user['city']    = $data['city'];
         $user['update_time'] = time();
         $user['province'] = $data['province'];
-        $user['country'] = $data['country'];
+        $user['country']  = $data['country'];
         $user['avatar_url'] =  str_replace('/0','/132',$data['avatarUrl'] );
-        $user['name'] = $data['nickName'];
+        $user['nickname']   = $data['nickName'];
 
         $result = false;
 
         $uid = M('Users')->data($user)->add();
 
        if($uid){
-           $user_game['uid']=$uid;
-           $user_game['nickname']=$data['nickName'];
+           $user_game['uid']    = $uid;
+           $user_game['nickname'] = $data['nickName'];
            $user_game['login_time'] = time();
-           $user_game['avatar_url']=str_replace('/0','/132',$data['avatarUrl'] );
+           $user_game['avatar_url'] =str_replace('/0','/132',$data['avatarUrl'] );
            M('UserGame')->add($user_game);
            $result = $user;
        }
@@ -60,7 +60,7 @@ class UsersModel extends Model
         $user['province'] = $data['province'];
         $user['country'] = $data['country'];
         $user['avatar_url'] =  str_replace('/0','/132',$data['avatarUrl'] );
-        $user['name'] = $data['nickName'];
+        $user['nickname'] = $data['nickName'];
 
         $result = false;
 
@@ -91,10 +91,11 @@ class UsersModel extends Model
                 $re = $this->update_user($data);
 
                 if($re){
-                    $session_id = get_session_id(60*60*24);
+                    session(null);
                     session('user_id',$user['id']);
                     session('openid',$user['openid']);
                     session('session_key',$data['session_key']);
+                    $session_id = session_id();
                     $result = $session_id;
                 }
 
@@ -105,10 +106,11 @@ class UsersModel extends Model
         }else{
             $re = $this->add_user($data);
             if($re){
-                $session_id = get_session_id(7200);
+                session(null);
                 session('user_id',$re['id']);
                 session('openid',$re['openid']);
                 session('session_key',$data['session_key']);
+                $session_id = session_id();
                 $result = $session_id;
             }
         }

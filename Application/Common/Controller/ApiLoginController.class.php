@@ -86,7 +86,7 @@ class ApiLoginController extends Controller
                 $json_data = json_decode($data['data'], true);
                 $result = $json_data;
                 $result['code'] = 200;
-                $result['session_key'] = $code_session['session_key'];
+                $result['session_key'] = $session_key;
             }else{
                 $result['code'] = 400;
                 $result['msg']  = '获取失败';
