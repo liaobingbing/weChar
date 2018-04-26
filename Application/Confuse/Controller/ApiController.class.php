@@ -77,7 +77,7 @@ class ApiController extends ApiBaseController
         $info=M('users')->where('id='.$uid)->save( $status);
         if($info) {
             $arr=array('code'=>403,'msg'=>'已经被拉黑','data'=>"");
-            session(null);
+            session('user_status',1);
 
         }else{
             $arr=array('code'=>400,'msg'=>'拉黑失败','data'=>"");

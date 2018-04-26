@@ -5,7 +5,7 @@ return array(
 
     'DB_HOST'   => 'www.ky311.com', // 线上服务器地址
 
-    'DB_NAME'   => 'kuaiyu_gd', // 数据库名
+    'DB_NAME'   => 'kuaiyu_xcx', // 数据库名
 
     'DB_USER'   => 'root', // 用户名
 
@@ -13,18 +13,17 @@ return array(
 
     'DB_PORT'   => 3306, // 端口
 
-    'DB_PREFIX' => 'gd_', // 数据库表前缀
+    'DB_PREFIX' => 'mx_', // 数据库表前缀
 
     'DB_CHARSET'=> 'utf8', // 字符集
 
     'DB_DEBUG'  =>  TRUE, // 数据库调试模式 开启后可以记录SQL日志
 
     // 小程序APP
-    'WECHAT_APPID'      =>  'wxb15bd36a0179edf2',
-    'WECHAT_APPSECRET'  =>  'ee3adf23be67e07780a4e1794126bb0e',
+    'WECHAT_APPID'      =>  'wxe74a395bdd5f057c',
+    'WECHAT_APPSECRET'  =>  '2c45fb1c8fee078fd79faf3d7e48e4f7',
 
-
-    //'配置项'=>'配置值'
+	//'配置项'=>'配置值'
     'SUCCESS_GOLD'      =>  '20',  //答对金币
     'PROMPT_GOLD'      =>  '30',   //提示金币
     'SIGN_GOLD_1'      =>  '30',   //签到金币
