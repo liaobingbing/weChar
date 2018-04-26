@@ -30,6 +30,13 @@ class ApiBaseController extends Controller
             $result['msg']  = '未登录';
             $this->ajaxReturn($result);
         }
+        $user_status=session('user_status');
+        if($user_status==1){
+            $result['code'] = 403;
+            $result['msg']  = '已经被拉黑';
+            $result['data']['user_id']=$user_id;
+            $this->ajaxReturn($result);
+        }
     }
 
     // 判断今天是否签到
