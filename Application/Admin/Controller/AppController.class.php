@@ -129,5 +129,17 @@ class AppController extends AdminController
         $this->ajaxReturn($result);
     }
 
+    // 小程序删除操作
+    public function app_del()
+    {
+        $result = array( 'code'=>400 ,'msg' => '删除失败');
+        $id = I('id');
+
+        if (M('AppList')->delete($id)){
+            $result = array( 'code'=>200 ,'msg' => '删除成功!');
+        }
+
+        $this->ajaxReturn($result);
+    }
 
 }

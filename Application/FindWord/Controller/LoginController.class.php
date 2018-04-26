@@ -14,6 +14,13 @@ use FindWord\Model\UsersModel;
 
 class LoginController extends ApiLoginController
 {
+
+    // index
+    public function index()
+    {
+        echo 'index';
+    }
+
     // 用户登录接口
     public function login(){
 
