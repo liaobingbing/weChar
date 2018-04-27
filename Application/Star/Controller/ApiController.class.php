@@ -334,7 +334,7 @@ class ApiController extends ApiBaseController{
         $userdao=new UsersModel();
         $user_game=$userdao->findGame($user_id);
         if($user_game){
-            $level_id=$this->check_int(I('post.level_id'));
+            $level_id=$this->check_int(I('post.level'));
             if($level_id){
                 $answer=new AnswerModel();
                 $layer_arr=$answer->get_all_layer();
@@ -416,7 +416,8 @@ class ApiController extends ApiBaseController{
             $data['code']=401;
             $data['msg']='重新登录';
         }
-
+        $data=json_encode($data);
+        $data=json_decode($data);
         $this->ajaxReturn($data,'JSON');
     }
 
@@ -623,9 +624,6 @@ class ApiController extends ApiBaseController{
         $this->ajaxReturn($data,'JSON');
     }
 
-    public function test(){
-       session('user_id',1);
-    }
 
 
 }

@@ -14,6 +14,8 @@ use Sort\Model\UsersModel;
 
 class LoginController extends  ApiLoginController
 {
+    private  $key="kuaiyu666666";
+
     public function login(){
         $userdao=new UsersModel();
         $code=I('post.code');
@@ -51,9 +53,10 @@ class LoginController extends  ApiLoginController
                     M('user_game')->where('uid='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
 
                 }
+                $uid=$user['id'];
             }
             $session_k=session_id();
-            session('user_id',$user['id'],3600);
+            session('user_id',$uid,3600);
             session("openid",$openid);
             $data['code']=200;
             $data['msg']='success';
@@ -67,6 +70,27 @@ class LoginController extends  ApiLoginController
 
     }
 
+//缓存挑战次数
+    public function cache_num()
+    {
+        $key=I('get.key');
+        if($key==$this->key){
+            $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->order('challenge_num desc')->limit(8)->select();
+            foreach($user_info as $k=>$v){
+                $user_info[$k]['ranking']=$k+1;
+            }
+            $sql1="SELECT avatarUrl,gt_number,nickname FROM method_test_game order by gt_number desc limit 3";
+            $data1=M()->query($sql1);
+            $sql2="SELECT avatarUrl,gt_number,nickname FROM method_test_game WHERE id >= ((SELECT MAX(id) FROM method_test_game)-(SELECT MIN(id) FROM method_test_game)) * RAND() + (SELECT MIN(id) FROM method_test_game)  order by  gt_number desc LIMIT 8";
+            $data2=M()->query($sql2);
+            $user_info2=$data1+$data2;
+            foreach($user_info2 as $k=>$v){
+                $user_info2[$k]['ranking']=$k+1;
+            }
+            S("num_top",$user_info);
+            S("intelligence_top",$user_info2);
+        }
+    }
 
     //设置session
     public function set_session(){
