@@ -100,6 +100,6 @@ class LoginController extends  ApiLoginController
 
     //设置session
     public function set_session(){
-        session('user_id',1);
+        session('user_id',4);
     }
 }

@@ -11,6 +11,7 @@ namespace Method\Controller;
 
 use Common\Controller\ApiBaseController;
 
+use Method\Model\AnswerModel;
 use Method\Model\UsersModel;
 
 class ApiController extends ApiBaseController
@@ -31,7 +32,7 @@ class ApiController extends ApiBaseController
     //智力榜
     public function intelligence_top()
     {
-        $user_info = S('intelligence_top');
+        $user_info = S('m_intelligence_top');
         if(!$user_info){
             //SELECT avatarUrl,gt_number as number,nickname FROM method_test_game WHERE id >= ((SELECT MAX(id) FROM method_test_game)-(SELECT MIN(id) FROM method_test_game)) * RAND() + (SELECT MIN(id) FROM method_test_game)  order by  number desc LIMIT 5;
             $sql1="SELECT avatarUrl,gt_number,nickname FROM method_test_game order by gt_number desc limit 3";
@@ -42,7 +43,7 @@ class ApiController extends ApiBaseController
             foreach($user_info as $k=>$v){
                 $user_info[$k]['ranking']=$k+1;
             }
-            S("intelligence_top",$user_info);
+            S("m_intelligence_top",$user_info);
         }
          // $user_info=M('user_game')->field('get_number,avatar_url,nickname')->order('get_number desc')->limit(5)->select();
         $arr=array('code'=>200,'msg'=>'success','data'=>$user_info);
@@ -51,13 +52,13 @@ class ApiController extends ApiBaseController
     //毅力榜
     public function num_top()
     {
-        $user_info = S('num_top');
+        $user_info = S('m_num_top');
         if(!$user_info){
             $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->order('challenge_num desc')->limit(8)->select();
             foreach($user_info as $k=>$v){
                 $user_info[$k]['ranking']=$k+1;
             }
-            S("num_top",$user_info);
+            S("m_num_top",$user_info);
         }
         $arr=array('code'=>200,'msg'=>'success','data'=>$user_info);
         $this->ajaxReturn($arr);
@@ -149,23 +150,17 @@ class ApiController extends ApiBaseController
             $user_game=$userdao->findGame($user_id);
             if($user_game){
                 $layer=I('post.layer',1);
-                if($layer==1){
-                    session('question_arr',null);
-                }
+
                 if($layer<=30){
-                    if($layer<=20){
-                        $sql='SELECT * FROM method_answer WHERE status=1 and id<=72 ORDER BY  RAND() LIMIT 1';
-                    }else {
-                        $sql='SELECT * FROM method_answer WHERE status=1 and id>73 ORDER BY  RAND() LIMIT 1';//2018-04-20修改逻辑
-                    }
-                    $question=M()->query($sql);
+                    $answerdao=new AnswerModel();
+                    $question=$answerdao->get_question($layer);
                     if($question){
                         $data['code']=200;
                         $data['msg']='获取成功';
                         $data['data']['layer']=$layer;
                         $data['data']['nex_layer']=$layer+1;
-                        $data['data']['subject1']=$question[0]['subject1'];
-                        $data['data']['subject2']=$question[0]['subject2'];
+                        $data['data']['subject1']=$question['subject1'];
+                        $data['data']['subject2']=$question['subject2'];
                         if($layer>23){
                             $odds=($layer-23)*100;
                         }else{
@@ -173,7 +168,7 @@ class ApiController extends ApiBaseController
                         }
                         $rand=rand(0,500);
                         if($rand>$odds){
-                            $data['data']['answer']=$question[0]['answer'];
+                            $data['data']['answer']=$question['answer'];
                         }else{
                             $data['data']['answer']=2;
                         }
