@@ -67,14 +67,14 @@ class ApiController extends ApiBaseController
         if($layer == 1){
             session('questions',null);
             $Questions = new QuestionsModel();
-            $questions = $Questions->get_rand_questions(45);
+            $questions = $Questions->get_rand_questions(44);
             session('questions',$questions);
             M('UserGame')->where(array('uid' => $user_id))->setDec('chance_num');
         }
 
         $questions = session('questions');
 
-        $option = $questions[$layer];
+        $option = $questions[$layer-1];
 
         if( $layer <= 2 ){
             $i = 4;
