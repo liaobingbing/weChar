@@ -70,6 +70,7 @@ class ApiController extends ApiBaseController
             $questions = $Questions->get_rand_questions();
             session('questions',$questions);
             M('UserGame')->where(array('uid' => $user_id))->setDec('chance_num');
+            M('UserGame')->where(array('uid' => $user_id))->setInc('challenge_num');
         }
 
         $questions = session('questions');
@@ -135,8 +136,11 @@ class ApiController extends ApiBaseController
 
         shuffle($arr);
 
+        $result['code'] = 200;
+        $result['msg']  = '获取成功';
         $result['data']['words'] = $arr;
         $result['data']['answer'] = $answer;
+        $result['data']['next_layer'] = $layer+1;
 
 
         $this->ajaxReturn($result);
@@ -193,8 +197,11 @@ class ApiController extends ApiBaseController
 
             if($data['errCode'] == 0){
                 // 验证今天是否已分享
+                $data = json_decode($data['data'],true);
                 $ShareGroup = new ShareGroupModel();
-                $re = $ShareGroup->check_share_group($user_id,$data['data']['openGId']);
+                $re = $ShareGroup->check_share_group($user_id,$data
+
+                ['openGId']);
 
                 if($re){
                     if($share_type == 1){
@@ -222,7 +229,7 @@ class ApiController extends ApiBaseController
             $result['msg'] = '参数不全';
         }
 
-        return $result;
+        $this->ajaxReturn($result);
     }
 
     // 毅力榜
@@ -277,6 +284,7 @@ class ApiController extends ApiBaseController
             session('user_status',1);
             $result['code'] = 403;
             $result['msg']  = '已禁用';
+            $result['data'] = array('user_id'=>$user_id);
         }
 
         $this->ajaxReturn($result);
@@ -298,6 +306,19 @@ class ApiController extends ApiBaseController
         }
 
         $this->ajaxReturn($result);
+    }
+
+    //获取用户ID
+    public function get_user_id(){
+        $user_id=session('user_id');
+        if($user_id){
+            $data['code']='200';
+            $data['msg']='成功';
+            $data['user_id']=$user_id;
+        }else{
+            $data['code']=401;
+        }
+        $this->ajaxReturn($data,'JSON');
     }
 
 }

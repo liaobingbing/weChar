@@ -91,11 +91,12 @@ class UsersModel extends Model
                 $re = $this->update_user($data);
 
                 if($re){
-                    $session_id = session_id();
+                    session(null);
                     session(array('name'=>'session_id','expire'=>3600));
                     session('user_id',$user['id']);
                     session('openid',$user['openid']);
                     session('session_key',$data['session_key']);
+                    $session_id = session_id();
 
                     $result['session_id']  = $session_id;
                     $result['session_key'] = $data['session_key'];
@@ -110,11 +111,12 @@ class UsersModel extends Model
         }else{
             $re = $this->add_user($data);
             if($re){
-                $session_id = session_id();
+                session(null);
                 session(array('name'=>'session_id','expire'=>3600));
                 session('user_id',$re['id']);
                 session('openid',$re['openid']);
                 session('session_key',$data['session_key']);
+                $session_id = session_id();
 
                 $result['session_id']  = $session_id;
                 $result['session_key'] = $data['session_key'];
