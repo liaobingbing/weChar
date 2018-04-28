@@ -6,11 +6,11 @@
  * Time: 18:45
  */
 
-namespace FindWord\Controller;
+namespace FindColor\Controller;
 
 
 use Common\Controller\ApiLoginController;
-use FindWord\Model\UsersModel;
+use FindColor\Model\UsersModel;
 
 class LoginController extends ApiLoginController
 {
@@ -59,10 +59,10 @@ class LoginController extends ApiLoginController
 
     // 测试 - 登录接口
     public function test_login(){
+        $user_id = I('id',4);
         $Users = new UsersModel();
-        $user = $Users->find_by_user_id(4);
+        $user = $Users->find_by_user_id($user_id);
 
-        session(null);
         $session_id = get_session_id();
         session('user_id',$user['id']);
         session('openid',$user['openid']);

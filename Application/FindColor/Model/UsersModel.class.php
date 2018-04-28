@@ -6,7 +6,7 @@
  * Time: 18:47
  */
 
-namespace FindWord\Model;
+namespace FindColor\Model;
 
 
 use Think\Model;

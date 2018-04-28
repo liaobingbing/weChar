@@ -6,7 +6,7 @@
  * Time: 11:07
  */
 
-namespace FindWord\Model;
+namespace FindColor\Model;
 
 
 use Think\Model;
@@ -58,7 +58,7 @@ class UserGameModel extends Model
      * @return mixed
      */
     public function get_rankings($field,$len,$expire=300){
-        $key = 'find_word_rankings_'.$field;
+        $key = 'find_color_rankings_'.$field;
         $rankings = S($key);
 
         if(!$rankings){

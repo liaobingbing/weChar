@@ -6,15 +6,15 @@
  * Time: 9:17
  */
 
-namespace FindWord\Controller;
+namespace FindColor\Controller;
 
 
 use Common\Controller\ApiBaseController;
 use Common\Controller\ApiLoginController;
-use FindWord\Model\QuestionsModel;
-use FindWord\Model\ShareGroupModel;
-use FindWord\Model\UserGameModel;
-use FindWord\Model\UsersModel;
+use FindColor\Model\QuestionsModel;
+use FindColor\Model\ShareGroupModel;
+use FindColor\Model\UserGameModel;
+use FindColor\Model\UsersModel;
 
 class ApiController extends ApiBaseController
 {
@@ -67,14 +67,14 @@ class ApiController extends ApiBaseController
         if($layer == 1){
             session('questions',null);
             $Questions = new QuestionsModel();
-            $questions = $Questions->get_rand_questions(45);
+            $questions = $Questions->get_rand_questions();
             session('questions',$questions);
             M('UserGame')->where(array('uid' => $user_id))->setDec('chance_num');
         }
 
         $questions = session('questions');
 
-        $option = $questions[$layer];
+        $option = $questions[$layer-1];
 
         if( $layer <= 2 ){
             $i = 4;
@@ -103,7 +103,6 @@ class ApiController extends ApiBaseController
         }
 
         $arr = array();
-
 
         if($option['answer'] != 'option_1'){
             for($a = 0; $a < $i - 1; $a++){
@@ -139,6 +138,7 @@ class ApiController extends ApiBaseController
         $result['data']['words'] = $arr;
         $result['data']['answer'] = $answer;
 
+
         $this->ajaxReturn($result);
     }
 
@@ -161,7 +161,7 @@ class ApiController extends ApiBaseController
     public function check_sign(){
         $user_id = session('user_id');
         $openid = session('openid');
-        $key = 'find_word_sign_status_'.$openid;
+        $key = 'find_color_sign_status_'.$openid;
         $sign = S($key);
 
         if( !$sign ){
