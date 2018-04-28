@@ -34,7 +34,7 @@ class LoginController extends  ApiLoginController
                 $user_data['province'] = $login_data['province'];
                 $user_data['country'] = $login_data['country'];
                 $user_data['avatar_url'] =  str_replace('/0','/132',$login_data['avatarUrl'] );
-                $user_data['name'] = $login_data['nickName'];
+                $user_data['nickname'] = $login_data['nickName'];
                 $uid = M('users')->data($user_data)->add();
                 $user_game['uid']=$uid;
                 $user_game['nickname']=$login_data['nickName'];
@@ -87,8 +87,8 @@ class LoginController extends  ApiLoginController
             foreach($user_info2 as $k=>$v){
                 $user_info2[$k]['ranking']=$k+1;
             }
-            S("num_top",$user_info);
-            S("intelligence_top",$user_info2);
+            S("sort_num_top",$user_info);
+            S("sort_intelligence_top",$user_info2);
         }
     }
 

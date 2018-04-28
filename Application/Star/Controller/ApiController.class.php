@@ -195,6 +195,7 @@ class ApiController extends ApiBaseController{
                                     $data['code']=200;
                                     $data['msg']='答案正确';
                                     $data['data']['type']=$type;
+                                    $data['data']['gold_num']=$info['gold_num'];
                                     $data['data']['add_gold_num']=$info['add_gold_num'];
                                     $data['data']['answer']=$idiom['answer'];
                                 }else{
@@ -347,7 +348,7 @@ class ApiController extends ApiBaseController{
                 $num=$level_arr['layer_max']-$level_arr['layer_min']+1;
                 $layer_arr2=array_slice($layer_arr,$level_arr['layer_min'],$num);
                 $page=$this->check_int(I('post.page',1));
-                $page_size=50;
+                $page_size=48;
                 $count=count($layer_arr2);
                 $start=($page-1)*$page_size;
                 $total = ceil($count/$page_size);
@@ -640,9 +641,9 @@ class ApiController extends ApiBaseController{
                     if($info){
                         $data['code']=200;
                         $data['msg']='分享成功';
-                        $data['add_status']=$info['add_status'];
-                        $data['add_gold_num']=$info['add_gold_num'];
-                        $data['user_gold_num']=$info['user_gold_num'];
+                        $data['data']['add_status']=$info['add_status'];
+                        $data['data']['add_gold_num']=$info['add_gold_num'];
+                        $data['data']['gold_num']=$info['user_gold_num'];
                     }else{
                         $data['code']=400;
                         $data['msg']='分享群失败';
