@@ -48,6 +48,7 @@ class LoginController extends ApiLoginController
            }else{
                $result['code']  = 403;
                $result['msg'] = '该用户已禁用';
+               $result['data'] = array('user_id'=>1);
            }
         }else{
             $result = $data;
