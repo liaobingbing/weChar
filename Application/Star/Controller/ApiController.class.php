@@ -212,13 +212,18 @@ class ApiController extends ApiBaseController{
                                 $data['data']['answer']=$idiom['answer'];
                             }
                         }else{
-                            $recommend_user_id=I('post.recommend_user_id');
+                            $recommend_user_id=I('post.recommend_id');
                             if($recommend_user_id){
-                                $data2['uid']=$recommend_user_id;
-                                $data2['help_user']=$user_game['uid'];
-                                $data2['help_answer']=$u_answer;
-                                $data2['user_avatarUrl']=$user_game['avatarUrl'];
-                                $info2=M('user_help')->add($data2);
+                                $has=M('user_help')->where('uid=%d and help_user=%d and layer=%d',$recommend_user_id,$user_game['uid'],$layer)->find();
+                                $info2=true;
+                                if(!$has){
+                                    $data2['uid']=$recommend_user_id;
+                                    $data2['help_user']=$user_game['uid'];
+                                    $data2['help_answer']=$u_answer;
+                                    $data2['user_avatarUrl']=$user_game['avatarurl'];
+                                    $data2['layer']=$layer;
+                                    $info2=M('user_help')->add($data2);
+                                }
                                 if($info2){
                                     $data['code']=200;
                                     $data['msg']='答案正确';
@@ -579,7 +584,41 @@ class ApiController extends ApiBaseController{
         $this->ajaxReturn($data,'JSON');
     }
 
+//添加好友
+    public function add_friend(){
+        $user_id=session('user_id');
+        if($user_id){
+            $recommend_user_id=I("post.recommend_id",0);
+            if($recommend_user_id!==0){
 
+                $this->friend_add($user_id,$recommend_user_id);
+
+                $data['code']=200;
+            }else{
+                $data['code']=400;
+            }
+        }else{
+            $data['code']=401;
+        }
+        $this->ajaxReturn($data,'JSON');
+    }
+
+    public function friend_add($uid,$recommend_user_id){
+        if($recommend_user_id&&$uid){
+            $has=M('user_friend')->where('uid=%d and recommend_user_id=%d',$uid,$recommend_user_id)->find();
+            if(!$has){
+                $recommend_arr['uid']=$uid;
+                $recommend_arr['recommend_user_id']=$recommend_user_id;
+                M('user_friend')->data($recommend_arr)->add();
+            }
+            $has2=M('user_friend')->where('uid=%d and recommend_user_id=%d',$recommend_user_id,$uid)->find();
+            if(!$has2){
+                $recommend_arr['uid']=$recommend_user_id;
+                $recommend_arr['recommend_user_id']=$uid;
+                M('user_friend')->data($recommend_arr)->add();
+            }
+        }
+    }
 
     //用户群分享
     public function share_group(){

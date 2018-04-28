@@ -149,6 +149,9 @@ class ApiController extends ApiBaseController
             $user_game=$userdao->findGame($user_id);
             if($user_game){
                 $layer=I('post.layer',1);
+                if($layer==1){
+                    session('question_arr',null);
+                }
                 if($layer<=30){
                     if($layer<=20){
                         $sql='SELECT * FROM method_answer WHERE status=1 and id<=72 ORDER BY  RAND() LIMIT 1';
