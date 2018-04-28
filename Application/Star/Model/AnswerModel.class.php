@@ -29,6 +29,7 @@ class AnswerModel extends Model{
                     }
                     $data['code']=200;
                     $data['add_gold_num']=C('SUCCESS_GOLD');
+                    $data['gold_num']=$user_game['gold_num'];
                 }else{
                     $data['code']=400;
                 }
@@ -85,28 +86,26 @@ class AnswerModel extends Model{
     }
 
     public function get_one_friend($user_id){
-        $friend_detail=session('friend_detail');
-        if(!$friend_detail){
-            $friend_arr1=M('user_friend')->where('uid=%d',$user_id)->select();
-            $where_arr=array($user_id);
-            foreach($friend_arr1 as $k=>$v){
-                $where_arr[]=$v['recommend_user_id'];
-            }
-            $where['uid'] = array('in',$where_arr);
-            $friend_arr2=M('user_game')->where($where)->field('uid,avatarUrl,nickname,gold_num,idiom_num')->order('idiom_num desc')->select();
-
-            if($friend_arr2){
-                foreach($friend_arr2 as $k=>$v){
-                    if($v['uid']==$user_id){
-                        $friend_detail['my_ranking']=$k+1;
-                        $friend_detail['my_idiom']=$v['idiom_num'];
-                    }
-                    $friend_arr2[$k]['ranking']=$k+1;
-                }
-                $friend_detail['data']=$friend_arr2;
-                session('friend_detail',$friend_detail);
-            }
+        $friend_detail='';
+        $friend_arr1=M('user_friend')->where('uid=%d',$user_id)->select();
+        $where_arr=array($user_id);
+        foreach($friend_arr1 as $k=>$v){
+            $where_arr[]=$v['recommend_user_id'];
         }
+        $where['uid'] = array('in',$where_arr);
+        $friend_arr2=M('user_game')->where($where)->field('uid,avatarUrl,nickname,gold_num,idiom_num')->order('idiom_num desc')->limit(8)->select();
+
+        if($friend_arr2){
+            foreach($friend_arr2 as $k=>$v){
+                if($v['uid']==$user_id){
+                    $friend_detail['my_ranking']=$k+1;
+                    $friend_detail['my_idiom']=$v['idiom_num'];
+                }
+                $friend_arr2[$k]['ranking']=$k+1;
+            }
+            $friend_detail['data']=$friend_arr2;
+        }
+
         return $friend_detail;
 
     }

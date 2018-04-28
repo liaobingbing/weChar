@@ -41,7 +41,7 @@ class LoginController extends ApiLoginController {
                 $encryptedData = I("post.encryptedData", "", false);
                 $iv = I("post.iv", "", false);
                 $session_key = $code_session['session_key'];
-
+                session('session_key',$session_key);
                 //TODO 验证签名
 
 
@@ -139,7 +139,7 @@ class LoginController extends ApiLoginController {
         $key=I('get.key');
         if($key==$this->key){
             $world_arr=array();
-            $ranking_arr=M('user_game')->field('uid,avatarUrl,nickname,gold_num,idiom_num')->order('idiom_num desc')->select();
+            $ranking_arr=M('user_game')->field('uid,avatarUrl,nickname,gold_num,idiom_num')->order('idiom_num desc')->limit(100)->select();
             foreach($ranking_arr as $k=>$v){
                 $ranking=$k+1;
                 $world_arr[$ranking]=$v;
