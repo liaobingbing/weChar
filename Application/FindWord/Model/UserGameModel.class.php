@@ -62,7 +62,7 @@ class UserGameModel extends Model
         $rankings = S($key);
 
         if(!$rankings){
-            $rankings = M('UserGame')->field("{$field},avatar_url,nickname")->order('challenge_num desc')->cache($key,$expire)->limit($len)->select();
+            $rankings = M('UserGame')->field("{$field},avatar_url,nickname")->order("{$field} desc")->cache($key,$expire)->limit($len)->select();
         }
 
         foreach ($rankings as $k => $v){

@@ -26,7 +26,7 @@ class ApiController extends ApiBaseController
         $this->check_sign();    // 验证用户签到状态
     }
 
-    // 挑战次数
+    // 总挑战次数
     public function challenge_num(){
         $result = array('code' => 400, 'msg' => '获取失败', 'data' => 0);
         $count_challenge = M('UserGame')->sum('challenge_num');
@@ -62,26 +62,82 @@ class ApiController extends ApiBaseController
     // 获取题目
     public function get_question(){
         $user_id = session('user_id');
-        $UserGame = M('UserGame');
-        $chance_num = $UserGame->where(array('uid'=>$user_id))->getField('chance_num');
-        $result = array('code'=>400,'msg'=>'挑战次数不足');
+        $layer = I('layer',1);
 
-        if($chance_num > 0){
+        if($layer == 1){
+            session('questions',null);
             $Questions = new QuestionsModel();
-            $questions = $Questions->get_rand_questions();
-
-            if($questions){
-                $UserGame->where(array('uid'=>$user_id))->setDec('chance_num');
-            $UserGame->where(array('uid'=>$user_id))->setInc('challenge_num');
-            $result = array('code'=>200,'msg'=>'获取成功');
-            $result['data'] = $questions;
-            }
+            $questions = $Questions->get_rand_questions(45);
+            session('questions',$questions);
+            M('UserGame')->where(array('uid' => $user_id))->setDec('chance_num');
         }
 
-        $Questions = new QuestionsModel();
-        $questions = $Questions->get_rand_questions();
-        $result = array('code'=>200,'msg'=>'获取成功');
-        $result['data'] = $questions;
+        $questions = session('questions');
+
+        $option = $questions[$layer];
+
+        if( $layer <= 2 ){
+            $i = 4;
+            $j = 1;
+        }else if( $layer <= 5 ){
+            $i = 9;
+            $j = 0.65;
+        }else if( $layer <= 9 ){
+            $i = 16;
+            $j = 0.48;
+        }else if( $layer <= 14 ){
+            $i = 25;
+            $j = 0.38;
+        }else if( $layer <= 20 ){
+            $i = 36;
+            $j = 0.32;
+        }else if( $layer <= 27 ){
+            $i = 49;
+            $j = 0.27;
+        }else if( $layer <= 35 ){
+            $i = 72;
+            $j = 0.23;
+        }else if( $layer <= 44 ){
+            $i = 81;
+            $j = 0.21;
+        }
+
+        $arr = array();
+
+
+        if($option['answer'] != 'option_1'){
+            for($a = 0; $a < $i - 1; $a++){
+                $arr[$a]['text']    = $option['option_1'];
+                $arr[$a]['percent'] = $j;
+            }
+            if( $layer == 44 ){
+                $arr[$i - 1]['text'] = $option['option_1'];
+                $arr[$i - 1]['percent'] = $j;
+            }else{
+                $arr[$i - 1]['text'] = $option['option_2'];
+                $arr[$i - 1]['percent'] = $j;
+            }
+
+            $answer = $option['option_2'];
+        }else{
+            for($a = 0; $a < $i - 1; $a++){
+                $arr[$a]['text']    = $option['option_2'];
+                $arr[$a]['percent'] = $j;
+            }
+            if( $layer == 44 ){
+                $arr[$i - 1]['text'] = $option['option_2'];
+                $arr[$i - 1]['percent'] = $j;
+            }else{
+                $arr[$i - 1]['text'] = $option['option_1'];
+                $arr[$i - 1]['percent'] = $j;
+            }
+            $answer = $option['option_1'];
+        }
+
+        shuffle($arr);
+
+        $result['data']['words'] = $arr;
+        $result['data']['answer'] = $answer;
 
         $this->ajaxReturn($result);
     }
@@ -178,7 +234,7 @@ class ApiController extends ApiBaseController
         if($rankings){
             $result['code'] = 200;
             $result['msg']  = '获取成功';
-            $result['data'] = $rankings;
+            $result['data'] = array('ranking_list' => $rankings);
         }
 
         $this->ajaxReturn($result);
@@ -193,7 +249,7 @@ class ApiController extends ApiBaseController
         if($rankings){
             $result['code'] = 200;
             $result['msg']  = '获取成功';
-            $result['data'] = $rankings;
+            $result['data'] = array('ranking_list' => $rankings);
         }
 
         $this->ajaxReturn($result);
@@ -221,6 +277,24 @@ class ApiController extends ApiBaseController
             session('user_status',1);
             $result['code'] = 403;
             $result['msg']  = '已禁用';
+        }
+
+        $this->ajaxReturn($result);
+    }
+
+    // 获取用户信息
+    public function get_user_info(){
+        $user_id = session('user_id');
+        $UserGame = new UserGameModel();
+
+        $result = array('code'=>400, 'msg'=> '获取失败');
+
+        $user = $UserGame->find_by_user_id($user_id,'challenge_num,chance_num,get_prize,uid,nickname,avatar_url');
+
+        if($user) {
+            $result['code'] = 200;
+            $result['msg'] = '获取成功';
+            $result['data'] = $user;
         }
 
         $this->ajaxReturn($result);

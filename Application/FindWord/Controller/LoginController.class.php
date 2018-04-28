@@ -34,12 +34,17 @@ class LoginController extends ApiLoginController
 
         if($data['code'] == 200){
             $Users = new UsersModel();
-            $session_id = $Users->do_login($data);
+            $data = $Users->do_login($data);
 
-           if($session_id){
+           if($data){
                $result['code']  =   200;
                $result['msg']   =   '登录成功';
-               $result['data']  =   array('session_id'=>$session_id, 'session_key' => session('session_key'));
+               $result['data']  =   array(
+                   'session_id'  => $data['session_id'],
+                   'session_key' => $data['session_key'],
+                   'nickname'    => $data['nickname'],
+                   'avatar_url'  => $data['avatar_url'],
+               );
            }else{
                $result['code']  = 403;
                $result['msg'] = '该用户已禁用';
@@ -55,7 +60,7 @@ class LoginController extends ApiLoginController
     // 测试 - 登录接口
     public function test_login(){
         $Users = new UsersModel();
-        $user = $Users->find_by_user_id(1);
+        $user = $Users->find_by_user_id(4);
 
         session(null);
         $session_id = get_session_id();

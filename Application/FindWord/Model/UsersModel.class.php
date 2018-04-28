@@ -96,7 +96,11 @@ class UsersModel extends Model
                     session('user_id',$user['id']);
                     session('openid',$user['openid']);
                     session('session_key',$data['session_key']);
-                    $result = $session_id;
+
+                    $result['session_id']  = $session_id;
+                    $result['session_key'] = $data['session_key'];
+                    $result['nickname'] = $user['nickname'];
+                    $result['avatar_url'] = $user['avatar_url'];
                 }
 
             }else{
@@ -111,7 +115,11 @@ class UsersModel extends Model
                 session('user_id',$re['id']);
                 session('openid',$re['openid']);
                 session('session_key',$data['session_key']);
-                $result = $session_id;
+
+                $result['session_id']  = $session_id;
+                $result['session_key'] = $data['session_key'];
+                $result['nickname']    = $user['nickname'];
+                $result['avatar_url']  = $user['avatar_url'];
             }
         }
 
