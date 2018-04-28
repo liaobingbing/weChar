@@ -26,12 +26,20 @@ class ApiController extends ApiBaseController
         $this->check_sign();    // 验证用户签到状态
     }
 
-    // 首页
-    public function index(){
-        $user_id = session('user_id');
-        $result = array();
+    // 挑战次数
+    public function challenge_num(){
+        $result = array('code' => 400, 'msg' => '获取失败', 'data' => 0);
+        $count_challenge = M('UserGame')->sum('challenge_num');
 
+        if($count_challenge <= 5000){
+            $count_challenge += 5000;
+        }
 
+        if($count_challenge){
+            $result['code'] =   200;
+            $result['msg']  =   '获取成功';
+            $result['data'] = array('count_challenge' => $count_challenge);
+        }
 
         $this->ajaxReturn($result);
     }
@@ -67,7 +75,7 @@ class ApiController extends ApiBaseController
             $UserGame->where(array('uid'=>$user_id))->setInc('challenge_num');
             $result = array('code'=>200,'msg'=>'获取成功');
             $result['data'] = $questions;
-        }
+            }
         }
 
         $Questions = new QuestionsModel();
@@ -86,7 +94,7 @@ class ApiController extends ApiBaseController
         $user = $User->find_by_user_id($user_id,'id,status');
 
         if($user['status'] != 1){
-            session(null);
+            session('user_status',1);
             $result['code'] = 403;
             $result['msg']  = '该用户已禁用';
             $this->ajaxReturn($result);
@@ -176,7 +184,7 @@ class ApiController extends ApiBaseController
         $this->ajaxReturn($result);
     }
 
-    // 毅力榜
+    // 荣耀榜
     public function get_prize_top(){
         $UserGame = new UserGameModel();
         $rankings = $UserGame->get_rankings('get_prize',8);
