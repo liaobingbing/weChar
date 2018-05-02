@@ -627,6 +627,7 @@ class ApiController extends ApiBaseController{
 
         $encryptedData = I("post.encryptedData");
         $iv = I("post.iv");
+
         if($encryptedData&&$iv){
             $session_key=session('session_key');
             if($session_key){
