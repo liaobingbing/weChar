@@ -64,13 +64,21 @@ class ApiController extends ApiBaseController
         $user_id = session('user_id');
         $layer = I('layer',1);
 
+
         if($layer == 1){
+            $UserGame = new UserGameModel();
+            $user_game = $UserGame->find_by_user_id($user_id);
+
+            if($user_game['chance_num'] <= 0){
+                $this->ajaxReturn(array('code' => 400, 'msg' => '挑战次数为空'));
+            }
+
             session('questions',null);
             $Questions = new QuestionsModel();
             $questions = $Questions->get_rand_questions(44);
             session('questions',$questions);
-            M('UserGame')->where(array('uid' => $user_id))->setDec('chance_num');
-            M('UserGame')->where(array('uid' => $user_id))->setInc('challenge_num');
+            $UserGame->where(array('uid' => $user_id))->setDec('chance_num');
+            $UserGame->where(array('uid' => $user_id))->setInc('challenge_num');
         }
 
         $questions = session('questions');

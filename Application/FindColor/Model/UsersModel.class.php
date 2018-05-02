@@ -64,12 +64,12 @@ class UsersModel extends Model
 
         $result = false;
 
-        $uid = M('Users')->save($user);
+        $re = M('Users')->save($user);
 
-        if($uid){
+        if($re){
             $user_game['nickname']     =   $data['nickName'];
             $user_game['avatar_url']   =   str_replace('/0','/132',$data['avatarUrl'] );
-            M('UserGame')->where(array('uid'=>$uid))->save($user_game);
+            M('UserGame')->where(array('uid'=>$user['uid']))->save($user_game);
             $result = $user;
         }
 
