@@ -104,7 +104,7 @@ class ApiController extends ApiBaseController
             $i = 49;
             $j = 0.27;
         }else if( $layer <= 35 ){
-            $i = 72;
+            $i = 64;
             $j = 0.23;
         }else if( $layer <= 44 ){
             $i = 81;

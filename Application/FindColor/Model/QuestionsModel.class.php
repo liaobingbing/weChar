@@ -19,11 +19,15 @@ class QuestionsModel extends Model
      * @return mixed
      */
     public function get_questions($expire = 86200){
+
         $key = 'find_color_questions';
         $question = S($key);
 
         if( !$question ){
-            $question = M('Questions')->field('id,option_1,option_2')->select();
+            $question[] = M('Questions')->where(array('level'=>1))->field('id,option_1,option_2,level')->select();
+            $question[] = M('Questions')->where(array('level'=>2))->field('id,option_1,option_2,level')->select();
+            $question[] = M('Questions')->where(array('level'=>3))->field('id,option_1,option_2,level')->select();
+            $question[] = M('Questions')->where(array('level'=>4))->field('id,option_1,option_2,level')->select();
             S($key,$question,$expire);
         }
 
@@ -37,15 +41,23 @@ class QuestionsModel extends Model
     public function get_rand_questions(){
         $questions = $this->get_questions();
 
-        $level_1 = array_slice($questions,0,68);
-        $level_2 = array_slice($questions,68,-1);
-        $level_3 = array_slice($questions,-1,1);
+        $level_1 = $questions[0];
+        $level_2 = $questions[1];
+        $level_3 = $questions[2];
+        $level_4 = $questions[3];
+
+
+
 
         shuffle($level_1);
         shuffle($level_2);
+        shuffle($level_3);
 
-        $level_1 = array_slice($level_1,0,24);
-        $level_2 = array_slice($level_2,0,19);
+        $level_1 = array_slice($level_1,0,25);
+        $level_2 = array_slice($level_2,0,10);
+        $level_3 = array_slice($level_3,0,8);
+
+
 
         foreach($level_1 as $k => $v){
             $rand = rand(1,2);
@@ -67,11 +79,16 @@ class QuestionsModel extends Model
             $key = array_keys($v);
             $level_3[$k]['answer'] = $key[$rand];
         }
-        $result['level_1'] = $level_1;
-        $result['level_2'] = $level_2;
-        $result['level_3'] = $level_3;
 
-        $result = array_merge($level_1,$level_2,$level_3);
+        foreach($level_4 as $k => $v){
+            $rand = rand(1,2);
+            $level_4[$k] = $v;
+            $key = array_keys($v);
+            $level_4[$k]['answer'] = $key[$rand];
+        }
+
+
+        $result = array_merge($level_1,$level_2,$level_3,$level_4);
 
         return $result;
     }

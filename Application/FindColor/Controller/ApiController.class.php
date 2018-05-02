@@ -75,9 +75,10 @@ class ApiController extends ApiBaseController
             session('questions',null);
             $Questions = new QuestionsModel();
             $questions = $Questions->get_rand_questions();
+
             session('questions',$questions);
-            $UserGame->where(array('uid' => $user_id))->setDec('chance_num');
-            $UserGame->where(array('uid' => $user_id))->setInc('challenge_num');
+            M('UserGame')->where(array('uid' => $user_id))->setDec('chance_num');
+            M('UserGame')->where(array('uid' => $user_id))->setInc('challenge_num');
         }
 
         $questions = session('questions');
@@ -103,7 +104,7 @@ class ApiController extends ApiBaseController
             $i = 49;
             $j = 0.27;
         }else if( $layer <= 35 ){
-            $i = 72;
+            $i = 64;
             $j = 0.23;
         }else if( $layer <= 44 ){
             $i = 81;
