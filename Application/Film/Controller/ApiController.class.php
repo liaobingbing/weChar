@@ -168,7 +168,7 @@ class ApiController extends ApiBaseController{
         $this->ajaxReturn($data,'JSON');
     }
 
-    //验证猜歌答案
+    //验证猜电影答案
     public function check_answer(){
         $user_id=session('user_id');
 
