@@ -91,7 +91,7 @@ class AnswerModel extends Model{
                 $where_arr[]=$v['recommend_user_id'];
             }
             $where['uid'] = array('in',$where_arr);
-            $friend_arr2=M('user_game')->where($where)->field('uid,avatarUrl,nickname,gold_num,success_num')->order('success_num desc')->select();
+            $friend_arr2=M('user_game')->where($where)->field('uid,avatar_url,nickname,gold_num,success_num')->order('success_num desc')->select();
 
             if($friend_arr2){
                 foreach($friend_arr2 as $k=>$v){
@@ -111,7 +111,7 @@ class AnswerModel extends Model{
 
     public function get_world_ranking($user_id){
         $ranking_detail['data']=S('gd_world_ranking');
-        $sql="SELECT * FROM (SELECT (@rownum:=@rownum+1) AS ranking, a.* FROM `mx_user_game` a, (SELECT @rownum:= 0 ) r  ORDER BY a.`idiom_num` DESC ) AS b  WHERE uid = ".$user_id;
+        $sql="SELECT * FROM (SELECT (@rownum:=@rownum+1) AS ranking, a.* FROM `gd_user_game` a, (SELECT @rownum:= 0 ) r  ORDER BY a.`success_num` DESC ) AS b  WHERE uid = ".$user_id;
         $user=M()->query($sql);
         $ranking_detail['my_ranking']=$user[0]['ranking'];
         return $ranking_detail;

@@ -20,8 +20,8 @@ return array(
     'DB_DEBUG'  =>  TRUE, // 数据库调试模式 开启后可以记录SQL日志
 
     // 小程序APP
-    'WECHAT_APPID'      =>  'wxb15bd36a0179edf2',
-    'WECHAT_APPSECRET'  =>  'ee3adf23be67e07780a4e1794126bb0e',
+    'WECHAT_APPID'      =>  'wx398be655fabacd6e',
+    'WECHAT_APPSECRET'  =>  'c6c9da80879e89d67a6a8833fe8df170',
 
 
     //'配置项'=>'配置值'

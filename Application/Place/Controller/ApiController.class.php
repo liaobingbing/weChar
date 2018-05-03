@@ -17,7 +17,7 @@ class ApiController extends ApiBaseController{
         if($user_game){
             $data['code']=200;
             $data['msg']='获取成功';
-            $data['data']['avatarUrl']=$user_game['avatarUrl'];
+            $data['data']['avatar_url']=$user_game['avatar_url'];
             $data['data']['nickname']=$user_game['nickname'];
             $data['data']['layer']=$user_game['layer']+1;
             $data['data']['gold_num']=$user_game['gold_num'];
@@ -106,7 +106,7 @@ class ApiController extends ApiBaseController{
         if($user_game){
             $data['code']=200;
             $data['msg']='获取成功';
-            $data['data']['avatarUrl']=$user_game['avatarUrl'];
+            $data['data']['avatar_url']=$user_game['avatar_url'];
             $data['data']['nickname']=$user_game['nickname'];
             $data['data']['layer']=$user_game['layer']+1;
         }else{
@@ -217,7 +217,7 @@ class ApiController extends ApiBaseController{
                                 $data2['uid']=$recommend_user_id;
                                 $data2['help_user']=$user_game['uid'];
                                 $data2['help_answer']=$u_answer;
-                                $data2['user_avatarUrl']=$user_game['avatarUrl'];
+                                $data2['user_avatarUrl']=$user_game['avatar_url'];
                                 $info2=M('user_help')->add($data2);
                                 if($info2){
                                     $data['code']=200;
