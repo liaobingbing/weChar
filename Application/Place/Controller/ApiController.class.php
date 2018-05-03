@@ -220,6 +220,7 @@ class ApiController extends ApiBaseController{
                                 $data2['help_user']=$user_game['uid'];
                                 $data2['help_answer']=$u_answer;
                                 $data2['user_avatarUrl']=$user_game['avatar_url'];
+                                $data2['layer']=$layer;
                                 $info2=M('user_help')->add($data2);
                                 if($info2){
                                     $data['code']=200;
