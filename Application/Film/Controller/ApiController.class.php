@@ -11,13 +11,12 @@ class ApiController extends ApiBaseController{
 
     public function index(){
         $user_id=session('user_id');
-
         $userdao=new UsersModel();
         $user_game=$userdao->findGame($user_id);
         if($user_game){
             $data['code']=200;
             $data['msg']='获取成功';
-            $data['data']['avatarUrl']=$user_game['avatarUrl'];
+            $data['data']['avatarUrl']=$user_game['avatarurl'];
             $data['data']['nickname']=$user_game['nickname'];
             $data['data']['layer']=$user_game['layer']+1;
             $data['data']['gold_num']=$user_game['gold_num'];
@@ -106,7 +105,7 @@ class ApiController extends ApiBaseController{
         if($user_game){
             $data['code']=200;
             $data['msg']='获取成功';
-            $data['data']['avatarUrl']=$user_game['avatarUrl'];
+            $data['data']['avatarUrl']=$user_game['avatarurl'];
             $data['data']['nickname']=$user_game['nickname'];
             $data['data']['layer']=$user_game['layer']+1;
         }else{

@@ -103,5 +103,8 @@ class LoginController extends ApiLoginController {
         //print_r($output);
         return $output;
     }
+    public function set_session(){
+        session('user_id',2);
+    }
 
 }
