@@ -92,7 +92,7 @@ class LoginController extends  ApiLoginController
             foreach($user_info2 as $k=>$v){
                 $user_info2[$k]['ranking']=$k+1;
             }
-            S("m_num_top",$user_info);
+            S("m_num_top",$user_info);//缓存
             S("m_intelligence_top",$user_info2);
         }
     }
