@@ -154,7 +154,9 @@ class ApiController extends ApiBaseController{
                 $data['data']['answer']=$this->get_answer($question['answer']);
                 $data['data']['help_answer']=$answer->get_help_answer($user_game['uid'],$layer);
                 $data['data']['img_url']=$question['img_url'];
-                $data['data']['interfere_answer']=$this->get_interfere_answer($question['answer'],$question['interfere_answer']);
+                shuffle($question['interfere_answer']);
+                //$data['data']['interfere_answer']=$this->get_interfere_answer($question['answer'],$question['interfere_answer']);
+                $data['data']['interfere_answer']=$this->option_splic($question['interfere_answer']);
             }else{
                 $data['code']=400;
                 $data['msg']='没有此关';
@@ -216,23 +218,24 @@ class ApiController extends ApiBaseController{
                         }else{
                             $recommend_user_id=I('post.recommend_id');
                             if($recommend_user_id){
+
                                 $data2['uid']=$recommend_user_id;
                                 $data2['help_user']=$user_game['uid'];
                                 $data2['help_answer']=$u_answer;
                                 $data2['user_avatarUrl']=$user_game['avatar_url'];
                                 $data2['layer']=$layer;
-                                $info2=M('user_help')->add($data2);
-                                if($info2){
-                                    $data['code']=200;
-                                    $data['msg']='答案正确';
-                                    $data['data']['type']=$type;
-                                    $data['data']['this_layer']=$layer;
-                                    $data['data']['add_gold_num']=0;
-                                    $data['data']['answer']=$question['answer'];
-                                }else{
-                                    $data['code']=400;
-                                    $data['msg']='出错了，请联系管理员';
+                                if(!M('user_help')->where(array('uid'=>$data2['uid'],'help_user'=>$data2['help_user'],'layer'=>$layer))->find()){
+                                    M('user_help')->add($data2);
                                 }
+
+
+
+                                $data['code']=200;
+                                $data['msg']='答案正确';
+                                $data['data']['type']=$type;
+                                $data['data']['this_layer']=$layer;
+                                $data['data']['add_gold_num']=0;
+                                $data['data']['answer']=$question['answer'];
 
                             }else{
                                 $data['code']=400;
@@ -670,5 +673,34 @@ class ApiController extends ApiBaseController{
         $max_layer=M('mx_answer')->where('status=1')->count();
         print_r($max_layer);
     }
+
+    /**
+     * 将干扰项打乱顺序
+     * @param $name
+     * @param $option
+     * @param int $len
+     * @return array
+     */
+    public function option_splic($option){
+        $option = $this->ch_to_arr($option);
+
+        shuffle($option);
+        foreach($option as $k => $v){
+            $arr2[$k]['text'] = $v;
+            $arr2[$k]['status'] = false;
+        }
+        return $arr2;
+    }
+
+    //中文字符串转为数组
+    public function ch_to_arr($str)
+    {
+        $length = mb_strlen($str, 'utf-8');
+        $array = array();
+        for ($i=0; $i<$length; $i++)
+            $array[] = mb_substr($str, $i, 1, 'utf-8');
+        return $array;
+    }
+
 
 }
