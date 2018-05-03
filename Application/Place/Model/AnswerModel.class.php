@@ -97,7 +97,7 @@ class AnswerModel extends Model{
                 foreach($friend_arr2 as $k=>$v){
                     if($v['uid']==$user_id){
                         $friend_detail['my_ranking']=$k+1;
-                        $friend_detail['my_idiom']=$v['idiom_num'];
+                        $friend_detail['my_success_num']=$v['success_num'];
                     }
                     $friend_arr2[$k]['ranking']=$k+1;
                 }

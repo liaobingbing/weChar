@@ -196,6 +196,7 @@ class ApiController extends ApiBaseController{
                                     $data['data']['next_layer']=$layer+1;
                                     $data['data']['type']=$type;
                                     $data['data']['add_gold_num']=$info['add_gold_num'];
+                                    $data['data']['gold_num']= $user_game['gold_num']+$info['add_gold_num'];
                                     $data['data']['answer']=$question['answer'];
                                 }else{
                                     $data['code']=400;
@@ -209,6 +210,7 @@ class ApiController extends ApiBaseController{
                                 $data['data']['next_layer']=$layer+1;
                                 $data['data']['type']=$type;
                                 $data['data']['add_gold_num']=0;
+                                $data['data']['gold_num']= $user_game['gold_num'];
                                 $data['data']['answer']=$question['answer'];
                             }
                         }else{
