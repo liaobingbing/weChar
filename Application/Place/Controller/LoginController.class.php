@@ -16,6 +16,8 @@ class LoginController extends ApiLoginController {
         $code=I('post.code');
         $encryptedData=I('post.encryptedData');
         $iv=I('post.iv');
+        $recommend_user_id=I("post.recommend_id",0);
+
         $login_data=$this->get_weixin($code,$encryptedData,$iv);
         if($login_data['code']!=400){
             $openid = $login_data['openId'];
@@ -54,12 +56,32 @@ class LoginController extends ApiLoginController {
                 M('users')->where('id='.$user['id'])->setField("login_time",time());
                 $uid=$user['id'];
             }
+
+            if($recommend_user_id!==0){
+
+                $has=M('user_friend')->where('uid=%d and recomend_user_id=%d',$user['id'],$recommend_user_id)->find();
+                if(!$has){
+                    $recommend_arr['uid']=$user['id'];
+                    $recommend_arr['recomend_user_id']=$recommend_user_id;
+                    M('user_friend')->data($recommend_arr)->add();
+                    $userdao->share_gold($recommend_user_id);
+                }
+                $has2=M('user_friend')->where('uid=%d and recomend_user_id=%d',$recommend_user_id,$user['id'])->find();
+                if(!$has2){
+                    $recommend_arr['uid']=$recommend_user_id;
+                    $recommend_arr['recomend_user_id']=$user['id'];
+                    M('user_friend')->data($recommend_arr)->add();
+                }
+
+            }
+
             $session_k=session_id();
             session('user_id',$uid,3600);
             session("openid",$openid);
             $data['code']=200;
             $data['msg']='success';
             $data['data']=array('session_key'=>$session_k);
+            $data['recommend_user_id']=$recommend_user_id;
             $this->ajaxReturn($data,'JSON');
 
         }

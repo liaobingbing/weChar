@@ -83,8 +83,8 @@ class AnswerModel extends Model{
     }
 
     public function get_one_friend($user_id){
-        $friend_detail=session('friend_detail');
-        if(!$friend_detail){
+        /*$friend_detail=session('friend_detail');
+        if(!$friend_detail){*/
             $friend_arr1=M('user_friend')->where('uid=%d',$user_id)->select();
             $where_arr=array($user_id);
             foreach($friend_arr1 as $k=>$v){
@@ -102,9 +102,9 @@ class AnswerModel extends Model{
                     $friend_arr2[$k]['ranking']=$k+1;
                 }
                 $friend_detail['data']=$friend_arr2;
-                session('friend_detail',$friend_detail);
+                //session('friend_detail',$friend_detail);
             }
-        }
+        /*}*/
         return $friend_detail;
 
     }
@@ -144,7 +144,7 @@ class AnswerModel extends Model{
             $userdao=new UsersModel();
             $user_game=$userdao->findGame($uid);
             if($user_game){
-                $has=M('share_group')->where('uid='.$uid.' and openGId like "'.$gid.'"')->find();
+                $has=M('share_group')->where('uid='.$uid.' and openGid like "'.$gid.'"')->find();
                 if($has){
                     if($has['share_time']<strtotime(date("Y-m-d"),time())){
                         $user_game['gold_num']+=C('SHARE_GOLD');
@@ -163,7 +163,7 @@ class AnswerModel extends Model{
                     $user_game['gold_num']+=C('SHARE_GOLD');
                     M('user_game')->save($user_game);
                     $group['uid']=$uid;
-                    $group['openGId']=$gid;
+                    $group['openGid']=$gid;
                     $group['share_time']=time();
                     M('share_group')->add($group);
                     $info['add_status']=1;
