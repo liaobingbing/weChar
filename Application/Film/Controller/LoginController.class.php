@@ -27,7 +27,7 @@ class LoginController extends ApiLoginController {
                 $user_data['city'] = $login_data['city'];
                 $user_data['province'] = $login_data['province'];
                 $user_data['country'] = $login_data['country'];
-                $user_data['avatar_url'] =  str_replace('/0','/132',$login_data['avatarUrl'] );
+                $user_data['avatarUrl'] =  str_replace('/0','/132',$login_data['avatarUrl'] );
                 $user_data['nickname'] = $login_data['nickName'];
                 $user_data['add_time'] = time();
                 $user_data['last_time'] = time();
@@ -46,8 +46,8 @@ class LoginController extends ApiLoginController {
                 if($user['login_time']<strtotime(date("Y-m-d"),time())){
                     M('user_game')->where('uid='.$user['id'])->setField("share_num",0);
                     M('user_game')->where('uid='.$user['id'])->setField("sign",1);
-                    M('users')->where('id='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
-                    M('user_game')->where('uid='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
+                    M('users')->where('id='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$login_data['avatarUrl']));
+                    M('user_game')->where('uid='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$login_data['avatarUrl']));
 
                 }
                 M('users')->where('id='.$user['id'])->setField("last_time",$user['login_time']);
