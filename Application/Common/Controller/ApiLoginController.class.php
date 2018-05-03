@@ -68,11 +68,11 @@ class ApiLoginController extends Controller
     /**
      * 获取微信用户信息
      * @param $code
-     * @param $encryptedDate
+     * @param $encryptedData
      * @param $iv
      * @return mixed
      */
-    public function do_login($code,$encryptedDate,$iv){
+    public function do_login($code,$encryptedData,$iv){
 
         $code_session = $this->wx_session_key($code);
 
@@ -80,7 +80,7 @@ class ApiLoginController extends Controller
 
             // 解密
             $session_key = $code_session['session_key'];
-            $data = $this->wx_biz_data_crypt($encryptedDate,$iv,$session_key);
+            $data = $this->wx_biz_data_crypt($encryptedData,$iv,$session_key);
 
             if( $data['errCode'] == 0){
                 $json_data = json_decode($data['data'], true);

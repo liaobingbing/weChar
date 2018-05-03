@@ -10,6 +10,7 @@ namespace FindColor\Controller;
 
 
 use Common\Controller\ApiLoginController;
+use FindColor\Model\UserGameModel;
 use FindColor\Model\UsersModel;
 
 class LoginController extends ApiLoginController
@@ -56,6 +57,54 @@ class LoginController extends ApiLoginController
 
         $this->ajaxReturn($result);
 
+    }
+
+    // 总挑战次数
+    public function challenge_num(){
+        $result = array('code' => 400, 'msg' => '获取失败', 'data' => 0);
+        $count_challenge = M('UserGame')->sum('challenge_num');
+
+        if($count_challenge <= 5000){
+            $count_challenge += 5000;
+        }
+
+        if($count_challenge){
+            $result['code'] =   200;
+            $result['msg']  =   '获取成功';
+            $result['data'] = array('count_challenge' => $count_challenge);
+        }
+
+        $this->ajaxReturn($result);
+    }
+
+    // 毅力榜
+    public function challenge_top(){
+        $UserGame = new UserGameModel();
+        $rankings = $UserGame->get_rankings('challenge_num',8);
+        $result = array('code'=>400, 'msg'=>'获取失败');
+
+        if($rankings){
+            $result['code'] = 200;
+            $result['msg']  = '获取成功';
+            $result['data'] = array('ranking_list' => $rankings);
+        }
+
+        $this->ajaxReturn($result);
+    }
+
+    // 荣耀榜
+    public function get_prize_top(){
+        $UserGame = new UserGameModel();
+        $rankings = $UserGame->get_rankings('get_prize',8);
+        $result = array('code'=>400, 'msg'=>'获取失败');
+
+        if($rankings){
+            $result['code'] = 200;
+            $result['msg']  = '获取成功';
+            $result['data'] = array('ranking_list' => $rankings);
+        }
+
+        $this->ajaxReturn($result);
     }
 
     // 测试 - 登录接口

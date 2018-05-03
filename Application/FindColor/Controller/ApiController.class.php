@@ -77,13 +77,20 @@ class ApiController extends ApiBaseController
             $questions = $Questions->get_rand_questions();
 
             session('questions',$questions);
+
             M('UserGame')->where(array('uid' => $user_id))->setDec('chance_num');
             M('UserGame')->where(array('uid' => $user_id))->setInc('challenge_num');
         }
 
         $questions = session('questions');
 
-        $option = $questions[$layer-1];
+        $option = array_shift($questions);
+        session('questions',$questions);
+
+        if( !$option ){
+            $this->ajaxReturn(array('code' => 400, 'msg' => '获取失败'));
+        }
+
 
         if( $layer <= 2 ){
             $i = 4;
@@ -102,13 +109,15 @@ class ApiController extends ApiBaseController
             $j = 0.32;
         }else if( $layer <= 27 ){
             $i = 49;
-            $j = 0.27;
+            $j = 0.28;
         }else if( $layer <= 35 ){
             $i = 64;
             $j = 0.23;
-        }else if( $layer <= 44 ){
+        }else if( $layer <= 45 ){
             $i = 81;
             $j = 0.21;
+        }else{
+            $this->ajaxReturn(array('code' => 400, 'msg' => 'layer不能超过44'));
         }
 
         $arr = array();

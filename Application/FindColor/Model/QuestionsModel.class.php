@@ -88,7 +88,7 @@ class QuestionsModel extends Model
         }
 
 
-        $result = array_merge($level_1,$level_2,$level_3,$level_4);
+        $result = array_merge($level_1,$level_2,$level_3,$level_4,$level_4);
 
         return $result;
     }
