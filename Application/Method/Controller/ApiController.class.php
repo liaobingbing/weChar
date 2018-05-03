@@ -39,7 +39,7 @@ class ApiController extends ApiBaseController
             $data1=M()->query($sql1);
             $sql2="SELECT avatarUrl,gt_number,nickname FROM method_test_game WHERE id >= ((SELECT MAX(id) FROM method_test_game)-(SELECT MIN(id) FROM method_test_game)) * RAND() + (SELECT MIN(id) FROM method_test_game)  order by  gt_number desc LIMIT 1,5";
             $data2=M()->query($sql2);
-            $user_info=$data1+$data2;
+            $user_info=array_merge($data1,$data2);
             foreach($user_info as $k=>$v){
                 $user_info[$k]['ranking']=$k+1;
             }

@@ -97,7 +97,7 @@ class AnswerModel extends Model{
                 foreach($friend_arr2 as $k=>$v){
                     if($v['uid']==$user_id){
                         $friend_detail['my_ranking']=$k+1;
-                        $friend_detail['my_idiom']=$v['idiom_num'];
+                        $friend_detail['my_idiom']=$v['success_num'];
                     }
                     $friend_arr2[$k]['ranking']=$k+1;
                 }
@@ -111,7 +111,7 @@ class AnswerModel extends Model{
 
     public function get_world_ranking($user_id){
         $ranking_detail['data']=S('gm_world_ranking');
-        $sql="SELECT * FROM (SELECT (@rownum:=@rownum+1) AS ranking, a.* FROM `mx_user_game` a, (SELECT @rownum:= 0 ) r  ORDER BY a.`idiom_num` DESC ) AS b  WHERE uid = ".$user_id;
+        $sql="SELECT * FROM (SELECT (@rownum:=@rownum+1) AS ranking, a.* FROM `gm_user_game` a, (SELECT @rownum:= 0 ) r  ORDER BY a.`success_num` DESC ) AS b  WHERE uid = ".$user_id;
         $user=M()->query($sql);
         $ranking_detail['my_ranking']=$user[0]['ranking'];
         return $ranking_detail;
