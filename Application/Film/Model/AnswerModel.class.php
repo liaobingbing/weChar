@@ -92,7 +92,7 @@ class AnswerModel extends Model{
             $where_arr[]=$v['recommend_user_id'];
         }
         $where['uid'] = array('in',$where_arr);
-        $friend_arr2=M('user_game')->where($where)->field('uid,avatar_url,nickname,gold_num,success_num')->order('success_num desc')->select();
+        $friend_arr2=M('user_game')->where($where)->field('uid,avatarUrl,nickname,gold_num,success_num')->order('success_num desc')->select();
 
         if($friend_arr2){
             foreach($friend_arr2 as $k=>$v){
