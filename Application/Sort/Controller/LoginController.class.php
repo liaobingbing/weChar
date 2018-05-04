@@ -79,11 +79,11 @@ class LoginController extends  ApiLoginController
             foreach($user_info as $k=>$v){
                 $user_info[$k]['ranking']=$k+1;
             }
-            $sql1="SELECT avatarUrl,gt_number,nickname FROM method_test_game order by gt_number desc limit 3";
+            $sql1="SELECT avatar_url,gt_number,nickname FROM sort_test_game order by gt_number desc limit 3";
             $data1=M()->query($sql1);
-            $sql2="SELECT avatarUrl,gt_number,nickname FROM method_test_game WHERE id >= ((SELECT MAX(id) FROM method_test_game)-(SELECT MIN(id) FROM method_test_game)) * RAND() + (SELECT MIN(id) FROM method_test_game)  order by  gt_number desc LIMIT 8";
+            $sql2="SELECT avatar_url,gt_number,nickname FROM sort_test_game WHERE id >= ((SELECT MAX(id) FROM sort_test_game)-(SELECT MIN(id) FROM sort_test_game)) * RAND() + (SELECT MIN(id) FROM sort_test_game)  order by  gt_number desc LIMIT 1,5";
             $data2=M()->query($sql2);
-            $user_info2=$data1+$data2;
+            $user_info2=array_merge($data1,$data2);
             foreach($user_info2 as $k=>$v){
                 $user_info2[$k]['ranking']=$k+1;
             }
