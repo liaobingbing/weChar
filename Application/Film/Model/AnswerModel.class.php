@@ -84,28 +84,28 @@ class AnswerModel extends Model{
     }
 
     public function get_one_friend($user_id){
-        $friend_detail=session('friend_detail');
-        if(!$friend_detail){
-            $friend_arr1=M('user_friend')->where('uid=%d',$user_id)->select();
-            $where_arr=array($user_id);
-            foreach($friend_arr1 as $k=>$v){
-                $where_arr[]=$v['recommend_user_id'];
-            }
-            $where['uid'] = array('in',$where_arr);
-            $friend_arr2=M('user_game')->where($where)->field('uid,avatarUrl,nickname,gold_num,success_num')->order('success_num desc')->select();
-
-            if($friend_arr2){
-                foreach($friend_arr2 as $k=>$v){
-                    if($v['uid']==$user_id){
-                        $friend_detail['my_ranking']=$k+1;
-                        $friend_detail['my_idiom']=$v['success_num'];
-                    }
-                    $friend_arr2[$k]['ranking']=$k+1;
-                }
-                $friend_detail['data']=$friend_arr2;
-                session('friend_detail',$friend_detail);
-            }
+        /*$friend_detail=session('friend_detail');
+        if(!$friend_detail){*/
+        $friend_arr1=M('user_friend')->where('uid=%d',$user_id)->select();
+        $where_arr=array($user_id);
+        foreach($friend_arr1 as $k=>$v){
+            $where_arr[]=$v['recommend_user_id'];
         }
+        $where['uid'] = array('in',$where_arr);
+        $friend_arr2=M('user_game')->where($where)->field('uid,avatar_url,nickname,gold_num,success_num')->order('success_num desc')->select();
+
+        if($friend_arr2){
+            foreach($friend_arr2 as $k=>$v){
+                if($v['uid']==$user_id){
+                    $friend_detail['my_ranking']=$k+1;
+                    $friend_detail['my_success_num']=$v['success_num'];
+                }
+                $friend_arr2[$k]['ranking']=$k+1;
+            }
+            $friend_detail['data']=$friend_arr2;
+            //session('friend_detail',$friend_detail);
+        }
+        /*}*/
         return $friend_detail;
 
     }

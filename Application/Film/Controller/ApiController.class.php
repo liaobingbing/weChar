@@ -212,7 +212,7 @@ class ApiController extends ApiBaseController{
                                 $data['data']['answer']=$question['answer'];
                             }
                         }else{
-                            $recommend_user_id=I('post.recommend_user_id');
+                            $recommend_user_id=I('post.recommend_id');
                             if($recommend_user_id){
                                 $data2['uid']=$recommend_user_id;
                                 $data2['help_user']=$user_game['uid'];
