@@ -27,6 +27,7 @@ class AnswerModel extends Model{
                     }
                     $data['code']=200;
                     $data['add_gold_num']=C('SUCCESS_GOLD');
+                    $data['gold_num']=$user_game['gold_num'];
                 }else{
                     $data['code']=400;
                 }
@@ -144,7 +145,7 @@ class AnswerModel extends Model{
             $userdao=new UsersModel();
             $user_game=$userdao->findGame($uid);
             if($user_game){
-                $has=M('share_group')->where('uid='.$uid.' and openGId like "'.$gid.'"')->find();
+                $has=M('share_group')->where('uid='.$uid.' and openGid like "'.$gid.'"')->find();
                 if($has){
                     if($has['share_time']<strtotime(date("Y-m-d"),time())){
                         $user_game['gold_num']+=C('SHARE_GOLD');
@@ -163,7 +164,7 @@ class AnswerModel extends Model{
                     $user_game['gold_num']+=C('SHARE_GOLD');
                     M('user_game')->save($user_game);
                     $group['uid']=$uid;
-                    $group['openGId']=$gid;
+                    $group['openGid']=$gid;
                     $group['share_time']=time();
                     M('share_group')->add($group);
                     $info['add_status']=1;

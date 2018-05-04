@@ -25,8 +25,8 @@ return array(
 
 
     //'配置项'=>'配置值'
-    'SUCCESS_GOLD'      =>  '20',  //答对金币
-    'PROMPT_GOLD'      =>  '30',   //提示金币
+    'SUCCESS_GOLD'      =>  '5',  //答对金币
+    'PROMPT_GOLD'      =>  '60',   //提示金币
     'SIGN_GOLD_1'      =>  '30',   //签到金币
     'SIGN_GOLD_2'      =>  '40',   //签到金币
     'SIGN_GOLD_3'      =>  '50',   //签到金币
@@ -34,5 +34,5 @@ return array(
     'SIGN_GOLD_5'      =>  '70',   //签到金币
     'SIGN_GOLD_6'      =>  '80',   //签到金币
     'SIGN_GOLD_7'      =>  '100',   //签到金币
-    'SHARE_GOLD'      =>  '40',  //分享金币
+    'SHARE_GOLD'      =>  '10',  //分享金币
 );

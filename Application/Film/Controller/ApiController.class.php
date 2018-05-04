@@ -174,9 +174,9 @@ class ApiController extends ApiBaseController{
         $userdao= new UsersModel();
         $user_game=$userdao->findGame($user_id);
         if($user_game){
-            $u_answer=$this->check_idiom(I('post.answer'));
+            $u_answer=I('post.answer');
             $layer=$this->check_int(I('post.layer'));
-
+           // echo $layer."==".$u_answer;
             if($u_answer&&$layer){
                 $answer=new AnswerModel();
                 $question=M('answer')->where('status=1 and layer=%d',$layer)->cache(86400)->find();
@@ -196,6 +196,7 @@ class ApiController extends ApiBaseController{
                                     $data['data']['type']=$type;
                                     $data['data']['add_gold_num']=$info['add_gold_num'];
                                     $data['data']['answer']=$question['answer'];
+                                    $data['data']['gold_num']=$info['gold_num'];
                                 }else{
                                     $data['code']=400;
                                     $data['msg']='出错了，请联系管理员';
@@ -594,6 +595,7 @@ class ApiController extends ApiBaseController{
                 $errCode = $wxBizDataCrypt->decryptData($encryptedData, $iv, $data_arr);
                 if($errCode==0){
                     $json_data = json_decode($data_arr, true);
+
                     $answer=new AnswerModel();
                     $info=$answer->user_share_group($user_id,$json_data['openGId']);
                     if($info){

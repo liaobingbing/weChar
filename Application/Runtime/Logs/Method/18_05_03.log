@@ -1,0 +1,6 @@
+[ 2018-05-03T11:58:49+08:00 ] ::1 /weChat/index.php/method/api/intelligence_top
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000325s ]
+ERR: 系统不支持:redis
+

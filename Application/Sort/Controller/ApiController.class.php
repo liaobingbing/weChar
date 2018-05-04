@@ -82,7 +82,7 @@ class ApiController extends ApiBaseController
     public function begin_challenge(){
         $user_id=session('user_id');
 
-        $user_game=M('user_game')->find($user_id);
+        $user_game=M('user_game')->where("uid=%d",$user_id)->find();
         if($user_game){
             if($user_game['chance_num']>0){
                 $user_game['chance_num']-=1;
@@ -111,7 +111,7 @@ class ApiController extends ApiBaseController
     public function get_question(){
         $user_id=session('user_id');
 
-        $user_game=M('user_game')->find($user_id);
+        $user_game=M('user_game')->where("uid=%d",$user_id)->find();
 
         if($user_game){
 
@@ -168,7 +168,7 @@ class ApiController extends ApiBaseController
         if($encryptedData&&$iv){
             $session_key=session('session_key');
             if($session_key){
-                $user_game=M('user_game')->find($user_id);
+                $user_game=M('user_game')->where("uid=%d",$user_id)->find();
                 if($user_game){
                     vendor("wxaes.WXBizDataCrypt");
                     $wxBizDataCrypt = new \WXBizDataCrypt(C("WECHAT_APPID"), $session_key);
@@ -226,7 +226,7 @@ class ApiController extends ApiBaseController
     public function my_prize(){
         $user_id=session('user_id');
         if($user_id){
-            $user_game=M('user_game')->find($user_id);
+            $user_game=M('user_game')->where("uid=%d",$user_id)->find();
             if($user_game){
                 $data['code']=200;
                 $data['msg']='获取成功';
