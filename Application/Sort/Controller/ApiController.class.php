@@ -14,52 +14,6 @@ use Common\Controller\ApiBaseController;
 class ApiController extends ApiBaseController
 {
 
-    //统计挑战的次数
-    public function count_challenge()
-    {
-        $count_challenge=M('user_game')->sum('challenge_num');
-        if($count_challenge<=5000){
-            $count_challenge=$count_challenge+5000;
-        }
-        $data['code']=200;
-        $data['msg']='success';
-        $data['data']['count_challenge']=$count_challenge;
-       $this->ajaxReturn($data);
-    }
-    //智力榜
-    public function intelligence_top()
-    {
-        $user_info = S('sort_intelligence_top');
-        if(!$user_info){
-            //SELECT avatarUrl,gt_number as number,nickname FROM method_test_game WHERE id >= ((SELECT MAX(id) FROM method_test_game)-(SELECT MIN(id) FROM method_test_game)) * RAND() + (SELECT MIN(id) FROM method_test_game)  order by  number desc LIMIT 5;
-            $sql1="SELECT avatar_url,gt_number,nickname FROM sort_test_game order by gt_number desc limit 3";
-            $data1=M()->query($sql1);
-            $sql2="SELECT avatar_url,gt_number,nickname FROM sort_test_game WHERE id >= ((SELECT MAX(id) FROM sort_test_game)-(SELECT MIN(id) FROM sort_test_game)) * RAND() + (SELECT MIN(id) FROM sort_test_game)  order by  gt_number desc LIMIT 8";
-            $data2=M()->query($sql2);
-            $user_info=$data1+$data2;
-            foreach($user_info as $k=>$v){
-                $user_info[$k]['ranking']=$k+1;
-            }
-            S("sort_intelligence_top",$user_info);
-        }
-         // $user_info=M('user_game')->field('get_number,avatar_url,nickname')->order('get_number desc')->limit(5)->select();
-        $arr=array('code'=>200,'msg'=>'success','data'=>$user_info);
-        $this->ajaxReturn($arr);
-    }
-    //毅力榜
-    public function num_top()
-    {
-        $user_info = S('sort_num_top');
-        if(!$user_info){
-            $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->order('challenge_num desc')->limit(8)->select();
-            foreach($user_info as $k=>$v){
-                $user_info[$k]['ranking']=$k+1;
-            }
-            S("sort_num_top",$user_info);
-        }
-        $arr=array('code'=>200,'msg'=>'success','data'=>$user_info);
-        $this->ajaxReturn($arr);
-    }
 
     //娃娃奖品图片列表
     public function prize_list()
