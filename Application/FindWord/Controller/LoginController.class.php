@@ -24,38 +24,58 @@ class LoginController extends ApiLoginController
 
     // 用户登录接口
     public function login(){
+        $userdao=new UsersModel();
+        $code=I('post.code');
+        $encryptedData=I('post.encryptedData');
+        $iv=I('post.iv');
+        $login_data=$this->get_weixin($code,$encryptedData,$iv);
+        if($login_data['code']!=400){
+            $openid = $login_data['openId'];
+            $user = $userdao->findByOpenid($openid);
+            if (!$user) {
+                $user_data['openid'] = $openid;
+                $user_data['unionid'] = $login_data['unionId'];
+                $user_data['gender'] = $login_data['gender'];
+                $user_data['city'] = $login_data['city'];
+                $user_data['login_time'] = time();
+                $user_data['province'] = $login_data['province'];
+                $user_data['country'] = $login_data['country'];
+                $user_data['avatar_url'] =  str_replace('/0','/132',$login_data['avatarUrl'] );
+                $user_data['name'] = $login_data['nickName'];
+                $uid = M('users')->data($user_data)->add();
+                $user_game['uid']=$uid;
+                $user_game['nickname']=$login_data['nickName'];
+                $user_game['login_time'] = time();
+                $user_game['avatar_url']=str_replace('/0','/132',$login_data['avatarUrl'] );
+                M('user_game')->add($user_game);
+            }else{
+                if($user['status']==0) {
+                    $data['code']=403;//已经被拉黑
+                    $data['msg']='已经被拉黑';
+                    $data['data']['user_id']=$user['id'];
+                    $this->ajaxReturn($data,'JSON');
+                }
+                if($user['login_time']<strtotime(date("Y-m-d"),time())){
+                    M('user_game')->where('uid='.$user['id'])->setField("chance_num",5);
+                    M('users')->where('id='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
+                    M('user_game')->where('uid='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
 
-        $code = I('code');
-        $encryptedData=I('encryptedData');
-        $iv=I('iv');
+                }
+                M('users')->where('id='.$user['id'])->setField("login_time",time());
+                $uid=$user['id'];
+            }
+            $session_k=session_id();
+            session('user_id',$uid,3600);
+            session("openid",$openid);
+            $data['code']=200;
+            $data['msg']='success';
+            $data['data']=array('session_key'=>$session_k);
+            $this->ajaxReturn($data,'JSON');
 
-        $result = array('code'=>400,'msg'=>'失败');
-
-        $data = $this->do_login($code,$encryptedData,$iv);
-
-        if($data['code'] == 200){
-            $Users = new UsersModel();
-            $data = $Users->do_login($data);
-
-           if($data){
-               $result['code']  =   200;
-               $result['msg']   =   '登录成功';
-               $result['data']  =   array(
-                   'session_id'  => $data['session_id'],
-                   'session_key' => $data['session_key'],
-                   'nickname'    => $data['nickname'],
-                   'avatar_url'  => $data['avatar_url'],
-               );
-           }else{
-               $result['code']  = 403;
-               $result['msg'] = '该用户已禁用';
-               $result['data'] = array('user_id'=>1);
-           }
-        }else{
-            $result = $data;
         }
-
-        $this->ajaxReturn($result);
+        else{
+            $this->ajaxReturn($login_data);
+        }
 
     }
 
