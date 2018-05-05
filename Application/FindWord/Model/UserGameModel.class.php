@@ -82,7 +82,7 @@ class UserGameModel extends Model
         $today_0 = strtotime(date('Y-m-d',time()));
 
         if($sign_time < $today_0){
-            $user_game['chance_num'] = 1;
+            $user_game['chance_num'] = 5;
             $user_game['sign_time']  = time();
             $UserGame->where("uid=$user_id")->save($user_game);
         }
