@@ -48,11 +48,11 @@ class LoginController extends  ApiLoginController
                     $this->ajaxReturn($data,'JSON');
                 }
                 if($user['login_time']<strtotime(date("Y-m-d"),time())){
-                    M('user_game')->where('uid='.$user['id'])->setField("chance_num",1);
+                    M('user_game')->where('uid='.$user['id'])->setField("chance_num",5);
                     M('users')->where('id='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
                     M('user_game')->where('uid='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
-
                 }
+                M('users')->where('id='.$user['id'])->setField("login_time",time());
                 $uid=$user['id'];
             }
             $session_k=session_id();
@@ -140,6 +140,7 @@ class LoginController extends  ApiLoginController
 
     //设置session
     public function set_session(){
+        echo strtotime(date("Y-m-d 00:00:00"),time());die;
         session('user_id',1);
     }
 }
