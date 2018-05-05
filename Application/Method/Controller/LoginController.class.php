@@ -84,11 +84,11 @@ class LoginController extends  ApiLoginController
             foreach($user_info as $k=>$v){
                 $user_info[$k]['ranking']=$k+1;
             }
-            $sql1="SELECT avatarUrl,gt_number,nickname FROM method_test_game order by gt_number desc limit 3";
-            $data1=M()->query($sql1);
-            $sql2="SELECT avatarUrl,gt_number,nickname FROM method_test_game WHERE id >= ((SELECT MAX(id) FROM method_test_game)-(SELECT MIN(id) FROM method_test_game)) * RAND() + (SELECT MIN(id) FROM method_test_game)  order by  gt_number desc LIMIT 1,5";
-            $data2=M()->query($sql2);
-            $user_info2=array_merge($data1,$data2);
+           /* $sql1="SELECT avatar_url as avatarUrl,gt_number,nickname FROM method_user_game order by gt_number desc limit 3";
+            $data1=M()->query($sql1);*/
+            $sql2="SELECT avatar_url as avatarUrl ,get_number as gt_number ,nickname FROM method_user_game   order by  gt_number desc LIMIT 0,8";
+            $user_info2=M()->query($sql2);
+           // $user_info2=array_merge($data1,$data2);
             foreach($user_info2 as $k=>$v){
                 $user_info2[$k]['ranking']=$k+1;
             }
@@ -114,12 +114,12 @@ class LoginController extends  ApiLoginController
     {
         $user_info = S('m_intelligence_top');
         if(!$user_info){
-            //SELECT avatarUrl,gt_number as number,nickname FROM method_test_game WHERE id >= ((SELECT MAX(id) FROM method_test_game)-(SELECT MIN(id) FROM method_test_game)) * RAND() + (SELECT MIN(id) FROM method_test_game)  order by  number desc LIMIT 5;
-            $sql1="SELECT avatarUrl,gt_number,nickname FROM method_test_game order by gt_number desc limit 3";
-            $data1=M()->query($sql1);
-            $sql2="SELECT avatarUrl,gt_number,nickname FROM method_test_game WHERE id >= ((SELECT MAX(id) FROM method_test_game)-(SELECT MIN(id) FROM method_test_game)) * RAND() + (SELECT MIN(id) FROM method_test_game)  order by  gt_number desc LIMIT 1,5";
-            $data2=M()->query($sql2);
-            $user_info=array_merge($data1,$data2);
+            //SELECT avatarUrl,gt_number as number,nickname FROM method_user_game WHERE id >= ((SELECT MAX(id) FROM method_user_game)-(SELECT MIN(id) FROM method_user_game)) * RAND() + (SELECT MIN(id) FROM method_user_game)  order by  number desc LIMIT 5;
+           /* $sql1="SELECT avatar_url as avatarUrl,gt_number,nickname FROM method_user_game order by gt_number desc limit 3";
+            $data1=M()->query($sql1);*/
+            $sql2="SELECT avatar_url as avatarUrl ,get_number as gt_number ,nickname FROM method_user_game   order by  gt_number desc LIMIT 0,8";
+            $user_info=M()->query($sql2);
+           // $user_info=array_merge($data1,$data2);
             foreach($user_info as $k=>$v){
                 $user_info[$k]['ranking']=$k+1;
             }
@@ -145,6 +145,6 @@ class LoginController extends  ApiLoginController
     }
     //设置session
     public function set_session(){
-        session('user_id',4);
+        session('user_id',7535);
     }
 }
