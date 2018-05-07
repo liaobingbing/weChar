@@ -14,28 +14,33 @@ class LoginController extends ApiLoginController {
     public function login(){
         $userdao=new UsersModel();
         $code=I('post.code');
-        $encryptedData=I('post.encryptedData');
-        $iv=I('post.iv');
-        $login_data=$this->get_weixin($code,$encryptedData,$iv);
+       // $encryptedData=I('post.encryptedData');
+        //$iv=I('post.iv');
+        $userInfo=I('post.userInfo');//获取前台传送的用户信息
+        $userInfo=str_replace("&quot;","\"",$userInfo);
+        $userInfo=json_decode($userInfo,true);
+        //print_r($userInfo);die;
+        $login_data=$this->test_weixin($code);
+        //dump($userInfo);die;
         if($login_data['code']!=400){
-            $openid = $login_data['openId'];
+            $openid = $login_data['openid'];
             $user = $userdao->findByOpenid($openid);
             if (!$user) {
                 $user_data['openid'] = $openid;
-                $user_data['unionid'] = $login_data['unionId'];
-                $user_data['gender'] = $login_data['gender'];
-                $user_data['city'] = $login_data['city'];
-                $user_data['province'] = $login_data['province'];
-                $user_data['country'] = $login_data['country'];
-                $user_data['avatarUrl'] =  str_replace('/0','/132',$login_data['avatarUrl'] );
-                $user_data['nickname'] = $login_data['nickName'];
+                //$user_data['unionid'] = $login_data['unionId'];
+                $user_data['gender'] = $userInfo['gender'];
+                $user_data['city'] = $userInfo['city'];
+                $user_data['province'] = $userInfo['province'];
+                $user_data['country'] = $userInfo['country'];
+                $user_data['avatarUrl'] =  str_replace('/0','/132',$userInfo['avatarUrl'] );
+                $user_data['nickname'] = $userInfo['nickName'];
                 $user_data['add_time'] = time();
                 $user_data['last_time'] = time();
                 $user_data['login_time'] = time();
                 $uid = M('users')->data($user_data)->add();
                 $user_game['uid']=$uid;
-                $user_game['nickname']=$login_data['nickName'];
-                $user_game['avatarUrl']=str_replace('/0','/132',$login_data['avatarUrl'] );
+                $user_game['nickname']=$userInfo['nickName'];
+                $user_game['avatarUrl']=str_replace('/0','/132',$userInfo['avatarUrl'] );
                 M('user_game')->add($user_game);
             }else{
                 if($user['status']==0) {
@@ -46,8 +51,8 @@ class LoginController extends ApiLoginController {
                 if($user['login_time']<strtotime(date("Y-m-d"),time())){
                     M('user_game')->where('uid='.$user['id'])->setField("share_num",0);
                     M('user_game')->where('uid='.$user['id'])->setField("sign",1);
-                    M('users')->where('id='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$login_data['avatarUrl']));
-                    M('user_game')->where('uid='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$login_data['avatarUrl']));
+                    M('users')->where('id='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$userInfo['avatarUrl']));
+                    M('user_game')->where('uid='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$userInfo['avatarUrl']));
 
                 }
                 M('users')->where('id='.$user['id'])->setField("last_time",$user['login_time']);
@@ -58,8 +63,9 @@ class LoginController extends ApiLoginController {
             session('user_id',$uid,3600);
             session("openid",$openid);
             $data['code']=200;
-            $data['msg']='success';
+            $data['msg']=$userInfo;
             $data['data']=array('session_key'=>$session_k);
+
             $this->ajaxReturn($data,'JSON');
 
         }
@@ -110,6 +116,13 @@ class LoginController extends ApiLoginController {
         return $output;
     }
     public function set_session(){
+        $arr=array(
+
+            'userInfo'=>'{"nickName":"燕雯","gender":2,"language":"zh_CN","city":"Zhanjiang","province":"Guangdong","country":"China","avatarUrl":"https://wx.qlogo.cn/mmopen/vi_32/nzmaurnbgGuT1x5SbxxWsYcREjKjLgV70dQI0Sh0Both9x6HErIXGHzyPzh6nSpDruJdiaib3Fa1SVnEVnLJPSuA/132"}'
+        );
+       $s='{"nickName":"燕雯","gender":2,"language":"zh_CN","city":"Zhanjiang","province":"Guangdong","country":"China","avatarUrl":"https://wx.qlogo.cn/mmopen/vi_32/nzmaurnbgGuT1x5SbxxWsYcREjKjLgV70dQI0Sh0Both9x6HErIXGHzyPzh6nSpDruJdiaib3Fa1SVnEVnLJPSuA/132"}';
+        $info=json_decode($s,true);
+        print_r($info);
         session('user_id',1);
     }
 

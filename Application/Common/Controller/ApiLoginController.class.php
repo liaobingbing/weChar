@@ -80,7 +80,7 @@ class ApiLoginController extends Controller
                 $data['msg'] = 'code been used';
                 return $data;
             }else{
-
+                //$code_session=json_decode($code_session,true);
                 return $code_session;
             }
     }else {
