@@ -68,7 +68,13 @@ class LoginController extends ApiLoginController {
         }
 
     }
+  /*  public function login()
+    {
+        $code = I('post.code');
+        $login_data = $this->test_weixin($code);
+        $this->ajaxReturn($login_data);
 
+    }*/
 //更新世界排行
     public function gm_world_ranking(){
         $key=I('get.key');

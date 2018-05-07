@@ -65,6 +65,30 @@ class ApiLoginController extends Controller
 
     }
 
+    public function test_weixin($code=null)
+    {
+        if($code){
+            $arr=array(
+                'appid'=>C('WECHAT_APPID'),
+                'secret'=>C('WECHAT_APPSECRET'),
+                'js_code'=>$code,
+                'grant_type'=>'authorization_code'
+            );
+            $code_session = post_url('https://api.weixin.qq.com/sns/jscode2session', $arr);
+            if($code_session['errcode']==40163) {
+                $data['code'] = 400;
+                $data['msg'] = 'code been used';
+                return $data;
+            }else{
+
+                return $code_session;
+            }
+    }else {
+            $data['code']=400;
+            $data['msg']='参数code为空';
+            return $data;
+        }
+    }
     /**
      * 获取微信用户信息
      * @param $code
