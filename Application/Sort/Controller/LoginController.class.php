@@ -61,7 +61,7 @@ class LoginController extends  ApiLoginController
             session("openid",$openid);
             $data['code']=200;
             $data['msg']='success';
-            $data['data']=array('session_key'=>$session_k);
+            $data['data']=array('session_key'=>$session_k,"open_id"=>$openid);
             $this->ajaxReturn($data,'JSON');
 
         }
