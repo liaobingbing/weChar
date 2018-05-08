@@ -19,27 +19,29 @@ class LoginController extends  ApiLoginController
     public function login(){
         $userdao=new UsersModel();
         $code=I('post.code');
-        $encryptedData=I('post.encryptedData');
-        $iv=I('post.iv');
-        $login_data=$this->get_weixin($code,$encryptedData,$iv);
-        if($login_data['code']!=400){
-            $openid = $login_data['openId'];
+        $userInfo=I('post.userInfo');//获取前台传送的用户信息
+       // dump(I('code'));die;
+        $userInfo=str_replace("&quot;","\"",$userInfo);
+        $userInfo=json_decode($userInfo,true);
+        $login_data=$this->test_weixin($code);
+        if($login_data['code']!=400&&$login_data['openid']){
+            $openid = $login_data['openid'];
             $user = $userdao->findByOpenid($openid);
             if (!$user) {
                 $user_data['openid'] = $openid;
-                $user_data['unionid'] = $login_data['unionId'];
-                $user_data['gender'] = $login_data['gender'];
-                $user_data['city'] = $login_data['city'];
+                //$user_data['unionid'] = $login_data['unionId'];
+                $user_data['gender'] = $userInfo['gender'];
+                $user_data['city'] = $userInfo['city'];
                 $user_data['login_time'] = time();
-                $user_data['province'] = $login_data['province'];
-                $user_data['country'] = $login_data['country'];
-                $user_data['avatar_url'] =  str_replace('/0','/132',$login_data['avatarUrl'] );
-                $user_data['nickname'] = $login_data['nickName'];
+                $user_data['province'] = $userInfo['province'];
+                $user_data['country'] = $userInfo['country'];
+                $user_data['avatar_url'] =  str_replace('/0','/132',$userInfo['avatarUrl'] );
+                $user_data['nickname'] = $userInfo['nickName'];
                 $uid = M('users')->data($user_data)->add();
                 $user_game['uid']=$uid;
-                $user_game['nickname']=$login_data['nickName'];
+                $user_game['nickname']=$userInfo['nickName'];
                 $user_game['login_time'] = time();
-                $user_game['avatar_url']=str_replace('/0','/132',$login_data['avatarUrl'] );
+                $user_game['avatar_url']=str_replace('/0','/132',$userInfo['avatarUrl'] );
                 M('user_game')->add($user_game);
             }else{
                 if($user['status']==0) {
@@ -48,9 +50,8 @@ class LoginController extends  ApiLoginController
                     $this->ajaxReturn($data,'JSON');
                 }
                 if($user['login_time']<strtotime(date("Y-m-d"),time())){
-                    M('user_game')->where('uid='.$user['id'])->setField("chance_num",5);
-                    M('users')->where('id='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
-                    M('user_game')->where('uid='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
+                    M('users')->where('id='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$userInfo['avatarUrl']));
+                    M('user_game')->where('uid='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$userInfo['avatarUrl']));
                 }
                 M('users')->where('id='.$user['id'])->setField("login_time",time());
                 $uid=$user['id'];
@@ -65,6 +66,7 @@ class LoginController extends  ApiLoginController
 
         }
         else{
+           // $login_data=array("code"=>400,"msg"=>"error","data"=>null);
             $this->ajaxReturn($login_data);
         }
 
@@ -79,11 +81,8 @@ class LoginController extends  ApiLoginController
             foreach($user_info as $k=>$v){
                 $user_info[$k]['ranking']=$k+1;
             }
-            $sql1="SELECT avatar_url,gt_number,nickname FROM sort_test_game order by gt_number desc limit 3";
-            $data1=M()->query($sql1);
-            $sql2="SELECT avatar_url,gt_number,nickname FROM sort_test_game WHERE id >= ((SELECT MAX(id) FROM sort_test_game)-(SELECT MIN(id) FROM sort_test_game)) * RAND() + (SELECT MIN(id) FROM sort_test_game)  order by  gt_number desc LIMIT 1,5";
-            $data2=M()->query($sql2);
-            $user_info2=array_merge($data1,$data2);
+            $sql2="SELECT avatar_url  ,get_number as gt_number ,nickname FROM sort_user_game   order by  gt_number desc LIMIT 0,8";
+            $user_info2=M()->query($sql2);
             foreach($user_info2 as $k=>$v){
                 $user_info2[$k]['ranking']=$k+1;
             }
@@ -108,16 +107,13 @@ class LoginController extends  ApiLoginController
     {
         $user_info = S('sort_intelligence_top');
         if(!$user_info){
-            //SELECT avatarUrl,gt_number as number,nickname FROM method_test_game WHERE id >= ((SELECT MAX(id) FROM method_test_game)-(SELECT MIN(id) FROM method_test_game)) * RAND() + (SELECT MIN(id) FROM method_test_game)  order by  number desc LIMIT 5;
-            $sql1="SELECT avatar_url,gt_number,nickname FROM sort_test_game order by gt_number desc limit 3";
-            $data1=M()->query($sql1);
-            $sql2="SELECT avatar_url,gt_number,nickname FROM sort_test_game WHERE id >= ((SELECT MAX(id) FROM sort_test_game)-(SELECT MIN(id) FROM sort_test_game)) * RAND() + (SELECT MIN(id) FROM sort_test_game)  order by  gt_number desc LIMIT 8";
-            $data2=M()->query($sql2);
-            $user_info=$data1+$data2;
+
+            $sql2="SELECT avatar_url  ,get_number as gt_number ,nickname FROM sort_user_game   order by  gt_number desc LIMIT 0,8";
+            $user_info=M()->query($sql2);
             foreach($user_info as $k=>$v){
                 $user_info[$k]['ranking']=$k+1;
             }
-            S("sort_intelligence_top",$user_info);
+            S("m_intelligence_top",$user_info);
         }
         // $user_info=M('user_game')->field('get_number,avatar_url,nickname')->order('get_number desc')->limit(5)->select();
         $arr=array('code'=>200,'msg'=>'success','data'=>$user_info);
