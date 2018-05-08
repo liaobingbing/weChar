@@ -22,7 +22,7 @@ class LoginController extends ApiLoginController {
         //print_r($userInfo);die;
         $login_data=$this->test_weixin($code);
         //dump($userInfo);die;
-        if($login_data['code']!=400){
+        if($login_data['code']!=400&&$login_data['openid']){
             $openid = $login_data['openid'];
             $user = $userdao->findByOpenid($openid);
             if (!$user) {
@@ -49,14 +49,16 @@ class LoginController extends ApiLoginController {
                     $this->ajaxReturn($data,'JSON');
                 }
                 if($user['login_time']<strtotime(date("Y-m-d"),time())){
-                    M('user_game')->where('uid='.$user['id'])->setField("share_num",0);
-                    M('user_game')->where('uid='.$user['id'])->setField("sign",1);
+                    $user_game=array("share_num"=>0,"sign"=>1,"avatarUrl"=>str_replace('/0','/132',$userInfo['avatarUrl']));
+                    M('user_game')->where('uid='.$user['id'])->setField($user_game);
+                  //  M('user_game')->where('uid='.$user['id'])->setField("sign",1);
                     M('users')->where('id='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$userInfo['avatarUrl']));
-                    M('user_game')->where('uid='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$userInfo['avatarUrl']));
+                   // M('user_game')->where('uid='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$userInfo['avatarUrl']));
 
                 }
-                M('users')->where('id='.$user['id'])->setField("last_time",$user['login_time']);
-                M('users')->where('id='.$user['id'])->setField("login_time",time());
+                $user_info=array("last_time"=>$user['login_time'],"login_time"=>time());
+                M('users')->where('id=%d',$user['id'])->setField($user_info);
+               // M('users')->where('id='.$user['id'])->setField("login_time",time());
                 $uid=$user['id'];
             }
             $session_k=session_id();
@@ -70,6 +72,7 @@ class LoginController extends ApiLoginController {
 
         }
         else{
+            $login_data=array("code"=>400,"msg"=>"error","data"=>null);
             $this->ajaxReturn($login_data);
         }
 
