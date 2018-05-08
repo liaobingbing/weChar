@@ -51,7 +51,6 @@ class LoginController extends  ApiLoginController
                     $this->ajaxReturn($data,'JSON');
                 }
                 if($user['login_time']<strtotime(date("Y-m-d"),time())){
-                    M('user_game')->where('uid='.$user['id'])->setField("chance_num",5);
                     M('users')->where('id='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
                     M('user_game')->where('uid='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
 

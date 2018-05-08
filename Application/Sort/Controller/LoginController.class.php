@@ -17,6 +17,7 @@ class LoginController extends  ApiLoginController
     private  $key="kuaiyu666666";
 
     public function login(){
+        $session_k=session_id();
         $userdao=new UsersModel();
         $code=I('post.code');
         $userInfo=I('post.userInfo');//获取前台传送的用户信息
@@ -27,42 +28,46 @@ class LoginController extends  ApiLoginController
         if($login_data['code']!=400&&$login_data['openid']){
             $openid = $login_data['openid'];
             $user = $userdao->findByOpenid($openid);
-            if (!$user) {
-                $user_data['openid'] = $openid;
-                //$user_data['unionid'] = $login_data['unionId'];
-                $user_data['gender'] = $userInfo['gender'];
-                $user_data['city'] = $userInfo['city'];
-                $user_data['login_time'] = time();
-                $user_data['province'] = $userInfo['province'];
-                $user_data['country'] = $userInfo['country'];
-                $user_data['avatar_url'] =  str_replace('/0','/132',$userInfo['avatarUrl'] );
-                $user_data['nickname'] = $userInfo['nickName'];
-                $uid = M('users')->data($user_data)->add();
-                $user_game['uid']=$uid;
-                $user_game['nickname']=$userInfo['nickName'];
-                $user_game['login_time'] = time();
-                $user_game['avatar_url']=str_replace('/0','/132',$userInfo['avatarUrl'] );
-                M('user_game')->add($user_game);
-            }else{
+            if($userInfo&&$user){
                 if($user['status']==0) {
-                    $data['code']=403;//已经被拉黑
-                    $data['msg']='已经被拉黑';
-                    $this->ajaxReturn($data,'JSON');
+                $data['code']=403;//已经被拉黑
+                $data['msg']='已经被拉黑';
+                $data['data']['user_id']=$user['id'];
+                $this->ajaxReturn($data,'JSON');
                 }
-                if($user['login_time']<strtotime(date("Y-m-d"),time())){
-                    M('users')->where('id='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$userInfo['avatarUrl']));
-                    M('user_game')->where('uid='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$userInfo['avatarUrl']));
+                else{
+                    $user_data['id'] = session('user_id');
+                    $user_data['openid'] = $openid;
+                    $user_data['gender'] = $userInfo['gender'];
+                    $user_data['city'] = $userInfo['city'];
+                    $user_data['login_time'] = time();
+                    $user_data['province'] = $userInfo['province'];
+                    $user_data['country'] = $userInfo['country'];
+                    $user_data['avatar_url'] =  str_replace('/0','/132',$userInfo['avatarUrl'] );
+                    $user_data['name'] = $userInfo['nickName'];
+                    $uid = M('users')->data($user_data)->save();
+                    $user_game['uid']=session('user_id');
+                    $user_game['nickname']=$login_data['nickName'];
+                    $user_game['login_time'] = time();
+                    $user_game['avatar_url']=str_replace('/0','/132',$userInfo['avatarUrl'] );
+                    M('user_game')->add($user_game);
                 }
-                M('users')->where('id='.$user['id'])->setField("login_time",time());
-                $uid=$user['id'];
+                session("openid",$openid);
+                $data['code']=200;
+                $data['msg']='success';
+                $data['data']=array('session_key'=>$session_k,"user_id"=>session('user_id'));
+                $this->ajaxReturn($data,'JSON');
+
+            }else{
+                $user_data['openid'] = $openid;
+                $uid = M('users')->data($user_data)->add();
+                session('user_id',$uid,3600);
+                $data['code']=200;
+                $data['msg']='success';
+                $data['data']=array('session_key'=>$session_k,"user_id"=>$uid);
+                $this->ajaxReturn($data,'JSON');
+
             }
-            $session_k=session_id();
-            session('user_id',$uid,3600);
-            session("openid",$openid);
-            $data['code']=200;
-            $data['msg']='success';
-            $data['data']=array('session_key'=>$session_k,"open_id"=>$openid);
-            $this->ajaxReturn($data,'JSON');
 
         }
         else{
@@ -136,7 +141,7 @@ class LoginController extends  ApiLoginController
 
     //设置session
     public function set_session(){
-        echo strtotime(date("Y-m-d 00:00:00"),time());die;
+        echo  session_id();;
         session('user_id',1);
     }
 }
