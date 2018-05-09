@@ -168,7 +168,7 @@ class ApiController extends ApiBaseController
             $iv = I("post.iv");
             $share_type=I('post.share_type',1);
             if($encryptedData&&$iv){
-                $session_key=session('session_key');
+                $session_key=session('wx_session_key');
                 if($session_key){
                     $userdao=new UsersModel();
                     $user_game=$userdao->findGame($user_id);
