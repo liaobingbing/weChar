@@ -158,7 +158,7 @@ class LoginController extends ApiLoginController
         $questions = session('questions');
 
         $option = array_shift($questions);
-        //session('questions',$questions);
+        session('questions',$questions);
         //print_r($questions);die;
         if( !$option ){
             $this->ajaxReturn(array('code' => 400, 'msg' => '获取失败'));
