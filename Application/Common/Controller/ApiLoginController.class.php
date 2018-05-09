@@ -81,6 +81,8 @@ class ApiLoginController extends Controller
                 return $data;
             }else{
                 //$code_session=json_decode($code_session,true);
+               // $session_key = $code_session['session_key'];
+                //session('session_key',$session_key);
                 return $code_session;
             }
     }else {

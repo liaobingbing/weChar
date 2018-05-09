@@ -24,8 +24,10 @@ class LoginController extends  ApiLoginController
         $userInfo=json_decode($userInfo,true);
         //print_r($userInfo);die;
         $login_data=$this->test_weixin($code);
-        //dump($userInfo);die;
+       // dump($login_data);die;
         if($login_data['code']!=400&&$userInfo){
+            $session_key = $login_data['session_key'];
+            session('wx_session_key',$session_key);
             $openid = $login_data['openid'];
             $user = $userdao->findByOpenid($openid);
             if (!$user) {
@@ -67,7 +69,7 @@ class LoginController extends  ApiLoginController
             session("openid",$openid);
             $data['code']=200;
             $data['msg']=$userInfo;
-            $data['data']=array('session_key'=>$session_k);
+            $data['data']=array('session_key'=>$session_k,"wx_sesession"=>$session_key);
 
             $this->ajaxReturn($data,'JSON');
 
