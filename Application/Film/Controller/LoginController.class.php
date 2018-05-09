@@ -14,8 +14,6 @@ class LoginController extends ApiLoginController {
     public function login(){
         $userdao=new UsersModel();
         $code=I('post.code');
-       // $encryptedData=I('post.encryptedData');
-        //$iv=I('post.iv');
         $userInfo=I('post.userInfo');//获取前台传送的用户信息
         $userInfo=str_replace("&quot;","\"",$userInfo);
         $userInfo=json_decode($userInfo,true);

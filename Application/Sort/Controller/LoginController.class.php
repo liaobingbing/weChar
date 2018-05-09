@@ -17,61 +17,63 @@ class LoginController extends  ApiLoginController
     private  $key="kuaiyu666666";
 
     public function login(){
-        $session_k=session_id();
         $userdao=new UsersModel();
-        $code=I('post.code');
+        $code=I('post.code');;
         $userInfo=I('post.userInfo');//获取前台传送的用户信息
-       // dump(I('code'));die;
         $userInfo=str_replace("&quot;","\"",$userInfo);
         $userInfo=json_decode($userInfo,true);
+        //print_r($userInfo);die;
         $login_data=$this->test_weixin($code);
-        if($login_data['code']!=400&&$login_data['openid']){
+        //dump($userInfo);die;
+        if($login_data['code']!=400&&$userInfo){
             $openid = $login_data['openid'];
             $user = $userdao->findByOpenid($openid);
-            if($userInfo&&$user){
-                if($user['status']==0) {
-                $data['code']=403;//已经被拉黑
-                $data['msg']='已经被拉黑';
-                $data['data']['user_id']=$user['id'];
-                $this->ajaxReturn($data,'JSON');
-                }
-                else{
-                    $user_data['id'] = session('user_id');
-                    $user_data['openid'] = $openid;
-                    $user_data['gender'] = $userInfo['gender'];
-                    $user_data['city'] = $userInfo['city'];
-                    $user_data['login_time'] = time();
-                    $user_data['province'] = $userInfo['province'];
-                    $user_data['country'] = $userInfo['country'];
-                    $user_data['avatar_url'] =  str_replace('/0','/132',$userInfo['avatarUrl'] );
-                    $user_data['name'] = $userInfo['nickName'];
-                    $uid = M('users')->data($user_data)->save();
-                    $user_game['uid']=session('user_id');
-                    $user_game['nickname']=$login_data['nickName'];
-                    $user_game['login_time'] = time();
-                    $user_game['avatar_url']=str_replace('/0','/132',$userInfo['avatarUrl'] );
-                    M('user_game')->add($user_game);
-                }
-                session("openid",$openid);
-                $data['code']=200;
-                $data['msg']='success';
-                $data['data']=array('session_key'=>$session_k,"user_id"=>session('user_id'));
-                $this->ajaxReturn($data,'JSON');
-
-            }else{
+            if (!$user) {
                 $user_data['openid'] = $openid;
+                //$user_data['unionid'] = $login_data['unionId'];
+                $user_data['gender'] = $userInfo['gender'];
+                $user_data['city'] = $userInfo['city'];
+                $user_data['province'] = $userInfo['province'];
+                $user_data['country'] = $userInfo['country'];
+                $user_data['avatar_url'] =  str_replace('/0','/132',$userInfo['avatarUrl'] );
+                $user_data['nickname'] = $userInfo['nickName'];
+                $user_data['login_time'] = time();
                 $uid = M('users')->data($user_data)->add();
-                session('user_id',$uid,3600);
-                $data['code']=200;
-                $data['msg']='success';
-                $data['data']=array('session_key'=>$session_k,"user_id"=>$uid);
-                $this->ajaxReturn($data,'JSON');
-
+                $user_game['uid']=$uid;
+                $user_game['nickname']=$userInfo['nickName'];
+                $user_game['login_time'] = time();
+                $user_game['avatar_url']=str_replace('/0','/132',$userInfo['avatarUrl'] );
+                M('user_game')->add($user_game);
+            }else{
+                if($user['status']==0) {
+                    $data['code']=403;//已经被拉黑
+                    $data['msg']='已经被拉黑';
+                    $this->ajaxReturn($data,'JSON');
+                }
+                /*if($user['login_time']<strtotime(date("Y-m-d"),time())){
+                    $user_game=array("sign"=>1,"avatar_url"=>str_replace('/0','/132',$userInfo['avatarUrl']));
+                    M('user_game')->where('uid='.$user['id'])->setField($user_game);
+                    //  M('user_game')->where('uid='.$user['id'])->setField("sign",1);
+                    M('users')->where('id='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$userInfo['avatarUrl']));
+                    // M('user_game')->where('uid='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$userInfo['avatarUrl']));
+                }*/
+                $user_info=array("login_time"=>time());
+                M('users')->where('id=%d',$user['id'])->setField($user_info);
+                // M('users')->where('id='.$user['id'])->setField("login_time",time());
+                $uid=$user['id'];
             }
+            $session_k=session_id();
+            session('user_id',$uid,3600);
+            session("openid",$openid);
+            $data['code']=200;
+            $data['msg']=$userInfo;
+            $data['data']=array('session_key'=>$session_k);
+
+            $this->ajaxReturn($data,'JSON');
 
         }
         else{
-           // $login_data=array("code"=>400,"msg"=>"error","data"=>null);
+            $login_data=array("code"=>400,"msg"=>"error","data"=>null);
             $this->ajaxReturn($login_data);
         }
 
@@ -138,7 +140,29 @@ class LoginController extends  ApiLoginController
         $arr=array('code'=>200,'msg'=>'success','data'=>$user_info);
         $this->ajaxReturn($arr);
     }
-
+//获取题目
+    public function get_question(){
+            $layer=I('post.layer',1);
+            if($layer<=5){
+                $arr_num=($layer+2)*($layer+2);
+                for($i=1;$i<=$arr_num;$i++){
+                    $arr['num']=$i;
+                    $arr['status']=false;
+                    $question[]=$arr;
+                }
+                shuffle($question);
+                $next_layer=$layer+1;
+                $data['code']=200;
+                $data['msg']='获取成功';
+                $data['data']['question']=$question;
+                $data['data']['layer']=$layer;
+                $data['data']['next_layer']=$next_layer;
+            }else{
+                $data['code']=400;
+                $data['msg']='没有此等级';
+            }
+        $this->ajaxReturn($data,'JSON');
+    }
     //设置session
     public function set_session(){
         echo  session_id();;
