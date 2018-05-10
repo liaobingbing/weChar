@@ -10,6 +10,7 @@ namespace Method\Controller;
 
 
 use Common\Controller\ApiLoginController;
+use Method\Model\AnswerModel;
 use Method\Model\UsersModel;
 
 class LoginController extends  ApiLoginController
