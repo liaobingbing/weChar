@@ -141,6 +141,40 @@ class LoginController extends  ApiLoginController
         $arr=array('code'=>200,'msg'=>'success','data'=>$user_info);
         $this->ajaxReturn($arr);
     }
+//获取题目
+    public function get_question(){
+                $layer=I('post.layer',1);
+                if($layer<=30){
+                    $sql='SELECT * FROM confuse_answer WHERE status=1 ORDER BY  RAND() LIMIT 1';
+                    $question=M()->query($sql);
+                    if($question){
+                        $data['code']=200;
+                        $data['msg']='获取成功';
+                        $data['data']['nex_layer']=$layer+1;
+                        $data['data']['subject1']=$question[0]['subject1'];
+                        $data['data']['subject2']=$question[0]['subject2'];
+                        if($layer>23){
+                            $odds=($layer-23)*100;
+                        }else{
+                            $odds=0;
+                        }
+                        $rand=rand(0,500);
+                        if($rand>$odds){
+                            $data['data']['answer']=$question[0]['answer'];
+                        }else{
+                            $data['data']['answer']=3;
+                        }
+                    }else{
+                        $data['code']=400;
+                        $data['msg']='题库出错';
+                    }
+
+                }else{
+                    $data['code']=400;
+                    $data['msg']='没有此等级';
+                }
+        $this->ajaxReturn($data,'JSON');
+    }
 
     //设置session
     public function set_session(){

@@ -93,7 +93,7 @@ class ApiController extends ApiBaseController
     }
 
 
-    //获取题目
+    /*//获取题目
     public function get_question(){
         $user_id=session('user_id');
         if($user_id){
@@ -140,7 +140,7 @@ class ApiController extends ApiBaseController
 
 
         $this->ajaxReturn($data,'JSON');
-    }
+    }*/
 
 
     //获取用户ID
