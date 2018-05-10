@@ -25,6 +25,7 @@ class LoginController extends ApiLoginController
 
     // 用户登录接口
     public function login(){
+        session(null);
         $userdao=new UsersModel();
         $code=I('post.code');
         $userInfo=I('post.userInfo');//获取前台传送的用户信息
@@ -147,22 +148,20 @@ class LoginController extends ApiLoginController
 // 获取题目
     public function get_question(){
         $layer = I('layer',1);
+        $openId=I("post.openId");
         if($layer == 1){
-           // session('questions',null);
-             S('color_questions',null);
-            // S('find_color_questions',null);
+            S($openId,null);
+            S('find_color_questions',null);
             $Questions = new QuestionsModel();
             $questions = $Questions->get_rand_questions();
-           // print_r($questions);die;
-           // session('find_color_questions',$questions);//获取所有的题目并且放在session中
-            S('color_questions',$questions);//获取所有的题目并且放在session中
+           //print_r($questions);die;
+            S($openId,$questions,3600);//获取所有的题目并且放在session中
+           // S('color_questions',$questions);//获取所有的题目并且放在session中
         }
 
-       // $questions = session('questions');
-       $questions =S('color_questions');
-
+       $questions = S($openId);
         $option = array_shift($questions);
-       S('color_questions',$questions);
+        S($openId,$questions,3600);
         //print_r($questions);die;
         if( !$option ){
             $this->ajaxReturn(array('code' => 400, 'msg' => '获取失败'));
@@ -247,9 +246,64 @@ class LoginController extends ApiLoginController
 
     public function set_session(){
         session("user_id",8);
+    }
+    public function get_openid()
+    {
+        $code = I('post.code');
+        $login_data = $this->test_weixin($code);
+        if ($login_data['code'] != 400) {
+            $openid = $login_data['openid'];
+            $arr=array("code"=>200,"msg"=>"success","data"=>array("openId"=>$openid));
+            $this->ajaxReturn($arr);
+        }
+        else{
+            $this->ajaxReturn($login_data);
+
+        }
+    }
+    public function test()
+    {
+        $url='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx398be655fabacd6e&secret=c6c9da80879e89d67a6a8833fe8df170';
+        $curl = curl_init();
+        //设置抓取的url
+        curl_setopt($curl, CURLOPT_URL, $url);
+        //设置头文件的信息作为数据流输出
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        //设置获取的信息以文件流的形式返回，而不是直接输出。
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        //执行命令
+        $data = curl_exec($curl);
+        //关闭URL请求
+        curl_close($curl);
+        //显示获得的数据
+        $data=json_decode($data,true);
+        return $data['access_token'];
+        $ss=post_url($url);
+        //print_r($ss);
+        $s=file_get_contents('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx398be655fabacd6e&secret=c6c9da80879e89d67a6a8833fe8df170');
+       // dump($s);
+    }
+    public function send()
+    {
+        $from_id=I('from_id');
+        $access_token=$this->test();
+        $url="https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=".$access_token;
+        $post_data = array ("touser" => "wx398be655fabacd6e","template_id" => "j_OWcNWlNpU01xa-3dQpPeKWmwgEZIZRIW0LPtDM2MY","page"=>'index',"data"=>array("keyword1"=>array("value"=>"test","color"=>"#ffccff")),"form_id"=>$from_id);
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+       // post数据
+        curl_setopt($ch, CURLOPT_POST, 1);
+        // post的变量
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_data));
+
+        $output = curl_exec($ch);
+        curl_close($ch);
+
+        //打印获得的数据
+        print_r($output);
 
     }
-
-
 
 }
