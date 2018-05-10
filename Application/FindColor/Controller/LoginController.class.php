@@ -148,17 +148,20 @@ class LoginController extends ApiLoginController
     public function get_question(){
         $layer = I('layer',1);
         if($layer == 1){
-            session('questions',null);
+           // session('questions',null);
+             S('find_color_questions',null);
             $Questions = new QuestionsModel();
             $questions = $Questions->get_rand_questions();
-            // print_r($questions);die;
-            session('questions',$questions);//获取所有的题目并且放在session中
+            //print_r($questions);die;
+           // session('find_color_questions',$questions);//获取所有的题目并且放在session中
+            S('find_color_questions',$questions);//获取所有的题目并且放在session中
         }
 
-        $questions = session('questions');
+       // $questions = session('questions');
+       $questions =S('find_color_questions');
 
         $option = array_shift($questions);
-        session('questions',$questions);
+       S('find_color_questions',$questions);
         //print_r($questions);die;
         if( !$option ){
             $this->ajaxReturn(array('code' => 400, 'msg' => '获取失败'));
