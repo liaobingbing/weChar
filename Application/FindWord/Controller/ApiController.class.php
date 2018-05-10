@@ -59,98 +59,29 @@ class ApiController extends ApiBaseController
         $this->ajaxReturn($result);
     }
 
-    // 获取题目
-    public function get_question(){
+
+    //开始 挑战
+    public function begin_challenge(){
         $user_id = session('user_id');
-        $layer = I('layer',1);
-
-
-        if($layer == 1){
-            $UserGame = new UserGameModel();
-            $user_game = $UserGame->find_by_user_id($user_id);
-
+        $UserGame = new UserGameModel();
+        $user_game = $UserGame->find_by_user_id($user_id);
+        if($user_game) {
             if($user_game['chance_num'] <= 0){
                 $this->ajaxReturn(array('code' => 400, 'msg' => '挑战次数为空'));
             }
+            M('UserGame')->where(array('uid' => $user_id))->setDec('chance_num');
+            M('UserGame')->where(array('uid' => $user_id))->setInc('challenge_num');
+            $result['code'] =   200;
+            $result['msg']  =   '开始挑战成功';
+            $result['data'] = null;
 
-            session('questions',null);
-            $Questions = new QuestionsModel();
-            $questions = $Questions->get_rand_questions(44);
-            session('questions',$questions);
-            $UserGame->where(array('uid' => $user_id))->setDec('chance_num');
-            $UserGame->where(array('uid' => $user_id))->setInc('challenge_num');
-        }
-
-        $questions = session('questions');
-
-        $option = $questions[$layer-1];
-
-        if( $layer <= 2 ){
-            $i = 4;
-            $j = 1;
-        }else if( $layer <= 5 ){
-            $i = 9;
-            $j = 0.65;
-        }else if( $layer <= 9 ){
-            $i = 16;
-            $j = 0.48;
-        }else if( $layer <= 14 ){
-            $i = 25;
-            $j = 0.38;
-        }else if( $layer <= 20 ){
-            $i = 36;
-            $j = 0.32;
-        }else if( $layer <= 27 ){
-            $i = 49;
-            $j = 0.27;
-        }else if( $layer <= 35 ){
-            $i = 64;
-            $j = 0.23;
-        }else if( $layer <= 44 ){
-            $i = 81;
-            $j = 0.21;
-        }
-
-        $arr = array();
-
-
-        if($option['answer'] != 'option_1'){
-            for($a = 0; $a < $i - 1; $a++){
-                $arr[$a]['text']    = $option['option_1'];
-                $arr[$a]['percent'] = $j;
-            }
-            if( $layer == 44 ){
-                $arr[$i - 1]['text'] = $option['option_1'];
-                $arr[$i - 1]['percent'] = $j;
-            }else{
-                $arr[$i - 1]['text'] = $option['option_2'];
-                $arr[$i - 1]['percent'] = $j;
-            }
-
-            $answer = $option['option_2'];
         }else{
-            for($a = 0; $a < $i - 1; $a++){
-                $arr[$a]['text']    = $option['option_2'];
-                $arr[$a]['percent'] = $j;
-            }
-            if( $layer == 44 ){
-                $arr[$i - 1]['text'] = $option['option_2'];
-                $arr[$i - 1]['percent'] = $j;
-            }else{
-                $arr[$i - 1]['text'] = $option['option_1'];
-                $arr[$i - 1]['percent'] = $j;
-            }
-            $answer = $option['option_1'];
+            $result['code'] =400;
+            $result['msg']  = '用户不存在';
+            $result['data'] = null;
         }
-
-        shuffle($arr);
-        $result['code'] = 200;
-        $result['msg']  = '获取成功';
-        $result['data']['words'] = $arr;
-        $result['data']['answer'] = $answer;
-        $result['data']['next_layer'] = $layer+1;
-
         $this->ajaxReturn($result);
+
     }
 
     // 验证用户状态
