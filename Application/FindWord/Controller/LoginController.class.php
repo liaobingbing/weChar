@@ -85,13 +85,13 @@ class LoginController extends ApiLoginController
     public function get_question(){
         $layer = I('layer',1);
         if($layer == 1){
-            S('find_word_questions',null);
+            S('findWordQuestions',null);
             $Questions = new QuestionsModel();
             $questions = $Questions->get_rand_questions(44);
-            S('find_word_questions',$questions);
+            S('findWordQuestions',$questions);
         }
 
-        $questions = S('find_word_questions');
+        $questions = S('findWordQuestions');
 
         $option = $questions[$layer-1];
 
