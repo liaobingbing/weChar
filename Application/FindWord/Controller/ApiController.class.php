@@ -189,7 +189,7 @@ class ApiController extends ApiBaseController
     // 群分享操作
     public function share_group(){
         $user_id = session('user_id');
-        $session_key = session('session_key');
+        $session_key = session('wx_session_key');
 
         $encryptedData = I("post.encryptedData");
         $iv = I("post.iv");

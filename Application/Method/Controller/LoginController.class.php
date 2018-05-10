@@ -29,7 +29,7 @@ class LoginController extends  ApiLoginController
         if($login_data['code']!=400&&$userInfo){
             $session_key = $login_data['session_key'];
             session('wx_session_key',$session_key);
-            $openid = $login_data['openId'];
+            $openid = $login_data['openid'];
             $user = $userdao->findByOpenid($openid);
             if (!$user) {
                 $user_data['openid'] = $openid;

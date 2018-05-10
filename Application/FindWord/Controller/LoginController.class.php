@@ -26,27 +26,30 @@ class LoginController extends ApiLoginController
     public function login(){
         $userdao=new UsersModel();
         $code=I('post.code');
-        $encryptedData=I('post.encryptedData');
-        $iv=I('post.iv');
-        $login_data=$this->get_weixin($code,$encryptedData,$iv);
-        if($login_data['code']!=400){
-            $openid = $login_data['openId'];
+        $userInfo=I('post.userInfo');//获取前台传送的用户信息
+        $userInfo=str_replace("&quot;","\"",$userInfo);
+        $userInfo=json_decode($userInfo,true);
+        $login_data=$this->test_weixin($code);
+        if($login_data['code']!=400&&$userInfo){
+            $session_key = $login_data['session_key'];
+            session('wx_session_key',$session_key);
+            $openid = $login_data['openid'];
             $user = $userdao->findByOpenid($openid);
             if (!$user) {
                 $user_data['openid'] = $openid;
-                $user_data['unionid'] = $login_data['unionId'];
-                $user_data['gender'] = $login_data['gender'];
-                $user_data['city'] = $login_data['city'];
+               // $user_data['unionid'] = $login_data['unionId'];
+                $user_data['gender'] = $userInfo['gender'];
+                $user_data['city'] = $userInfo['city'];
                 $user_data['login_time'] = time();
-                $user_data['province'] = $login_data['province'];
-                $user_data['country'] = $login_data['country'];
-                $user_data['avatar_url'] =  str_replace('/0','/132',$login_data['avatarUrl'] );
-                $user_data['name'] = $login_data['nickName'];
+                $user_data['province'] = $userInfo['province'];
+                $user_data['country'] = $userInfo['country'];
+                $user_data['avatar_url'] =  str_replace('/0','/132',$userInfo['avatarUrl'] );
+                $user_data['name'] = $userInfo['nickName'];
                 $uid = M('users')->data($user_data)->add();
                 $user_game['uid']=$uid;
-                $user_game['nickname']=$login_data['nickName'];
+                $user_game['nickname']=$userInfo['nickName'];
                 $user_game['login_time'] = time();
-                $user_game['avatar_url']=str_replace('/0','/132',$login_data['avatarUrl'] );
+                $user_game['avatar_url']=str_replace('/0','/132',$userInfo['avatarUrl'] );
                 M('user_game')->add($user_game);
             }else{
                 if($user['status']==0) {
@@ -55,11 +58,11 @@ class LoginController extends ApiLoginController
                     $data['data']['user_id']=$user['id'];
                     $this->ajaxReturn($data,'JSON');
                 }
-                if($user['login_time']<strtotime(date("Y-m-d"),time())){
+               /* if($user['login_time']<strtotime(date("Y-m-d"),time())){
                     M('users')->where('id='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
                     M('user_game')->where('uid='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
 
-                }
+                }*/
                 M('users')->where('id='.$user['id'])->setField("login_time",time());
                 $uid=$user['id'];
             }
