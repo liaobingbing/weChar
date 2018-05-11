@@ -31,7 +31,7 @@ class AnswerModel extends Model
                 $num=$k+1;
                 $question_arr[$num]=$v;
             }
-            S($openId,$question_arr);
+            S($openId,$question_arr,3600);
         }
         return $question_arr[$layer];
     }
