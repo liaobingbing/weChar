@@ -35,6 +35,7 @@ class LoginController extends  ApiLoginController
                 //$user_data['unionid'] = $login_data['unionId'];
                 $user_data['gender'] = $userInfo['gender'];
                 $user_data['city'] = $userInfo['city'];
+
                 $user_data['province'] = $userInfo['province'];
                 $user_data['country'] = $userInfo['country'];
                 $user_data['avatar_url'] =  str_replace('/0','/132',$userInfo['avatarUrl'] );
@@ -59,8 +60,8 @@ class LoginController extends  ApiLoginController
                     M('users')->where('id='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$userInfo['avatarUrl']));
                     // M('user_game')->where('uid='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$userInfo['avatarUrl']));
                 }*/
-                $user_info=array("login_time"=>time());
-                M('users')->where('id=%d',$user['id'])->setField($user_info);
+             //   $user_info=array("login_time"=>time());
+              //  M('users')->where('id=%d',$user['id'])->setField($user_info);
                 // M('users')->where('id='.$user['id'])->setField("login_time",time());
                 $uid=$user['id'];
             }
@@ -163,6 +164,11 @@ class LoginController extends  ApiLoginController
                 $data['code']=400;
                 $data['msg']='没有此等级';
             }
+        $this->ajaxReturn($data,'JSON');
+    }
+    //分享群
+    public function share_group(){
+        $data=array("code"=>200,"msg"=>"success","data"=>null);
         $this->ajaxReturn($data,'JSON');
     }
     //设置session

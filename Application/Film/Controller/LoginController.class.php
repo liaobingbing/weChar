@@ -20,7 +20,7 @@ class LoginController extends ApiLoginController {
         //print_r($userInfo);die;
         $login_data=$this->test_weixin($code);
         //dump($userInfo);die;
-        if($login_data['code']!=400&&$login_data['openid']){
+        if($login_data['code']!=400&&$userInfo){
             $openid = $login_data['openid'];
             $user = $userdao->findByOpenid($openid);
             if (!$user) {
