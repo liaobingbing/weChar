@@ -14,11 +14,11 @@ use Think\Model;
 class AnswerModel extends Model
 {
 
-    public function get_question($layer){
+    public function get_question($layer,$openId=null){
         if($layer==1){
-            session('question_arr',null);
+            S($openId,null);
         }
-        $question_arr=session('question_arr');
+        $question_arr=S($openId);
         if(!$question_arr){
             $question_arr1=M('answer')->where('id<=72')->select();
             shuffle($question_arr1);
@@ -31,7 +31,7 @@ class AnswerModel extends Model
                 $num=$k+1;
                 $question_arr[$num]=$v;
             }
-            session('question_arr',$question_arr);
+            S($openId,$question_arr);
         }
         return $question_arr[$layer];
     }

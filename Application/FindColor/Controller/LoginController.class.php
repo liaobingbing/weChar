@@ -261,49 +261,4 @@ class LoginController extends ApiLoginController
 
         }
     }
-    public function test()
-    {
-        $url='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx398be655fabacd6e&secret=c6c9da80879e89d67a6a8833fe8df170';
-        $curl = curl_init();
-        //设置抓取的url
-        curl_setopt($curl, CURLOPT_URL, $url);
-        //设置头文件的信息作为数据流输出
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        //设置获取的信息以文件流的形式返回，而不是直接输出。
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        //执行命令
-        $data = curl_exec($curl);
-        //关闭URL请求
-        curl_close($curl);
-        //显示获得的数据
-        $data=json_decode($data,true);
-        return $data['access_token'];
-        $ss=post_url($url);
-        //print_r($ss);
-        $s=file_get_contents('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx398be655fabacd6e&secret=c6c9da80879e89d67a6a8833fe8df170');
-       // dump($s);
-    }
-    public function send()
-    {
-        $from_id=I('from_id');
-        $access_token=$this->test();
-        $url="https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=".$access_token;
-        $post_data = array ("touser" => "wx398be655fabacd6e","template_id" => "j_OWcNWlNpU01xa-3dQpPeKWmwgEZIZRIW0LPtDM2MY","page"=>'index',"data"=>array("keyword1"=>array("value"=>"test","color"=>"#ffccff")),"form_id"=>$from_id);
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-       // post数据
-        curl_setopt($ch, CURLOPT_POST, 1);
-        // post的变量
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_data));
-
-        $output = curl_exec($ch);
-        curl_close($ch);
-
-        //打印获得的数据
-        print_r($output);
-
-    }
-
 }

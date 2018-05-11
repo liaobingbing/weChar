@@ -79,9 +79,10 @@ class LoginController extends  ApiLoginController
     //获取题目
     public function get_question(){
                 $layer=I('post.layer',1);
+                $openId=I('post.openId');
                 if($layer<=30){
                     $answerdao=new AnswerModel();
-                    $question=$answerdao->get_question($layer);
+                    $question=$answerdao->get_question($layer,$openId);
                     if($question){
                         $data['code']=200;
                         $data['msg']='获取成功';
@@ -111,7 +112,20 @@ class LoginController extends  ApiLoginController
                 }
         $this->ajaxReturn($data,'JSON');
     }
+    public function get_openid()
+    {
+        $code = I('post.code');
+        $login_data = $this->test_weixin($code);
+        if ($login_data['code'] != 400) {
+            $openid = $login_data['openid'];
+            $arr=array("code"=>200,"msg"=>"success","data"=>array("openId"=>$openid));
+            $this->ajaxReturn($arr);
+        }
+        else{
+            $this->ajaxReturn($login_data);
 
+        }
+    }
     //分享群
     public function share_group(){
         $data=array("code"=>200,"msg"=>"success","data"=>null);

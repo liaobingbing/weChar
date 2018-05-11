@@ -46,14 +46,6 @@ class LoginController extends ApiLoginController {
                     $data['msg']='已经被拉黑';
                     $this->ajaxReturn($data,'JSON');
                 }
-                if($user['login_time']<strtotime(date("Y-m-d"),time())){
-                    $user_game=array("share_num"=>0,"sign"=>1,"avatarUrl"=>str_replace('/0','/132',$userInfo['avatarUrl']));
-                    M('user_game')->where('uid='.$user['id'])->setField($user_game);
-                  //  M('user_game')->where('uid='.$user['id'])->setField("sign",1);
-                    M('users')->where('id='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$userInfo['avatarUrl']));
-                   // M('user_game')->where('uid='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$userInfo['avatarUrl']));
-
-                }
                 $user_info=array("last_time"=>$user['login_time'],"login_time"=>time());
                 M('users')->where('id=%d',$user['id'])->setField($user_info);
                // M('users')->where('id='.$user['id'])->setField("login_time",time());
@@ -117,13 +109,6 @@ class LoginController extends ApiLoginController {
         return $output;
     }
     public function set_session(){
-        $arr=array(
-
-            'userInfo'=>'{"nickName":"燕雯","gender":2,"language":"zh_CN","city":"Zhanjiang","province":"Guangdong","country":"China","avatarUrl":"https://wx.qlogo.cn/mmopen/vi_32/nzmaurnbgGuT1x5SbxxWsYcREjKjLgV70dQI0Sh0Both9x6HErIXGHzyPzh6nSpDruJdiaib3Fa1SVnEVnLJPSuA/132"}'
-        );
-       $s='{"nickName":"燕雯","gender":2,"language":"zh_CN","city":"Zhanjiang","province":"Guangdong","country":"China","avatarUrl":"https://wx.qlogo.cn/mmopen/vi_32/nzmaurnbgGuT1x5SbxxWsYcREjKjLgV70dQI0Sh0Both9x6HErIXGHzyPzh6nSpDruJdiaib3Fa1SVnEVnLJPSuA/132"}';
-        $info=json_decode($s,true);
-        print_r($info);
         session('user_id',1);
     }
 
