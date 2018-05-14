@@ -15,123 +15,54 @@ class LoginController extends ApiLoginController {
 
         $userdao = new UsersModel();
         $code = I("post.code");
-        $recommend_user_id=I("post.recommend_user_id",0);
-
-        if ($code) {
-            $arr = array(
-                'appid' => C("WECHAT_APPID"),
-                'secret' => C("WECHAT_APPSECRET"),
-                'js_code' => $code,
-                'grant_type' => 'authorization_code'
-            );
-
-                $code_session = $this->post_url('https://api.weixin.qq.com/sns/jscode2session', $arr);
-
-                $code_session = json_decode($code_session, true);
-
-                if($code_session['errcode']==40163){
-                    $data['code']=400;
-                    $data['msg']='code been used';
-                    $this->ajaxReturn($data,'JSON');
-                }
-
-
-            if ($code_session['openid'] && $code_session['session_key']) {
-
-                $encryptedData = I("post.encryptedData", "", false);
-                $iv = I("post.iv", "", false);
-                $session_key = $code_session['session_key'];
-                session('session_key',$session_key);
-                //TODO 验证签名
-
-
-                vendor("wxaes.WXBizDataCrypt");
-                $wxBizDataCrypt = new \WXBizDataCrypt(C("WECHAT_APPID"), $session_key);
-                $data_arr = array();
-                $errCode = $wxBizDataCrypt->decryptData($encryptedData, $iv, $data_arr);
-                if ($errCode == 0) {
-                    $json_data = json_decode($data_arr, true);
-
-                    $openid = $json_data['openId'];
-                    $user = $userdao->findByOpenid($openid);
-                    if (!$user) {
-                        $user_data = array();
-                        $user_data['openid'] = $openid;
-                        $user_data['unionid'] = $json_data['unionId'];
-                        $user_data['gender'] = $json_data['gender'];
-                        $user_data['city'] = $json_data['city'];
-                        $user_data['add_time'] = time();
-                        $user_data['province'] = $json_data['province'];
-                        $user_data['country'] = $json_data['country'];
-                        $user_data['avatarUrl'] =  str_replace('/0','/132',$json_data['avatarUrl'] );
-                        $user_data['add_time'] =time();
-                        $user_data['last_time'] =time();
-                        $user_data['login_time'] =time();
-                        $user_data['sign'] =1;
-                        $user_data['nickname'] = $json_data['nickName'];
-                        $uid = $userdao->data($user_data)->add();
-                        $user_game['uid']=$uid;
-                        $user_game['nickname']=$json_data['nickName'];
-                        $user_game['gold_num']=200;
-                        $user_game['avatarUrl']=str_replace('/0','/132',$json_data['avatarUrl'] );
-                        M('user_game')->add($user_game);
-                    }else{
-                        if($user['login_time']<strtotime(date("Y-m-d"),time())){
-                            M('user_game')->where('uid='.$user['id'])->setField("sign",1);
-                            M('user_game')->where('uid='.$user['id'])->setField("share_num",0);
-                            M('users')->where('id='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$json_data['avatarUrl']));
-                            M('user_game')->where('uid='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$json_data['avatarUrl']));
-                        }
-                        M('users')->where('id='.$user['id'])->setField("last_time",$user['login_time']);
-                        M('users')->where('id='.$user['id'])->setField("login_time",time());
+        $userInfo=I('post.userInfo');//获取前台传送的用户信息
+        $userInfo=str_replace("&quot;","\"",$userInfo);
+        $userInfo=json_decode($userInfo,true);
+        $login_data=$this->test_weixin($code);
+        if ($login_data['code']!=400&&$userInfo) {
+            $session_key = $login_data['session_key'];
+            session('wx_session_key',$session_key);
+            $openid = $login_data['openid'];
+            $user = $userdao->findByOpenid($openid);
+            if (!$user) {
+                $user_data = array();
+                $user_data['openid'] = $openid;
+                $user_data['unionid'] = $userInfo['unionId'];
+                $user_data['gender'] = $userInfo['gender'];
+                $user_data['city'] = $userInfo['city'];
+                $user_data['province'] = $userInfo['province'];
+                $user_data['country'] = $userInfo['country'];
+                $user_data['avatarUrl'] =  str_replace('/0','/132',$userInfo['avatarUrl'] );
+                $user_data['add_time'] =time();
+                $user_data['last_time'] =time();
+                $user_data['login_time'] =time();
+                $user_data['sign'] =1;
+                $user_data['nickname'] = $userInfo['nickName'];
+                $uid = $userdao->data($user_data)->add();
+                $user_game['uid']=$uid;
+                $user_game['nickname']=$userInfo['nickName'];
+                $user_game['gold_num']=200;
+                $user_game['avatarUrl']=str_replace('/0','/132',$userInfo['avatarUrl'] );
+                 M('user_game')->add($user_game);
+                }else{
+                    if($user['status']==0) {
+                        $data['code']=403;//已经被拉黑
+                        $data['msg']='已经被拉黑';
+                         $data['data']['user_id']=$user['id'];
+                        $this->ajaxReturn($data,'JSON');
+                     }
                         $uid=$user['id'];
-                    }
-                    if($recommend_user_id!==0){
-
-                        $has=M('user_friend')->where('uid=%d and recomend_user_id=%d',$user['id'],$recommend_user_id)->find();
-                        if(!$has){
-                            $recommend_arr['uid']=$user['id'];
-                            $recommend_arr['recomend_user_id']=$recommend_user_id;
-                            M('user_friend')->data($recommend_arr)->add();
-                            $userdao->share_gold($recommend_user_id);
-                        }
-                        $has2=M('user_friend')->where('uid=%d and recomend_user_id=%d',$recommend_user_id,$user['id'])->find();
-                        if(!$has2){
-                            $recommend_arr['uid']=$recommend_user_id;
-                            $recommend_arr['recomend_user_id']=$user['id'];
-                            M('user_friend')->data($recommend_arr)->add();
-                        }
-
-                    }
-
+                }
                     $session_k=session_id();
                     session('user_id',$uid);
-
-
                     $data['code']=200;
-                    $data['msg']='success';
-
-                    $data['recommend_user_id']=$recommend_user_id;
+                    $data['msg']=$userInfo;
                     $data['data']=array('session_key'=>$session_k);
                     $this->ajaxReturn($data,'JSON');
-                } else {
-                    $data['code']=400;
-                    $data['msg']='登录失败';
-                    $this->ajaxReturn($data,'JSON');
+                }else {
+                    $this->ajaxReturn($login_data);
                 }
 
-            }  else {
-
-                $data['code']=400;
-                $data['msg']=$code_session['errcode'];
-                $this->ajaxReturn($data,'JSON');
-
-            }
-        } else {
-            $data['code']=400;
-            $data['msg']='参数code为空';
-            $this->ajaxReturn($data,'JSON');
-        }
     }
 
 //更新世界排行

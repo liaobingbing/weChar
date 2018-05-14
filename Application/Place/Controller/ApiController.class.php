@@ -628,7 +628,7 @@ class ApiController extends ApiBaseController{
         $encryptedData = I("post.encryptedData");
         $iv = I("post.iv");
         if($encryptedData&&$iv){
-            $session_key=session('session_key');
+            $session_key=session('wx_session_key');
             if($session_key){
                 vendor("wxaes.WXBizDataCrypt");
                 $wxBizDataCrypt = new \WXBizDataCrypt(C("WECHAT_APPID"), $session_key);

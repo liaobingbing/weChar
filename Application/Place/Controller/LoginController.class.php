@@ -14,30 +14,31 @@ class LoginController extends ApiLoginController {
     public function login(){
         $userdao=new UsersModel();
         $code=I('post.code');
-        $encryptedData=I('post.encryptedData');
-        $iv=I('post.iv');
-        $recommend_user_id=I("post.recommend_id",0);
-
-        $login_data=$this->get_weixin($code,$encryptedData,$iv);
-        if($login_data['code']!=400){
-            $openid = $login_data['openId'];
+        $userInfo=I('post.userInfo');//获取前台传送的用户信息
+        $userInfo=str_replace("&quot;","\"",$userInfo);
+        $userInfo=json_decode($userInfo,true);
+        $login_data=$this->test_weixin($code);
+        if($login_data['code']!=400&&$userInfo){
+            $session_key = $login_data['session_key'];
+            session('wx_session_key',$session_key);
+            $openid = $login_data['openid'];
             $user = $userdao->findByOpenid($openid);
             if (!$user) {
                 $user_data['openid'] = $openid;
-                $user_data['unionid'] = $login_data['unionId'];
-                $user_data['gender'] = $login_data['gender'];
-                $user_data['city'] = $login_data['city'];
-                $user_data['province'] = $login_data['province'];
-                $user_data['country'] = $login_data['country'];
-                $user_data['avatar_url'] =  str_replace('/0','/132',$login_data['avatarUrl'] );
-                $user_data['nickname'] = $login_data['nickName'];
+                $user_data['unionid'] = $userInfo['unionId'];
+                $user_data['gender'] = $userInfo['gender'];
+                $user_data['city'] = $userInfo['city'];
+                $user_data['province'] = $userInfo['province'];
+                $user_data['country'] = $userInfo['country'];
+                $user_data['avatar_url'] =  str_replace('/0','/132',$userInfo['avatarUrl'] );
+                $user_data['nickname'] = $userInfo['nickName'];
                 $user_data['add_time'] = time();
                 $user_data['last_time'] = time();
                 $user_data['login_time'] = time();
                 $uid = M('users')->data($user_data)->add();
                 $user_game['uid']=$uid;
-                $user_game['nickname']=$login_data['nickName'];
-                $user_game['avatar_url']=str_replace('/0','/132',$login_data['avatarUrl'] );
+                $user_game['nickname']=$userInfo['nickName'];
+                $user_game['avatar_url']=str_replace('/0','/132',$userInfo['avatarUrl'] );
                 M('user_game')->add($user_game);
             }else{
                 if($user['status']==0) {
@@ -45,43 +46,14 @@ class LoginController extends ApiLoginController {
                     $data['msg']='已经被拉黑';
                     $this->ajaxReturn($data,'JSON');
                 }
-                if($user['login_time']<strtotime(date("Y-m-d"),time())){
-                    M('user_game')->where('uid='.$user['id'])->setField("share_num",0);
-                    M('user_game')->where('uid='.$user['id'])->setField("sign",1);
-                    M('users')->where('id='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
-                    M('user_game')->where('uid='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
-
-                }
-                M('users')->where('id='.$user['id'])->setField("last_time",$user['login_time']);
-                M('users')->where('id='.$user['id'])->setField("login_time",time());
                 $uid=$user['id'];
             }
-
-            if($recommend_user_id!==0){
-
-                $has=M('user_friend')->where('uid=%d and recomend_user_id=%d',$user['id'],$recommend_user_id)->find();
-                if(!$has){
-                    $recommend_arr['uid']=$user['id'];
-                    $recommend_arr['recomend_user_id']=$recommend_user_id;
-                    M('user_friend')->data($recommend_arr)->add();
-                    $userdao->share_gold($recommend_user_id);
-                }
-                $has2=M('user_friend')->where('uid=%d and recomend_user_id=%d',$recommend_user_id,$user['id'])->find();
-                if(!$has2){
-                    $recommend_arr['uid']=$recommend_user_id;
-                    $recommend_arr['recomend_user_id']=$user['id'];
-                    M('user_friend')->data($recommend_arr)->add();
-                }
-
-            }
-
             $session_k=session_id();
             session('user_id',$uid,3600);
             session("openid",$openid);
             $data['code']=200;
             $data['msg']='success';
             $data['data']=array('session_key'=>$session_k);
-            $data['recommend_user_id']=$recommend_user_id;
             $this->ajaxReturn($data,'JSON');
 
         }

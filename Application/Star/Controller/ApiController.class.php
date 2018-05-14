@@ -11,7 +11,6 @@ class ApiController extends ApiBaseController{
 
     public function index(){
         $user_id=session('user_id');
-
         $userdao=new UsersModel();
         $user_game=$userdao->findGame($user_id);
         if($user_game){
@@ -629,7 +628,7 @@ class ApiController extends ApiBaseController{
         $iv = I("post.iv");
 
         if($encryptedData&&$iv){
-            $session_key=session('session_key');
+            $session_key=session('wx_session_key');
             if($session_key){
                 vendor("wxaes.WXBizDataCrypt");
                 $wxBizDataCrypt = new \WXBizDataCrypt(C("WECHAT_APPID"), $session_key);
