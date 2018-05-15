@@ -231,7 +231,11 @@ class LoginController extends ApiLoginController
         session(null);
         echo '退出成功';
     }
-
+    //分享群
+    public function share_group(){
+        $data=array("code"=>200,"msg"=>"success","data"=>null);
+        $this->ajaxReturn($data,'JSON');
+    }
 
 
 }
