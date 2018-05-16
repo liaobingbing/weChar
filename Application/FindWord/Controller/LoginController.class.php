@@ -238,6 +238,19 @@ class LoginController extends ApiLoginController
         $data=array("code"=>200,"msg"=>"success","data"=>null);
         $this->ajaxReturn($data,'JSON');
     }
+    public function get_openid()
+    {
+        $code = I('post.code');
+        $login_data = $this->test_weixin($code);
+        if ($login_data['code'] != 400) {
+            $openid = $login_data['openid'];
+            $arr=array("code"=>200,"msg"=>"success","data"=>array("openId"=>$openid));
+            $this->ajaxReturn($arr);
+        }
+        else{
+            $this->ajaxReturn($login_data);
 
+        }
+    }
 
 }
