@@ -84,14 +84,16 @@ class LoginController extends ApiLoginController
     // 获取题目
     public function get_question(){
         $layer = I('layer',1);
+        $openId=I("post.openId");
         if($layer == 1){
-            S('findWordQuestions',null);
+            S($openId,null);
+            S("find_word_questions",null);
             $Questions = new QuestionsModel();
             $questions = $Questions->get_rand_questions(44);
-            S('findWordQuestions',$questions);
+            S($openId,$questions,3600);
         }
 
-        $questions = S('findWordQuestions');
+        $questions = S($openId);
 
         $option = $questions[$layer-1];
 

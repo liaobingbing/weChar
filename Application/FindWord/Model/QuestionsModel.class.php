@@ -18,7 +18,7 @@ class QuestionsModel extends Model
      * @param int $expire 缓存时间
      * @return mixed
      */
-    public function get_questions($expire = 86200){
+    public function get_questions($expire =7200){
         $key = 'find_word_questions';
         $question = S($key);
 
