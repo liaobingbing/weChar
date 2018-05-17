@@ -22,13 +22,10 @@ class LoginController extends  ApiLoginController
         $userInfo=I('post.userInfo');//获取前台传送的用户信息
         $userInfo=str_replace("&quot;","\"",$userInfo);
         $userInfo=json_decode($userInfo,true);
-        //print_r($userInfo);die;
-        $login_data=$this->test_weixin($code);
-       // dump($login_data);die;
-        if($login_data['code']!=400&&$userInfo){
-            $session_key = $login_data['session_key'];
-            session('wx_session_key',$session_key);
-            $openid = $login_data['openid'];
+        $openid=I('post.openId');//获取opendId
+        $wx_key=I('post.session_key');
+        if($openid&&$userInfo){
+            session('wx_session_key',$wx_key);
             $user = $userdao->findByOpenid($openid);
             if (!$user) {
                 $user_data['openid'] = $openid;
@@ -53,16 +50,6 @@ class LoginController extends  ApiLoginController
                     $data['msg']='已经被拉黑';
                     $this->ajaxReturn($data,'JSON');
                 }
-                /*if($user['login_time']<strtotime(date("Y-m-d"),time())){
-                    $user_game=array("sign"=>1,"avatar_url"=>str_replace('/0','/132',$userInfo['avatarUrl']));
-                    M('user_game')->where('uid='.$user['id'])->setField($user_game);
-                    //  M('user_game')->where('uid='.$user['id'])->setField("sign",1);
-                    M('users')->where('id='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$userInfo['avatarUrl']));
-                    // M('user_game')->where('uid='.$user['id'])->setField("avatarUrl", str_replace('/0','/132',$userInfo['avatarUrl']));
-                }*/
-             //   $user_info=array("login_time"=>time());
-              //  M('users')->where('id=%d',$user['id'])->setField($user_info);
-                // M('users')->where('id='.$user['id'])->setField("login_time",time());
                 $uid=$user['id'];
             }
             $session_k=session_id();
@@ -70,7 +57,7 @@ class LoginController extends  ApiLoginController
             session("openid",$openid);
             $data['code']=200;
             $data['msg']=$userInfo;
-            $data['data']=array('session_key'=>$session_k,"wx_sesession"=>$session_key);
+            $data['data']=array('session_key'=>$session_k);
 
             $this->ajaxReturn($data,'JSON');
 
@@ -175,5 +162,20 @@ class LoginController extends  ApiLoginController
     public function set_session(){
         echo  session_id();;
         session('user_id',1);
+    }
+    public function get_openid()
+    {
+        $code = I('post.code');
+        $login_data = $this->test_weixin($code);
+        if ($login_data['code'] != 400) {
+            $openid = $login_data['openid'];
+            $session_key=$login_data['session_key'];
+            $arr=array("code"=>200,"msg"=>"success","data"=>array("openId"=>$openid,"wx_session_key"=>$session_key));
+            $this->ajaxReturn($arr);
+        }
+        else{
+            $this->ajaxReturn($login_data);
+
+        }
     }
 }

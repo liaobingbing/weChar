@@ -31,11 +31,10 @@ class LoginController extends ApiLoginController
         $userInfo=I('post.userInfo');//获取前台传送的用户信息
         $userInfo=str_replace("&quot;","\"",$userInfo);
         $userInfo=json_decode($userInfo,true);
-        $login_data=$this->test_weixin($code);
-        if($login_data['code']!=400&&$userInfo){
-            $session_key = $login_data['session_key'];
-            session('wx_session_key',$session_key);
-            $openid = $login_data['openid'];
+        $openid=I('post.openId');//获取opendId
+        $wx_key=I('post.session_key');
+        if($openid&&$userInfo){
+            session('wx_session_key',$wx_key);
             $user = $userdao->findByOpenid($openid);
             if (!$user) {
                 $user_data['openid'] = $openid;
@@ -78,7 +77,8 @@ class LoginController extends ApiLoginController
 
         }
         else{
-            $this->ajaxReturn($login_data);
+            $arr=array("code"=>400,"msg"=>"参数不全",null);
+            $this->ajaxReturn($arr);
         }
 
     }
@@ -258,7 +258,8 @@ class LoginController extends ApiLoginController
         $login_data = $this->test_weixin($code);
         if ($login_data['code'] != 400) {
             $openid = $login_data['openid'];
-            $arr=array("code"=>200,"msg"=>"success","data"=>array("openId"=>$openid));
+            $session_key=$login_data['session_key'];
+            $arr=array("code"=>200,"msg"=>"success","data"=>array("openId"=>$openid,"wx_session_key"=>$session_key));
             $this->ajaxReturn($arr);
         }
         else{
