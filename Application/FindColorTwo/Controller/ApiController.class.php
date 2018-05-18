@@ -65,10 +65,6 @@ class ApiController extends ApiBaseController
         $UserGame = new UserGameModel();
         $user_game = $UserGame->find_by_user_id($user_id);
         if($user_game) {
-            if($user_game['chance_num'] <= 0){
-                $this->ajaxReturn(array('code' => 400, 'msg' => '挑战次数为空'));
-            }
-            M('UserGame')->where(array('uid' => $user_id))->setDec('chance_num');
             M('UserGame')->where(array('uid' => $user_id))->setInc('challenge_num');
             $result['code'] =   200;
             $result['msg']  =   '开始挑战成功';
