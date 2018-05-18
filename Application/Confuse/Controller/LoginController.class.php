@@ -72,7 +72,11 @@ class LoginController extends  ApiLoginController
         }
 
     }
-
+//分享群
+    public function share_group(){
+        $data=array("code"=>200,"msg"=>"success","data"=>null);
+        $this->ajaxReturn($data,'JSON');
+    }
     //缓存挑战次数
     public function cache_num()
     {
