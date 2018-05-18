@@ -68,7 +68,8 @@ class LoginController extends  ApiLoginController
 
         }
         else{
-            $this->ajaxReturn($login_data);
+            $arr=array("code"=>400,"msg"=>"参数不全",null);
+            $this->ajaxReturn($arr);
         }
 
     }
