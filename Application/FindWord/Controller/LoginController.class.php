@@ -255,7 +255,7 @@ class LoginController extends ApiLoginController
 
     //开始 挑战
     public function begin_challenge(){
-         $openId=I("post.openId");
+         $openId=I("post.openId"); 
         $UserGame = new UserGameModel();
         $userdao=new UsersModel();
         $user=$userdao->findByOpenid($openId);

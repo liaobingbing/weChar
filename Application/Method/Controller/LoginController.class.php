@@ -12,6 +12,7 @@ namespace Method\Controller;
 use Common\Controller\ApiLoginController;
 use Method\Model\AnswerModel;
 use Method\Model\UsersModel;
+use Method\Model\UserGameModel;
 
 class LoginController extends  ApiLoginController
 {
