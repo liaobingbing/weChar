@@ -110,6 +110,7 @@ class LoginController extends ApiLoginController {
             $session_k=session_id();
             session('user_id',$uid,3600);
             $session_key=$login_data['session_key'];
+            session("session_key",$session_key);
             $arr=array("code"=>200,"msg"=>"success","data"=>array("openId"=>$openid,"wx_session_key"=>$session_key,"server_key"=>$session_k));
             $this->ajaxReturn($arr);
         }
