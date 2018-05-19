@@ -12,6 +12,8 @@ namespace Confuse\Controller;
 use Common\Controller\ApiLoginController;
 use Confuse\Model\UsersModel;
 
+use Confuse\Model\UserGameModel;
+
 class LoginController extends  ApiLoginController
 {
     private  $key="kuaiyu666666";

@@ -11,6 +11,7 @@ namespace Sort\Controller;
 
 use Common\Controller\ApiLoginController;
 use Sort\Model\UsersModel;
+use Sort\Model\UserGameModel;
 
 class LoginController extends  ApiLoginController
 {
