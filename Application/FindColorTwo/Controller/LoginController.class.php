@@ -84,8 +84,11 @@ class LoginController extends ApiLoginController
     }
 //开始 挑战
     public function begin_challenge(){
-        $user_id = session('user_id');
+         $openId=I("post.openId");
         $UserGame = new UserGameModel();
+        $userdao=new UsersModel();
+        $user=$userdao->findByOpenid($openId);
+        $user_id=$user['id'];
         $user_game = $UserGame->find_by_user_id($user_id);
         if($user_game) {
             M('UserGame')->where(array('uid' => $user_id))->setInc('challenge_num');
