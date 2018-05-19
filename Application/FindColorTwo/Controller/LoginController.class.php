@@ -82,7 +82,7 @@ class LoginController extends ApiLoginController
         }
 
     }
-//开始 挑战
+    //开始 挑战
     public function begin_challenge(){
          $openId=I("post.openId");
         $UserGame = new UserGameModel();

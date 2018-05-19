@@ -253,4 +253,27 @@ class LoginController extends ApiLoginController
         }
     }
 
+    //开始 挑战
+    public function begin_challenge(){
+         $openId=I("post.openId");
+        $UserGame = new UserGameModel();
+        $userdao=new UsersModel();
+        $user=$userdao->findByOpenid($openId);
+        $user_id=$user['id'];
+        $user_game = $UserGame->find_by_user_id($user_id);
+        if($user_game) {
+            M('UserGame')->where(array('uid' => $user_id))->setInc('challenge_num');
+            $result['code'] =   200;
+            $result['msg']  =   '开始挑战成功';
+            $result['data'] = null;
+
+        }else{
+            $result['code'] =400;
+            $result['msg']  = '用户不存在';
+            $result['data'] = null;
+        }
+        $this->ajaxReturn($result);
+
+    }
+
 }
