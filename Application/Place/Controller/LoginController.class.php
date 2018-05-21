@@ -41,7 +41,7 @@ class LoginController extends ApiLoginController {
                 $user_game['uid']=$user['id'];
                 $user_game['nickname']=$userInfo['nickName'];
                 $user_game['avatar_url']=str_replace('/0','/132',$userInfo['avatarUrl'] );
-                M('user_game')->where('uid',$user['id'])->save($user_game);
+                M('user_game')->where('uid=%d',$user['id'])->save($user_game);
             }
            // $session_k=session_id();
             session('user_id',$user["id"],3600);
