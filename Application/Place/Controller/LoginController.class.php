@@ -27,7 +27,7 @@ class LoginController extends ApiLoginController {
                     $data['msg']='已经被拉黑';
                     $this->ajaxReturn($data,'JSON');
                 }
-                $user_data['openid'] = $openid;
+                $user_data['id'] = $user["id"];
                 $user_data['gender'] = $userInfo['gender'];
                 $user_data['city'] = $userInfo['city'];
                 $user_data['province'] = $userInfo['province'];
@@ -37,7 +37,7 @@ class LoginController extends ApiLoginController {
                 $user_data['add_time'] = time();
                 $user_data['last_time'] = time();
                 $user_data['login_time'] = time();
-                M('users')->where("openid",$openid)->save($user_data);
+                M('users')->save($user_data);
                 $user_game['uid']=$user['id'];
                 $user_game['nickname']=$userInfo['nickName'];
                 $user_game['avatar_url']=str_replace('/0','/132',$userInfo['avatarUrl'] );
