@@ -43,12 +43,12 @@ class LoginController extends ApiLoginController {
                 $user_game['avatar_url']=str_replace('/0','/132',$userInfo['avatarUrl'] );
                 M('user_game')->where('uid',$user['id'])->save($user_game);
             }
-            $session_k=session_id();
+           // $session_k=session_id();
             session('user_id',$user["id"],3600);
             session("openid",$openid);
             $data['code']=200;
             $data['msg']='success';
-            $data['data']=array('session_key'=>$session_k);
+            //$data['data']=array('session_key'=>$session_k);
             $this->ajaxReturn($data,'JSON');
 
         }
@@ -110,7 +110,7 @@ class LoginController extends ApiLoginController {
             $session_k=session_id();
             session('user_id',$uid,3600);
             $session_key=$login_data['session_key'];
-            $arr=array("code"=>200,"msg"=>"success","data"=>array("openId"=>$openid,"wx_session_key"=>$session_key,"server_key"=>$session_k));
+            $arr=array("code"=>200,"msg"=>"success","data"=>array("openId"=>$openid,"wx_session_key"=>$session_key,"server_key"=>$session_k,"user_id"=>$uid));
             $this->ajaxReturn($arr);
         }
         else{
