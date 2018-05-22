@@ -14,20 +14,23 @@ class LoginController extends ApiLoginController {
     {
 
         $userdao = new UsersModel();
-        $code = I("post.code");
+        $openid=I("post.openId");
+        $session_key=I('post.session_key');
         $userInfo=I('post.userInfo');//获取前台传送的用户信息
         $userInfo=str_replace("&quot;","\"",$userInfo);
         $userInfo=json_decode($userInfo,true);
-        $login_data=$this->test_weixin($code);
-        if ($login_data['code']!=400&&$userInfo) {
-            $session_key = $login_data['session_key'];
+        if ($openid&&$userInfo) {
             session('wx_session_key',$session_key);
-            $openid = $login_data['openid'];
             $user = $userdao->findByOpenid($openid);
-            if (!$user) {
+            if ($user) {
+                if($user['status']==0) {
+                    $data['code']=403;//已经被拉黑
+                    $data['msg']='已经被拉黑';
+                    $this->ajaxReturn($data,'JSON');
+                }
                 $user_data = array();
+                $user_data['id'] = $user["id"];
                 $user_data['openid'] = $openid;
-                $user_data['unionid'] = $userInfo['unionId'];
                 $user_data['gender'] = $userInfo['gender'];
                 $user_data['city'] = $userInfo['city'];
                 $user_data['province'] = $userInfo['province'];
@@ -38,29 +41,20 @@ class LoginController extends ApiLoginController {
                 $user_data['login_time'] =time();
                 $user_data['sign'] =1;
                 $user_data['nickname'] = $userInfo['nickName'];
-                $uid = $userdao->data($user_data)->add();
-                $user_game['uid']=$uid;
+                M('users')->save($user_data);
+                $user_game['uid']=$user['id'];
                 $user_game['nickname']=$userInfo['nickName'];
                 $user_game['gold_num']=200;
                 $user_game['avatarUrl']=str_replace('/0','/132',$userInfo['avatarUrl'] );
-                 M('user_game')->add($user_game);
-                }else{
-                    if($user['status']==0) {
-                        $data['code']=403;//已经被拉黑
-                        $data['msg']='已经被拉黑';
-                         $data['data']['user_id']=$user['id'];
-                        $this->ajaxReturn($data,'JSON');
-                     }
-                        $uid=$user['id'];
+                M('user_game')->where('uid=%d',$user['id'])->save($user_game);
                 }
-                    $session_k=session_id();
-                    session('user_id',$uid);
-                    $data['code']=200;
-                    $data['msg']=$userInfo;
-                    $data['data']=array('session_key'=>$session_k);
-                    $this->ajaxReturn($data,'JSON');
-                }else {
-                    $this->ajaxReturn($login_data);
+
+            session('user_id',$user["id"],3600);
+            session("openid",$openid);
+            $data['code']=200;
+            $data['msg']='success';
+            //$data['data']=array('session_key'=>$session_k);
+            $this->ajaxReturn($data,'JSON');
                 }
 
     }
@@ -102,6 +96,36 @@ class LoginController extends ApiLoginController {
 
     public function test(){
         session('user_id',2);
+    }
+    public function get_openid()
+    {
+        session("openid",null);
+        $userdao=new UsersModel();
+
+        $code = I('post.code');
+        $login_data = $this->test_weixin($code);
+        if ($login_data['code'] != 400) {
+            $openid = $login_data['openid'];
+            $user = $userdao->findByOpenid($openid);
+            if(empty($user)){
+                $data['openid']= $openid;
+                $data['login_time']=time();
+                $user_id = $userdao->add($data);
+                $game["uid"]=$user_id;
+                M('user_game')->add($game);
+                $uid=$user_id;
+            }
+            $uid=$user['id'];
+            $session_k=session_id();
+            session('user_id',$uid,3600);
+            $session_key=$login_data['session_key'];
+            $arr=array("code"=>200,"msg"=>"success","data"=>array("openId"=>$openid,"wx_session_key"=>$session_key,"server_key"=>$session_k,"user_id"=>$uid));
+            $this->ajaxReturn($arr);
+        }
+        else{
+            $this->ajaxReturn($login_data);
+
+        }
     }
 
 }
