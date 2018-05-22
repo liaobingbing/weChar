@@ -17,6 +17,7 @@ class AuthController extends Controller
 {
     //获取好友排行榜
     public function get_friend_ranking(){
+        $this->check_openid();
         $user_id=session('user_id');
 
         $userdao=new UsersModel();
@@ -54,6 +55,7 @@ class AuthController extends Controller
 
     //获取世界排行榜
     public function get_world_ranking(){
+        $this->check_openid();
         $user_id=session('user_id');
 
         $userdao=new UsersModel();
