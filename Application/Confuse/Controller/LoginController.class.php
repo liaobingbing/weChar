@@ -61,8 +61,8 @@ class LoginController extends  ApiLoginController
                 $user_data['country'] = $userInfo['country'];
                 $user_data['avatar_url'] =  str_replace('/0','/132',$userInfo['avatarUrl'] );
                 $user_data['name'] = $userInfo['nickName'];
-                $uid = M('users')->data($user_data)->save();
-                $user_game['uid']=$uid;
+                 M('users')->data($user_data)->save();
+                $user_game['uid']=$user['id'];
                 $user_game['nickname']=$userInfo['nickName'];
                 $user_game['login_time'] = time();
                 $user_game['avatar_url']=str_replace('/0','/132',$userInfo['avatarUrl'] );
@@ -203,7 +203,7 @@ class LoginController extends  ApiLoginController
             if(empty($user)){
                 $data['openid']=$openid;
                 $user_data['login_time'] = time();
-                $uid = M("users")->add($data);
+                $uid = M("users")->data($data)->add();
                 $game['uid']=$uid;
                 $game['login_time'] = time();
                 M("user_game")->add($game);
