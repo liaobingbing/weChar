@@ -6,7 +6,7 @@
  * Time: 11:07
  */
 
-namespace FindColorTwo\Model;
+namespace Confuse\Model;
 
 
 use Think\Model;
