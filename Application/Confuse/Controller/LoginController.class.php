@@ -52,12 +52,21 @@ class LoginController extends  ApiLoginController
                     $data['data']['user_id']=$user['id'];
                     $this->ajaxReturn($data,'JSON');
                 }
-               /* if($user['login_time']<strtotime(date("Y-m-d"),time())){
-                    M('users')->where('id='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
-                    M('user_game')->where('uid='.$user['id'])->setField("avatar_url", str_replace('/0','/132',$login_data['avatarUrl']));
-
-                }*/
-               // M('users')->where('id='.$user['id'])->setField("login_time",time());
+                $user_data['id'] = $user['id'];
+                $user_data['openid'] = $openid;
+                $user_data['gender'] = $userInfo['gender'];
+                $user_data['city'] = $userInfo['city'];
+                $user_data['login_time'] = time();
+                $user_data['province'] = $userInfo['province'];
+                $user_data['country'] = $userInfo['country'];
+                $user_data['avatar_url'] =  str_replace('/0','/132',$userInfo['avatarUrl'] );
+                $user_data['name'] = $userInfo['nickName'];
+                $uid = M('users')->data($user_data)->save();
+                $user_game['uid']=$uid;
+                $user_game['nickname']=$userInfo['nickName'];
+                $user_game['login_time'] = time();
+                $user_game['avatar_url']=str_replace('/0','/132',$userInfo['avatarUrl'] );
+                M('user_game')->where("uid=%d",$user['id'])->save($user_game);
                 $uid=$user['id'];
             }
             $session_k=session_id();
@@ -189,6 +198,17 @@ class LoginController extends  ApiLoginController
             $openid = $login_data['openid'];
             $session_key=$login_data['session_key'];
             $arr=array("code"=>200,"msg"=>"success","data"=>array("openId"=>$openid,"wx_session_key"=>$session_key));
+            $userdao=new UsersModel();
+            $user = $userdao->findByOpenid($openid);
+            if(empty($user)){
+                $data['openid']=$openid;
+                $user_data['login_time'] = time();
+                $uid = M("users")->add($data);
+                $game['uid']=$uid;
+                $game['login_time'] = time();
+                M("user_game")->add($game);
+
+            }
             $this->ajaxReturn($arr);
         }
         else{
