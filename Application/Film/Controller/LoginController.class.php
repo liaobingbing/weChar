@@ -111,6 +111,7 @@ class LoginController extends ApiLoginController {
         if ($login_data['code'] != 400) {
             $openid = $login_data['openid'];
             $user = $userdao->findByOpenid($openid);
+            $uid=$user['id'];
             if(empty($user)){
                 $data['openid']= $openid;
                 $data['login_time']=time();
@@ -119,7 +120,6 @@ class LoginController extends ApiLoginController {
                 M('user_game')->add($game);
                 $uid=$user_id;
             }
-            $uid=$user['id'];
             $session_k=session_id();
             session('user_id',$uid,3600);
             $session_key=$login_data['session_key'];
