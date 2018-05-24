@@ -16,8 +16,8 @@ class WechatTmpMsgModel extends Model {
 	 */
 	public function __construct() {
 		/*读取微信配置*/
-		$this->appid = config('WECHAT_APPID');
-		$this->appsecret = config('WECHAT_APPSECRET');
+		$this->appid = C('WECHAT_APPID');
+		$this->appsecret = C('WECHAT_APPSECRET');
 	}
 
 	/**
