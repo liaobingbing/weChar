@@ -118,4 +118,31 @@ class LoginController extends ApiLoginController {
 
         }
     }
+    /**
+     * 小程序formid写入
+     * @param form_id 小程序formid
+     * @param open_id 微信openid
+     */
+    public function addXcxFormId() {
+        $form_id = I('form_id');
+        $open_id = I('open_id');
+
+        !$form_id && $arr=array("code"=>400,"msg"=>"form_id不能为空");
+        !$open_id && $arr=array("code"=>400,"msg"=>"open_id不能为空");
+
+        if ($form_id == 'the formId is a mock one' || $form_id == 'undefined') {
+            $arr=array("code"=>200,"msg"=>"SUCCESS");
+            $this->ajaxReturn($arr);
+        }
+        if (M('xcx_formid')->add(array(
+            'form_id' => $form_id,
+            'open_id' => $open_id,
+            'add_time' => time()
+        ))) {
+            $arr=array("code"=>200,"msg"=>"SUCCESS");
+        }else{
+            $arr=array("code"=>400,"msg"=>"网络错误");
+        }
+        $this->ajaxReturn($arr);
+    }
 }
