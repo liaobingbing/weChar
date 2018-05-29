@@ -318,10 +318,7 @@ class LoginController extends ApiLoginController
         $form_id = I('form_id');
         $open_id = I('open_id');
 
-        !$form_id && $arr=array("code"=>400,"msg"=>"form_id不能为空");
-        !$open_id && $arr=array("code"=>400,"msg"=>"open_id不能为空");
-
-        if ($form_id == 'the formId is a mock one' || $form_id == 'undefined') {
+        if (empty($form_id) || empty($open_id) || $form_id == 'the formId is a mock one' || $form_id == 'undefined') {
             $arr=array("code"=>200,"msg"=>"SUCCESS");
             $this->ajaxReturn($arr);
         }
