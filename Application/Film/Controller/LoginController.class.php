@@ -70,7 +70,7 @@ class LoginController extends ApiLoginController {
         $key=I('get.key');
         if($key==$this->key){
             $world_arr=array();
-            $ranking_arr=M('user_game')->field('uid,avatarUrl,nickname,gold_num,success_num')->order('success_num desc')->select();
+            $ranking_arr=M('user_game')->field('uid,avatarUrl,nickname,gold_num,success_num')->where("avatarUrl is not null")->order('success_num desc')->select();
             foreach($ranking_arr as $k=>$v){
                 $ranking=$k+1;
                 $world_arr[$ranking]=$v;
