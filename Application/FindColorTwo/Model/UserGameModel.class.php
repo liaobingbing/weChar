@@ -58,7 +58,7 @@ class UserGameModel extends Model
      * @return mixed
      */
     public function get_rankings($field,$len,$expire=300){
-        $rankings = M('UserGame')->field("{$field},avatar_url,nickname")->order("{$field} desc")->limit($len)->select();
+        $rankings = M('UserGame')->field("{$field},avatar_url,nickname")->where('avatar_url is not null')->order("{$field} desc")->limit($len)->fetchSql(false)->select();
         foreach ($rankings as $k => $v){
             $rankings[$k]['ranking'] = $k + 1;
         }
