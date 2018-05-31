@@ -179,7 +179,7 @@ class ApiController extends ApiBaseController{
            // echo $layer."==".$u_answer;
             if($u_answer&&$layer){
                 $answer=new AnswerModel();
-                $question=M('answer')->where('status=1 and layer=%d',$layer)->cache(86400)->find();
+                $question=M('answer')->where('status=1 and layer=%d',$layer)->find();
                 if($question){
                     if($u_answer==$question['answer']){
                         $type=I('post.type',1);
