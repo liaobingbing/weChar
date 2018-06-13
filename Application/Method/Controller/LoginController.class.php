@@ -158,7 +158,7 @@ class LoginController extends  ApiLoginController
     {
         $key=I('get.key');
         if($key==$this->key){
-            $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->order('challenge_num desc')->limit(8)->select();
+            $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->where('avatar_url is not null')->order('challenge_num desc')->limit(8)->select();
             foreach($user_info as $k=>$v){
                 $user_info[$k]['ranking']=$k+1;
             }
@@ -212,7 +212,7 @@ class LoginController extends  ApiLoginController
     {
         $user_info = S('m_num_top');
         if(!$user_info){
-            $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->order('challenge_num desc')->limit(8)->select();
+            $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->where('avatar_url is not null')->order('challenge_num desc')->limit(8)->select();
             foreach($user_info as $k=>$v){
                 $user_info[$k]['ranking']=$k+1;
             }
