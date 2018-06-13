@@ -31,7 +31,7 @@ class LoginController extends  ApiLoginController
             $user = $userdao->findByOpenid($openid);
             if (!$user) {
                 $user_data['openid'] = $openid;
-               // $user_data['unionid'] = $login_data['unionId'];
+                // $user_data['unionid'] = $login_data['unionId'];
                 $user_data['gender'] = $userInfo['gender'];
                 $user_data['city'] = $userInfo['city'];
                 $user_data['login_time'] = time();
@@ -61,7 +61,7 @@ class LoginController extends  ApiLoginController
                 $user_data['country'] = $userInfo['country'];
                 $user_data['avatar_url'] =  str_replace('/0','/132',$userInfo['avatarUrl'] );
                 $user_data['name'] = $userInfo['nickName'];
-                 M('users')->data($user_data)->save();
+                M('users')->data($user_data)->save();
                 $user_game['uid']=$user['id'];
                 $user_game['nickname']=$userInfo['nickName'];
                 $user_game['login_time'] = time();
@@ -126,7 +126,7 @@ class LoginController extends  ApiLoginController
         $user_info = S('c_intelligence_top');
         if(!$user_info){
             //SELECT avatarUrl,gt_number as number,nickname FROM method_test_game WHERE id >= ((SELECT MAX(id) FROM method_test_game)-(SELECT MIN(id) FROM method_test_game)) * RAND() + (SELECT MIN(id) FROM method_test_game)  order by  number desc LIMIT 5;
-            $sql2="SELECT avatar_url as avatarUrl ,get_number as gt_number ,nickname FROM confuse_user_game   order by  gt_number desc LIMIT 0,8";
+            $sql2="SELECT avatar_url as avatarUrl ,get_number as gt_number ,nickname FROM confuse_user_game  where(avatar_url is not null)  order by  gt_number desc LIMIT 0,8";
             $user_info=M()->query($sql2);
             foreach($user_info as $k=>$v){
                 $user_info[$k]['ranking']=$k+1;
@@ -142,7 +142,7 @@ class LoginController extends  ApiLoginController
     {
         $user_info = S('c_num_top');
         if(!$user_info){
-            $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->order('challenge_num desc')->limit(8)->select();
+            $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->where('avatar_url is not null')->order('challenge_num desc')->limit(8)->select();
             foreach($user_info as $k=>$v){
                 $user_info[$k]['ranking']=$k+1;
             }
@@ -153,36 +153,36 @@ class LoginController extends  ApiLoginController
     }
 //获取题目
     public function get_question(){
-                $layer=I('post.layer',1);
-                if($layer<=30){
-                    $sql='SELECT * FROM confuse_answer WHERE status=1 ORDER BY  RAND() LIMIT 1';
-                    $question=M()->query($sql);
-                    if($question){
-                        $data['code']=200;
-                        $data['msg']='获取成功';
-                        $data['data']['nex_layer']=$layer+1;
-                        $data['data']['subject1']=$question[0]['subject1'];
-                        $data['data']['subject2']=$question[0]['subject2'];
-                        if($layer>23){
-                            $odds=($layer-23)*100;
-                        }else{
-                            $odds=0;
-                        }
-                        $rand=rand(0,500);
-                        if($rand>$odds){
-                            $data['data']['answer']=$question[0]['answer'];
-                        }else{
-                            $data['data']['answer']=3;
-                        }
-                    }else{
-                        $data['code']=400;
-                        $data['msg']='题库出错';
-                    }
-
+        $layer=I('post.layer',1);
+        if($layer<=30){
+            $sql='SELECT * FROM confuse_answer WHERE status=1 ORDER BY  RAND() LIMIT 1';
+            $question=M()->query($sql);
+            if($question){
+                $data['code']=200;
+                $data['msg']='获取成功';
+                $data['data']['nex_layer']=$layer+1;
+                $data['data']['subject1']=$question[0]['subject1'];
+                $data['data']['subject2']=$question[0]['subject2'];
+                if($layer>23){
+                    $odds=($layer-23)*100;
                 }else{
-                    $data['code']=400;
-                    $data['msg']='没有此等级';
+                    $odds=0;
                 }
+                $rand=rand(0,500);
+                if($rand>$odds){
+                    $data['data']['answer']=$question[0]['answer'];
+                }else{
+                    $data['data']['answer']=3;
+                }
+            }else{
+                $data['code']=400;
+                $data['msg']='题库出错';
+            }
+
+        }else{
+            $data['code']=400;
+            $data['msg']='没有此等级';
+        }
         $this->ajaxReturn($data,'JSON');
     }
 
@@ -219,7 +219,7 @@ class LoginController extends  ApiLoginController
 
     //开始 挑战
     public function begin_challenge(){
-         $openId=I("post.openId");
+        $openId=I("post.openId");
         $UserGame = new UserGameModel();
         $userdao=new UsersModel();
         $user=$userdao->findByOpenid($openId);
