@@ -588,6 +588,7 @@ class ApiController extends ApiBaseController{
         $data['code'] = 200;
         $data['msg'] = '分享成功';
         $data['data']['gold_num'] = $info['gold_num'];
+        $data['data']['add_gold_num']=15;
         $this->ajaxReturn($data,'JSON');
     }
 
