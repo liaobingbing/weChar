@@ -582,9 +582,12 @@ class ApiController extends ApiBaseController{
     public function share_xcc()
     {
         $user_id=session('user_id');
+        $userdao=new UsersModel();
         M('user_game')->where("uid=%d",$user_id)->setInc("gold_num",15);
+        $info=$userdao->findGame($user_id);
         $data['code'] = 200;
         $data['msg'] = '分享成功';
+        $data['data']['gold_num'] = $info['gold_num'];
         $this->ajaxReturn($data,'JSON');
     }
 
