@@ -563,6 +563,7 @@ class ApiController extends ApiBaseController{
         $userdao=new UsersModel();
         $info=$userdao->share_gold($user_id);
         if($info['code']==200) {
+
             $data['code'] = 200;
             $data['msg'] = '分享成功';
             $data['data']['gold_num'] = $info['gold_num'];
@@ -575,6 +576,15 @@ class ApiController extends ApiBaseController{
             $data['msg']='重新登录';
         }
 
+        $this->ajaxReturn($data,'JSON');
+    }
+
+    public function share_xcc()
+    {
+        $user_id=session('user_id');
+        M('user_game')->where("uid=%d",$user_id)->setInc("gold_num",15);
+        $data['code'] = 200;
+        $data['msg'] = '分享成功';
         $this->ajaxReturn($data,'JSON');
     }
 
