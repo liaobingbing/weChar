@@ -94,11 +94,11 @@ class LoginController extends  ApiLoginController
     {
         $key=I('get.key');
         if($key==$this->key){
-            $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->order('challenge_num desc')->limit(8)->select();
+            $user_info=M('user_game')->field('challenge_num,avatar_url,nickname')->where('avatar_url is not null')->order('challenge_num desc')->limit(8)->select();
             foreach($user_info as $k=>$v){
                 $user_info[$k]['ranking']=$k+1;
             }
-            $sql2="SELECT avatar_url as avatarUrl ,get_number as gt_number ,nickname FROM confuse_user_game   order by  gt_number desc LIMIT 0,8";
+            $sql2="SELECT avatar_url as avatarUrl ,get_number as gt_number ,nickname FROM confuse_user_game   where(avatar_url is not null) order by  gt_number desc LIMIT 0,8";
             $user_info2=M()->query($sql2);
             //$user_info2=array_merge($data1,$data2);
             foreach($user_info2 as $k=>$v){
