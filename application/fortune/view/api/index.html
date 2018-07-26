@@ -1,0 +1,688 @@
+<style type="text/css">
+body{
+	width:100%;
+	padding: 0;
+	margin: 0;
+	background: #fff3c1;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+    /* 测试的总人数 */
+.play_person_count{
+  width: 100%;
+  font-size: 15px;
+  font-family: "PingFang SC";
+  color: rgb(255, 14, 0);
+  line-height: 1.267;
+  text-align: center;
+  margin-top: 20px;
+}
+/* 输入你的信息 */
+.form_box{
+  width: 92%;
+  height: 219px;
+  border-radius: 4px;
+  border: 0.5px solid rgb(195, 93, 18);
+  background-color: rgb(254, 254, 254);
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.form_item{
+	height: 55px;
+	line-height: 55px;
+	padding-left: 20px;
+}
+.form_item:not(:last-child){
+	border-bottom: 0.5px solid #e5e2cf;
+}
+input{
+	border:none;
+}
+.input_item{
+	display: flex;
+	font-size: 15px;
+  font-family: "PingFang SC";
+  color: rgb(26, 26, 26);
+	height: 55px;
+}
+.name_input{
+	width: 225px;
+	height: 55px;
+	line-height: 55px;
+	font-size: 15px;
+	font-family: "PingFang SC";
+	color: rgb(26, 26, 26);
+}
+input[type="text"]{
+    -moz-appearance:none;  
+    -webkit-appearance:none;  
+    border:none;
+}
+.placeholder{
+	font-size: 15px;
+  font-family: "PingFang SC";
+  color: rgb(194, 194, 194);
+}
+.picker{
+	font-size: 15px;
+  font-family: "PingFang SC";
+  color: rgb(194, 194, 194);
+}
+.your_birthhour{
+	width: 75px;
+	height: 33px;
+}
+.birthhour_picker{
+	width: 100%;
+	position: relative;
+	left: 75px;
+	bottom: 24px;
+	height: 30px;
+}
+.radio-ip{
+	color:"#ff0e00";
+	height: 55px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+/* 马上测算 */
+.calculate_now{
+	width: 100%;
+}
+.calculate_btn{
+	border-radius: 4px;
+	background-color: rgb(255, 14, 0);
+	width: 92%;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	font-size: 18px;
+	font-family: "PingFang SC";
+	color: rgb(255, 255, 255);
+	margin: 0 auto;
+	display:block;
+	margin-top:15px;
+	border:none;
+}
+/* 点击查看我的测算 */
+.my_calculate{
+  width: 120px;
+  font-size: 15px;
+  font-family: "PingFang SC";
+  color: rgb(255, 14, 0);
+  text-decoration: underline;
+  margin: 25px auto;
+}
+/* 测算结果反馈 */
+.feedback_container{
+	position: relative;
+
+}
+.mask{
+	width: 375px;
+	height: 290px;
+	position: absolute;
+	top:0;
+	left:0;
+	z-index: 200;
+}
+.result_feedback_box{
+  width: 92%;
+  height:300px;
+  /* 三条样式使图片水平居中 */
+  margin: 0 auto;
+  /*position: absolute;
+  justify-content: center;
+  margin-left: 4%;*/
+  background: url('__PUBLIC__images/result_feedback_box.png');
+  background-size: 100% 100%;
+}
+.swiper{
+	width: 87%;
+	min-height: 225px; 
+	position: absolute;
+	bottom: 5px;
+	left:40px;
+	margin: 0 auto;
+	padding:0;
+}
+.feedback_item{
+	padding-bottom: 15px; 
+	margin-bottom: 20px;
+}
+.line{
+	width:298px;
+	height: 0.5px;
+	background-color: rgb(221, 217, 197);
+	position: absolute;
+	top:15px; 
+	z-index: 100;
+}
+.name{
+	font-size: 15px;
+  font-family: "PingFang SC";
+  color: rgb(26, 26, 26);
+  font-weight: bold;
+}
+.time{
+	font-size: 13px;
+  font-family: "PingFang SC";
+  color: #ff0e00;
+	margin-left: 10px;
+}
+.head{
+	font-size: 13px;
+  font-family: "PingFang SC";
+  color: #1a1a1a;
+}
+.precision{
+	font-size: 15px;
+  font-family: "PingFang SC";
+  color: #ff0e00;
+	margin-left: 10px;
+}
+.content{
+	font-size: 13px;
+  font-family: "PingFang SC";
+  color: rgb(26, 26, 26);
+	line-height: 20px;
+}
+/* 测算成功后，你将知道 */
+.will_know{
+  width: 92%;
+  height:auto;
+  /* 三条样式使图片水平居中 */
+  margin: 0 auto;
+  /*display: flex;
+  justify-content: center;
+  margin-top: 20px; */
+  clear: both;
+  margin-left: 4%;
+  margin-top:20px;
+}
+
+/* 透漏的天机 */
+.revealed_truth{
+  width: 92%;
+  height: auto;
+  /* 三条样式使图片水平居中 */
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+}
+
+/* 对您有什么帮助 */
+.benefit{
+  width: 92%;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* 今年运势 */
+.fortune{
+  width: 92%;
+  height: auto;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.sroll-div{
+	margin: 0;
+    padding: 0;
+    width: 87%;
+    height: 75%;
+    /*border: 1px solid black;*/
+    position: relative; /*因为里面的ul需要移动，所以外面一定要设置为相对定位*/
+    overflow: hidden;   /*不显示超出div部分的内容*/
+	min-height: 40%; 
+	margin: 0 auto;
+	padding:0;
+	top:20%;
+	bottom:10%;
+	margin-top:10%;
+	/*display: flex;
+  	justify-content: center;*/
+}
+.sroll-div .ul{
+    list-style: none;
+    position: absolute; /*ul需要移动，必须使用绝对定位*/
+    top: 0;
+    left: 0;
+    /*padding: 0 0 0 20px;*/
+}
+.sroll-div .ul .li{
+    height: 120px;
+    line-height: 120px;
+    display: block;
+	border-bottom: 1px solid #ddd9c5;
+}
+.title{
+	height: 24px;
+	line-height: 15px;
+	margin-bottom: 15px;
+	margin-top: 20px;
+}
+.title-name{
+	font-size: 15px;
+	font-weight: 400;
+	color:#1a1a1a;
+}
+.title-num{
+	font-size: 13px;
+	color: #ff0e00;
+}
+.title1{
+	color: #1a1a1a;
+	font-size: 15px;
+}
+.title2{
+	color: #ff0e00;
+	font-size: 15px;
+}
+.content{
+	font-size: 13px;
+	color: #1a1a1a;
+	line-height: 20px;
+}
+.sex-div{
+	height: 55px;
+	line-height: 55px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+.user_name,.inputDate{
+	height: 30px;
+	margin-top:12.5px;
+	font-size: 15px;
+}
+p#back-to-top{
+    position:fixed;
+    display:none;
+    bottom:90px;
+    right:8px;
+}
+p#back-to-top a{
+    text-align:center;
+    text-decoration:none;
+    color:#d1d1d1;
+    display:block;
+    width:64px;
+    /*使用CSS3中的transition属性给跳转链接中的文字添加渐变效果*/
+    -moz-transition:color 1s;
+    -webkit-transition:color 1s;
+    -o-transition:color 1s;
+}
+p#back-to-top a:hover{
+    color:#979797;
+}
+a{
+ display:block;/*这个属性是必须的*/
+ font-size:12px;
+ line-height:18px;
+ text-decoration:none;
+ color:#333;
+ font-family:Arial;
+}
+#div1{
+ height: 225px;
+ overflow:hidden;
+}
+.prompt_box{
+	display: none;
+	width: 100%;
+  	position: fixed;
+  	top:50%;
+  	right:0px;
+  	left:0px;
+  	margin:0 auto;
+  	text-align: center;
+}
+.prompt_box_text{
+	display: inline-block;
+	color: #ffffff;
+	font-size: 15px;
+	border-radius: 5px;
+	height: 40px;
+	line-height: 40px;
+  	background:rgba(0,0,0,0.6);
+  	padding:0 10px;
+  	z-index: 9999;
+}
+a{
+	text-decoration: none;
+}
+</style>
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script> -->
+<script src="__PUBLIC__js/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__css/shijian.css"/>
+<title>{$title}</title>
+</head>
+<!--微信SDK-->
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> <!-- 必须引用该文件 -->  
+<script type="text/javascript">
+	<?php
+		$code_url=$url.'/index';
+		// if(unset($wx_endorse['wx_endorse_url'])){
+			$wx_endorse['wx_endorse_img'] = $imageUrls;
+			$wx_endorse['wx_endorse_url'] = $code_url;
+			$wx_endorse['wx_endorse_title'] = $title;
+			$wx_endorse['wx_endorse_desc'] = $share_titles;
+		//}
+	?>
+	var _Share_Message = {
+		img: "{$wx_endorse.wx_endorse_img}",
+		url: "{$wx_endorse.wx_endorse_url}",
+		Ntitle: "{$wx_endorse.wx_endorse_title}",
+		desc: "{$wx_endorse.wx_endorse_desc}",
+		appid: "{$signPackage.appId}"
+	};
+
+	wx.config({
+	   debug:  false,  //调式模式，设置为ture后会直接在网页上弹出调试信息，用于排查问题
+	   appId: '{$signPackage.appId}',
+	   timestamp: '{$signPackage.timestamp}',
+	   nonceStr: '{$signPackage.nonceStr}',
+	   signature: '{$signPackage.signature}',
+	   jsApiList: [  //需要使用的网页服务接口
+	       'checkJsApi',  //判断当前客户端版本是否支持指定JS接口
+	       'onMenuShareTimeline', //分享到朋友圈
+	       'onMenuShareAppMessage', //分享给好友
+	       'onMenuShareQQ',  //分享到QQ
+	       'onMenuShareWeibo', //分享到微博
+	       'hideMenuItems'//隐藏复制链接
+	   ]
+	 });
+	 wx.ready(function () {
+	 	//批量隐藏功能
+	    wx.hideMenuItems({
+	        menuList: ['menuItem:copyUrl'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+	    });
+	    wx.onMenuShareTimeline({  //例如分享到朋友圈的API  
+	       title: '{$wx_endorse.wx_endorse_title}', // 分享标题
+	       link: '{$wx_endorse.wx_endorse_url}', // 分享链接
+	       desc: "{$wx_endorse.wx_endorse_desc}", 
+	       imgUrl: '{$wx_endorse.wx_endorse_img}', // 分享图标
+	       success: function () {
+	           // 用户确认分享后执行的回调函数
+	       },
+	       cancel: function () {
+	            // return false;
+	           // 用户取消分享后执行的回调函数
+	       }
+	    });
+	    wx.onMenuShareAppMessage({  //例如分享给好友的API  
+	       title: '{$wx_endorse.wx_endorse_title}', // 分享标题
+	       link: '{$wx_endorse.wx_endorse_url}', // 分享链接
+	       desc: "{$wx_endorse.wx_endorse_desc}",
+	       imgUrl: '{$wx_endorse.wx_endorse_img}', // 分享图标
+	       success: function () {
+	           // 用户确认分享后执行的回调函数
+	       },
+	       cancel: function () {
+	            // return false;
+	           // 用户取消分享后执行的回调函数
+	       }
+	    });
+	    wx.onMenuShareQQ({  //例如分享到QQ的API  
+	       title: '{$wx_endorse.wx_endorse_title}', // 分享标题
+	       link: '{$wx_endorse.wx_endorse_url}', // 分享链接
+	       desc: "{$wx_endorse.wx_endorse_desc}",
+	       imgUrl: '{$wx_endorse.wx_endorse_img}', // 分享图标
+	       success: function () {
+	           // 用户确认分享后执行的回调函数
+	       },
+	       cancel: function () {
+	            // return false;
+	           // 用户取消分享后执行的回调函数
+	       }
+	    });
+	    wx.onMenuShareWeibo({  //例如分享到微博的API  
+	       title: '{$wx_endorse.wx_endorse_title}', // 分享标题
+	       link: '{$wx_endorse.wx_endorse_url}', // 分享链接
+	       desc: "{$wx_endorse.wx_endorse_desc}",
+	       imgUrl: '{$wx_endorse.wx_endorse_img}', // 分享图标
+	       success: function () {
+	           // 用户确认分享后执行的回调函数
+	       },
+	       cancel: function () {
+	            // return false;
+	           // 用户取消分享后执行的回调函数
+	       }
+	    });	
+	}); 
+	wx.error(function (res) {
+	    var res = eval(res);
+	    console.log(res);
+	    alert(JSON.stringify(res));
+	    //打印错误消息。及把 debug:false,设置为debug:ture就可以直接在网页上看到弹出的错误提示
+	});
+
+	// 用户确认分享后执行的回调函数
+	function shareSuccess(endorse_type){
+	    
+	}
+</script>
+<body>
+	<span style="font-size:14px">
+		<p id="back-to-top">
+			<a href="#top">
+				<img style="width: 60px;height: 60px;" src="http://img.ky121.com/go_top.png" />
+			</a>
+		</p>
+	</span>  
+	<!-- <div class="">
+	</div> -->
+	<img src="__PUBLIC__images/banner_img.png" height="auto" width="100%" />
+	<div>
+		<div class="play_person_count"><text decode="true">-&nbsp;当前共有{$play_person_count}人在测试&nbsp;-</text></div>
+		<form method="get" action="<?php echo $url.'/calculateConfirm'; ?>" enctype="multipart/form-data" target="_self">
+		<input type="hidden" id="calendar" name="calendar" value="gregorian" />
+		<input type="hidden" id="year" name="year" value="" />
+		<input type="hidden" id="month" name="month" value="" />
+		<input type="hidden" id="day" name="day" value="" />
+		<input type="hidden" id="birthhour" name="birthhour" value="" />
+		<!-- <input type="hidden" id="shicheng" name="shicheng" value="" /> -->
+		<div class="form_box">
+			<div class="form_item">
+				<div class="input_item">
+					<text class="your_name">你的姓名：</text>
+					<input class="user_name" id="user_name" name="user_name" class="name_input" bindinput="nameInput" type="text" placeholder="输入你的名字（汉字）" placeholder-class="placeholder" value=""/>
+				</div>	
+			</div>
+			<div class="form_item">
+				<div class="input_item">
+					<text class="your_sex">你的性别：</text>
+					<div class="sex-div"><input class="radio-ip" type="radio" name="sex" value="0" checked>男</div>
+					<text style="width:20px;"></text>
+					<div class="sex-div"><input class="radio-ip" type="radio" name="sex" value="1">女</div>
+				</div>
+			</div>
+			<div class="form_item"> 
+				<div class="input_item">
+					<text class="your_birthday">出生日期：</text> 
+					<input class="inputDate" type="text" name="birthday" id="inputDate" value="" placeholder="请选择出生日期" />
+				</div>
+			</div>
+			<div class="form_item">
+				<div class="input_item" style="display:inline-block;">
+					<div class="your_birthhour">出生时辰：</div> 
+					<select name="shicheng" class="birthhour_picker" id="addr" onchange="sele_Change()">
+						<option value="">点击选择你的时辰</option>
+						{volist name="hourArray" id="vo" key="k"}
+						<option value="{$k-1}">{$vo}</option>
+						{/volist}						
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="calculate_now">
+			<!-- <button type="submit" class="calculate_btn">马上测算</button> -->
+			<button id="sub_button" style="display: none;" type="submit" class="calculate_btn">马上测算</button>
+			<div id="sub_no_button" onclick="sub_no_button()" style="background: #ff8160;" class="calculate_btn">马上测算</div>
+		</div>
+		<a href="<?php echo $url.'/myCalculate'; ?>"><div class="my_calculate">点击查看我的测算</div></a>
+		</form>
+	</div>
+	<!-- 测算结果反馈 -->
+	<div class="feedback_container">
+		<div class="result_feedback_box">
+			<div id="sroll-div" class="sroll-div">
+				<ul class="ul">
+					<div id="div1">
+					    {volist name="accuracy" id="cy" key="k"}
+						<li class="li">
+							<div class="title">
+								<text class="title-name">{$cy.user_name}</text>
+								<text class="title-num">{$cy.test_time}</text>
+								<text class="title1">前完成了测算</text>
+								<text class="title2">准确率{$cy.accuracy}</text>
+							</div>
+							<div class="content">
+								{$cy.describe}
+							</div>
+						</li>
+						{/volist}
+					</div>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- 测算成功后，你将知道 -->
+	<img class="will_know" src="__PUBLIC__images/will_know.png" />
+	<!-- 透漏的天机 -->
+	<img class="revealed_truth" src="__PUBLIC__images/revealed_truth.png" />
+	<!-- 对您有什么帮助 -->
+	<img class="benefit" src="__PUBLIC__images/benefit.png" />
+	<!-- 今年运势 -->
+	<img class="fortune" src="__PUBLIC__images/fortune.png" />
+	<!-- 弹窗样式 -->
+	<div id="prompt_box" class="prompt_box"><text id="prompt_box_text" class="prompt_box_text"></text></div>
+
+</body>
+</html>
+<script src="__PUBLIC__js/calendar.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__js/jquer_shijian.js?ver=1" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	//选择需要显示的
+	$("#inputDate").shijian({
+		y:-100,//当前年份+100
+		Hour:false,//是否显示小时
+		Minute:false,//是否显分钟
+	})
+	// window.onload = function() {
+	// 	var user_name = '';
+	// }; 
+	// input框的值发生改变事件
+    $("#user_name").bind("input propertychange", function () {  
+       change_btn();
+   	});
+   	// input框的值发生改变事件
+    $("#inputDate").bind("input propertychange", function () {  
+       change_btn();
+   	});
+   	// 按钮颜色改变事件
+   	function change_btn() {
+		var user_name = $("#user_name").val(); 
+		var birthday  = $("#inputDate").val(); 
+		var birthhour = $("#birthhour").val();
+		if(user_name != '' && birthday != '' && birthhour != ''){
+			$('#sub_button').css('display','block');
+			$('#sub_no_button').css('display','none');
+		}else{
+			$('#sub_button').css('display','none');
+			$('#sub_no_button').css('display','block');
+		}
+   	}
+</script>
+<script>
+	//下拉选择事件
+	function sele_Change(){
+		var objS = document.getElementById("addr");
+		// alert(objS)
+		var get_map = objS.options[objS.selectedIndex].value;
+		$('#birthhour').val(get_map);
+		change_btn();
+		// var shicheng = document.getElementById("shicheng");
+		// shicheng.value(get_map);
+		//需要执行的事件（加载地图html）
+	}
+	// 按钮点击事件
+	function sub_no_button(){
+		var user_name = $("#user_name").val(); 
+		var birthday  = $("#inputDate").val(); 
+		var birthhour = $("#birthhour").val();
+		var contents = '';
+		if(birthhour == ''){
+			contents = '请选择出生时辰';
+		}
+		if(birthday == ''){
+			contents = '请选择出生日期';
+		}
+		if(user_name == ''){
+			contents = '请填写姓名';
+		}
+		if(contents != ''){
+			$('#prompt_box_text').html(contents);
+			$("#prompt_box").fadeIn();
+			$("#prompt_box").delay(1000).fadeOut();//延迟淡出
+		}else{
+			$('#sub_button').css('display','block');
+			$('#sub_no_button').css('display','none');
+		}
+	}
+</script>
+<script language="javascript">
+	// 轮播事件
+	var box=document.getElementById("div1"),can=true;
+	box.innerHTML+=box.innerHTML;
+	box.onmouseover=function(){can=false};
+	box.onmouseout=function(){can=true};
+	new function (){
+	 var stop=box.scrollTop%100==0&&!can;
+	 if(!stop)box.scrollTop==parseInt(box.scrollHeight/2)?box.scrollTop=0:box.scrollTop++;
+	 setTimeout(arguments.callee,box.scrollTop%100?10:1500);
+	};
+</script>
+<script>
+$(function(){
+    //当滚动条的位置处于距顶部600像素以下时，跳转链接出现，否则消失
+    $(function () {
+        $(window).scroll(function(){
+            if ($(window).scrollTop()>600){
+                $("#back-to-top").fadeIn(1500);
+            }
+            else
+            {
+                $("#back-to-top").fadeOut(1500);
+            }
+        });
+
+        //当点击跳转链接后，回到页面顶部位置
+        $("#back-to-top").click(function(){
+            //$('body,html').animate({scrollTop:0},1000);
+    		if ($('html').scrollTop()) {
+                $('html').animate({ scrollTop: 0 }, 1000);
+                return false;
+            }
+        	$('body').animate({ scrollTop: 0 }, 1000);
+            return false;            
+       });       
+	});    
+});
+</script>

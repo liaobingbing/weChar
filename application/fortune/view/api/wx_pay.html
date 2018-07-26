@@ -1,0 +1,49 @@
+<!--判断是否微信浏览器-->
+<if condition="strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false">
+    <!-- <a class="btn pay_type_list" onclick="callpay()">
+        <i class="fa fa-weixin"></i> <br>微信支付
+    </a> -->
+    <script type="text/javascript">
+        //调用微信JS api 支付
+        function jsApiCall()
+        {
+            WeixinJSBridge.invoke(
+                'getBrandWCPayRequest',
+                <?php echo $jsApiParameters; ?>,
+                function(res){
+                    var ress = JSON.stringify(res);
+                    var jsObject = JSON.parse(ress);    //转换为json对象
+                    // alert(jsObject.err_msg);
+                    if(jsObject.err_msg === 'get_brand_wcpay_request:ok'){
+                        window.location.href='https://applets.ky311.com/fortune/Api/calculateResult?payid='+<?php echo $payid; ?>;
+                    }
+                    if(jsObject.err_msg === 'get_brand_wcpay_request:cancel'){
+                        // window.location.href='https://applets.ky311.com/fortune/Api/calculateResult?payid='+<?php echo $payid; ?>;
+                        alert('取消支付');
+                        window.history.go(-1);
+                    }
+                    if(jsObject.err_msg === 'get_brand_wcpay_request:fail'){
+                        alert('支付失败');
+                        window.history.go(-1);
+                    }
+                    // alert(JSON.stringify(res));
+                }
+            );
+        }
+
+        function callpay()
+        {
+            if (typeof WeixinJSBridge == "undefined"){
+                if( document.addEventListener ){
+                    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                }else if (document.attachEvent){
+                    document.attachEvent('WeixinJSBridgeReady', jsApiCall); 
+                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                }
+            }else{
+                jsApiCall();
+            }
+        }
+        callpay();
+    </script>
+</if>

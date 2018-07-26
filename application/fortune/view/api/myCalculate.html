@@ -1,0 +1,227 @@
+<style type="text/css">
+body{
+	width:100%;
+	padding: 0;
+	margin: 0;
+	background: #fff3c1;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+/* 有数据 */
+.box{
+  background-color:#ededed; 
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; 
+  overflow-y: auto;  
+}
+.calculate_item{
+	width: 100%;
+  	height: 70px;
+	background-color: rgb(255, 255, 255);
+	margin-bottom: 5px;
+
+}
+.calculate_item:first-child{
+	margin-top: 10px; 
+}
+.calculate_img{
+	width: 40px;
+	height: 40px;
+	border-radius: 4px;
+	position: relative;
+	left: 15px;
+	top: 15px; 
+}
+.v-a{
+	text-decoration: none;
+}
+.calculate_name{
+	font-size: 18px;
+	font-family: "PingFang SC";
+	color: rgb(26, 26, 26);
+	position: relative;
+	top: 4px;
+	margin-left: 20px;
+}
+.towards_right{
+	width: 40px;
+	height: 40px;
+	position: relative;
+	float: right;
+	top: 16px;
+}
+
+/* 暂无数据 */
+.box_02{
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden; 
+	overflow-y: auto;  
+}
+.calculate_null_img{
+	width: 100%;
+  	height: auto;
+	margin-top: 130px;
+}
+.calculate_null_text{
+	font-size: 15px;
+  font-family: "PingFang SC";
+  color: rgb(26, 26, 26);
+  line-height: 1.333;
+  text-align: center;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+.to_calculate{
+	width: 60%;
+	height: 40px;
+	border-radius: 25px;
+	background-color: rgb(255, 14, 0);
+	font-size: 15px;
+	font-family: "PingFang SC";
+	color: rgb(255, 255, 255);
+	line-height: 40px;
+	text-align: center;
+	margin: 20px auto;
+}
+a{
+	text-decoration: none;
+}
+</style>
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>{$title}</title>
+</head>
+<!--微信SDK-->
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> <!-- 必须引用该文件 -->  
+<script type="text/javascript">
+	<?php
+		$code_url=$url.'/index';
+		// if(unset($wx_endorse['wx_endorse_url'])){
+			$wx_endorse['wx_endorse_img'] = $imageUrls;
+			$wx_endorse['wx_endorse_url'] = $code_url;
+			$wx_endorse['wx_endorse_title'] = $title;
+			$wx_endorse['wx_endorse_desc'] = $share_titles;
+		//}
+	?>
+	var _Share_Message = {
+		img: "{$wx_endorse.wx_endorse_img}",
+		url: "{$wx_endorse.wx_endorse_url}",
+		Ntitle: "{$wx_endorse.wx_endorse_title}",
+		desc: "{$wx_endorse.wx_endorse_desc}",
+		appid: "{$signPackage.appId}"
+	};
+
+	wx.config({
+	   debug:  false,  //调式模式，设置为ture后会直接在网页上弹出调试信息，用于排查问题
+	   appId: '{$signPackage.appId}',
+	   timestamp: '{$signPackage.timestamp}',
+	   nonceStr: '{$signPackage.nonceStr}',
+	   signature: '{$signPackage.signature}',
+	   jsApiList: [  //需要使用的网页服务接口
+	       'checkJsApi',  //判断当前客户端版本是否支持指定JS接口
+	       'onMenuShareTimeline', //分享到朋友圈
+	       'onMenuShareAppMessage', //分享给好友
+	       'onMenuShareQQ',  //分享到QQ
+	       'onMenuShareWeibo', //分享到微博
+	       'hideMenuItems'//隐藏复制链接
+	   ]
+	 });
+	 wx.ready(function () {
+	 	//批量隐藏功能
+	    wx.hideMenuItems({
+	        menuList: ['menuItem:copyUrl'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+	    });
+	    wx.onMenuShareTimeline({  //例如分享到朋友圈的API  
+	       title: '{$wx_endorse.wx_endorse_title}', // 分享标题
+	       link: '{$wx_endorse.wx_endorse_url}', // 分享链接
+	       desc: "{$wx_endorse.wx_endorse_desc}", 
+	       imgUrl: '{$wx_endorse.wx_endorse_img}', // 分享图标
+	       success: function () {
+	           // 用户确认分享后执行的回调函数
+	       },
+	       cancel: function () {
+	            // return false;
+	           // 用户取消分享后执行的回调函数
+	       }
+	    });
+	    wx.onMenuShareAppMessage({  //例如分享给好友的API  
+	       title: '{$wx_endorse.wx_endorse_title}', // 分享标题
+	       link: '{$wx_endorse.wx_endorse_url}', // 分享链接
+	       desc: "{$wx_endorse.wx_endorse_desc}",
+	       imgUrl: '{$wx_endorse.wx_endorse_img}', // 分享图标
+	       success: function () {
+	           // 用户确认分享后执行的回调函数
+	       },
+	       cancel: function () {
+	            // return false;
+	           // 用户取消分享后执行的回调函数
+	       }
+	    });
+	    wx.onMenuShareQQ({  //例如分享到QQ的API  
+	       title: '{$wx_endorse.wx_endorse_title}', // 分享标题
+	       link: '{$wx_endorse.wx_endorse_url}', // 分享链接
+	       desc: "{$wx_endorse.wx_endorse_desc}",
+	       imgUrl: '{$wx_endorse.wx_endorse_img}', // 分享图标
+	       success: function () {
+	           // 用户确认分享后执行的回调函数
+	       },
+	       cancel: function () {
+	            // return false;
+	           // 用户取消分享后执行的回调函数
+	       }
+	    });
+	    wx.onMenuShareWeibo({  //例如分享到微博的API  
+	       title: '{$wx_endorse.wx_endorse_title}', // 分享标题
+	       link: '{$wx_endorse.wx_endorse_url}', // 分享链接
+	       desc: "{$wx_endorse.wx_endorse_desc}",
+	       imgUrl: '{$wx_endorse.wx_endorse_img}', // 分享图标
+	       success: function () {
+	           // 用户确认分享后执行的回调函数
+	       },
+	       cancel: function () {
+	            // return false;
+	           // 用户取消分享后执行的回调函数
+	       }
+	    });	
+	}); 
+	wx.error(function (res) {
+	    var res = eval(res);
+	    console.log(res);
+	    alert(JSON.stringify(res));
+	    //打印错误消息。及把 debug:false,设置为debug:ture就可以直接在网页上看到弹出的错误提示
+	});
+
+	// 用户确认分享后执行的回调函数
+	function shareSuccess(endorse_type){
+	    
+	}
+</script>
+<body>
+	<div style="{$no_list?'display: block;':'display:none;'}" class="box">
+		{volist name="history_list" id="ls" key="k"}
+		<a class="v-a" href="<?php echo $url.'/calculateResult?id='.$ls['id']; ?>">
+			<div class="calculate_item">
+		 		<img class="calculate_img" src="__PUBLIC__images/logo.jpg" />
+		 		<text class="calculate_name">{$ls.user_name}的测算结果</text>
+		 		<img class="towards_right" src="__PUBLIC__images/towards_right.png" />
+		 	</div>
+		 </a>
+	 	{/volist}
+	</div>
+	<div style="{$no_list?'display: none;':'display:block;'}" class="box_02">
+		<image class="calculate_null_img" src="__PUBLIC__images/calculate_null_img.png"></image>
+		<div class="calculate_null_text">暂无相关测算记录</div>
+		<a href="<?php echo $url.'/index'; ?>"><div class="to_calculate">立即去测算</div></a>
+	</div>
+</body>
+</html>
+<script>
+	
+</script>

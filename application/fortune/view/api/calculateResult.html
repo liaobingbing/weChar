@@ -1,0 +1,528 @@
+<style type="text/css">
+body{
+	width:100%;
+	padding: 0;
+	margin: 0;
+	background: #fff3c1;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.box{
+  background-color:#ededed; 
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; 
+	overflow-y: auto;  
+}
+
+/* 你的信息框 */
+.your_info_container{
+	width: 100%;
+	height: 270px;
+}
+.your_info_box{
+  width: 100%;
+	height: 270px;
+	z-index: 50;
+}
+.your_name,.your_birthday,.your_birthhour{
+ 	width: 100%;
+	font-size: 15px;
+	font-family: "PingFang SC";
+	color: rgb(255, 0, 0);
+	line-height: 1.333;
+	text-align: center;
+	position: relative;
+	bottom:110px;
+	z-index: 100;
+}
+.sex{
+  margin-left: 15px;
+}
+.your_birthday{
+  bottom: 106px;
+}
+.your_birthhour{
+  bottom: 102px;
+}
+.calculate_result_tag{
+	width: 100%;
+  	height: auto;
+}
+.calculate_result_tag2{
+	width: 100%;
+  	height: auto;
+	background-color: #fff;
+}
+
+/* 结果详情信息 */
+.result_container{
+	
+}
+.result_item{
+	width: 100%;
+	background-color: #fff;
+	margin-bottom: 5px;
+}
+.result_title{
+	width: 90.5%;
+	height: 50px;
+	margin-left: 20px;
+  line-height: 50px;
+	border-bottom: 0.5px dashed #ff0e00;
+}
+.left_title{
+	font-size: 16px;
+  font-family: "PingFang SC";
+  color: rgb(26, 26, 26);
+  font-weight: bold;
+	text-align: left;
+}
+.right_title{
+	font-size: 16px;
+  font-family: "PingFang SC";
+  color: rgb(255, 14, 0);
+  font-weight: bold;
+	float: right;
+	text-align: right;
+}
+.result_content{
+	width: 92%;
+	text-indent: 30px;
+	font-size: 15px;
+  font-family: "PingFang SC";
+  color: rgb(26, 26, 26);
+  line-height: 23px;
+  text-align: left;
+	margin-top: 15px;
+	margin-left: 15px;
+	padding-bottom: 15px;
+}
+
+/* 两个按钮 */
+.two_btn{
+	width: 100%;
+	/* height:120px; */
+	height:110px;
+	background-color: #fff;
+	padding-top:15px;
+}
+.two_btn_lt,.two_btn_rgt{
+	float: left;
+	width:50%;
+	text-align: center;
+}
+.create_card,.invite_friend{
+	width: 80%;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 4px;
+	background-color: rgb(255, 188, 148);
+	font-size: 16px;
+	font-family: "PingFang SC";
+	color: rgb(255, 255, 255);
+	text-align: center;
+	border:none;
+}
+.invite_friend{
+	background-color: rgb(255, 14, 0);
+	color: rgb(255, 255, 255);
+}
+.test_again{
+	font-size:16px;
+	font-family:"PingFang SC";
+	color:rgb(255, 14, 0);
+	text-decoration:underline;
+	margin:0 auto;
+	text-align: center;
+	margin-top:65px;
+}
+/* 更多测算，跳转到其他小程序 */
+.more_game_box{
+	height: 150px;
+	background-color: #fff;
+	position: relative;
+	top: 10px;
+	padding-top:15px;
+}
+.line,.more_game{
+	float: left;
+	width:33%;
+	text-align: center;
+}
+.more_game{
+	width:34%;
+	font-size: 16px;
+	font-family: "PingFang SC";
+	color: rgb(26, 26, 26);
+	line-height: 1.333;
+}
+.line_text{
+	background-color: rgb(255, 14, 0);
+	width: 100px;
+	height: 0.5px;
+	margin:0 auto;
+	display: inline-block;
+	position: relative;
+	top: 10px;
+}
+.game_item{
+	width: 92%;
+	height: 60px;
+	position: absolute;
+	left:15px;
+  top: 60px;
+}
+.game_log_div,.game_cen{
+	float: left;
+}
+.game_cen{
+	position: relative;
+	top:12px;
+	left: 4px;
+}
+.game_logo{
+	width: 45px;
+	height: 45px;
+	border-radius: 4px;
+	position: relative;
+	top:8px;
+}
+.game_name{
+	font-size: 15px;
+	font-family: "PingFang SC";
+	color: rgb(26, 26, 26);
+}
+.game_des{
+	font-size: 12px;
+	font-family: "PingFang SC";
+	color: rgb(141, 141, 141);
+}
+.to_game{
+	float: right;
+	width: 75px;
+	height: 32px;
+	border-radius: 25px;
+	background-color: rgb(255, 14, 0);
+	font-size: 15px;
+	font-family: "PingFang SC";
+	color: rgb(255, 255, 255);
+	line-height: 32px;
+	text-align: center;
+	position: relative;
+	top:12px;
+}
+.cardModal{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow-x: hidden;  
+	overflow-y: auto; 
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 200;
+}
+.card_box{
+	width: 100%;
+	height: 500px;
+	/* margin: 0 auto;
+	text-align: center; */
+}
+.canvas-rank{
+	text-align: center;
+	font-size: 16px;
+	color: #ffffff;
+	margin-top:18px;
+}
+.canvas-btn{
+	width: 140px;
+	height: 40px;
+	border-radius: 25px;
+	background-color: rgb(255, 231, 206);
+	font-size: 15px;
+	font-family: "PingFang SC";
+	color: rgb(205, 36, 26);
+	line-height: 40px;
+	text-align: center;
+	border: none;
+	margin: 0 auto;
+}
+</style>
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script> -->
+<script src="__PUBLIC__js/jquery.min.js"></script>
+<title>{$title}</title>
+</head>
+<!--微信SDK-->
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> <!-- 必须引用该文件 -->  
+<script type="text/javascript">
+	<?php
+		$code_url=$url.'/index';
+		// if(unset($wx_endorse['wx_endorse_url'])){
+			$wx_endorse['wx_endorse_img'] = $imageUrls;
+			$wx_endorse['wx_endorse_url'] = $code_url;
+			$wx_endorse['wx_endorse_title'] = $title;
+			$wx_endorse['wx_endorse_desc'] = $share_titles;
+		//}
+	?>
+	var _Share_Message = {
+		img: "{$wx_endorse.wx_endorse_img}",
+		url: "{$wx_endorse.wx_endorse_url}",
+		Ntitle: "{$wx_endorse.wx_endorse_title}",
+		desc: "{$wx_endorse.wx_endorse_desc}",
+		appid: "{$signPackage.appId}"
+	};
+
+	wx.config({
+	   debug:  false,  //调式模式，设置为ture后会直接在网页上弹出调试信息，用于排查问题
+	   appId: '{$signPackage.appId}',
+	   timestamp: '{$signPackage.timestamp}',
+	   nonceStr: '{$signPackage.nonceStr}',
+	   signature: '{$signPackage.signature}',
+	   jsApiList: [  //需要使用的网页服务接口
+	       'checkJsApi',  //判断当前客户端版本是否支持指定JS接口
+	       'onMenuShareTimeline', //分享到朋友圈
+	       'onMenuShareAppMessage', //分享给好友
+	       'onMenuShareQQ',  //分享到QQ
+	       'onMenuShareWeibo', //分享到微博
+	       'hideMenuItems'//隐藏复制链接
+	   ]
+	 });
+	 wx.ready(function () {
+	 	//批量隐藏功能
+	    wx.hideMenuItems({
+	        menuList: ['menuItem:copyUrl'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+	    });
+	    wx.onMenuShareTimeline({  //例如分享到朋友圈的API  
+	       title: '{$wx_endorse.wx_endorse_title}', // 分享标题
+	       link: '{$wx_endorse.wx_endorse_url}', // 分享链接
+	       desc: "{$wx_endorse.wx_endorse_desc}", 
+	       imgUrl: '{$wx_endorse.wx_endorse_img}', // 分享图标
+	       success: function () {
+	           // 用户确认分享后执行的回调函数
+	       },
+	       cancel: function () {
+	            // return false;
+	           // 用户取消分享后执行的回调函数
+	       }
+	    });
+	    wx.onMenuShareAppMessage({  //例如分享给好友的API  
+	       title: '{$wx_endorse.wx_endorse_title}', // 分享标题
+	       link: '{$wx_endorse.wx_endorse_url}', // 分享链接
+	       desc: "{$wx_endorse.wx_endorse_desc}",
+	       imgUrl: '{$wx_endorse.wx_endorse_img}', // 分享图标
+	       success: function () {
+	           // 用户确认分享后执行的回调函数
+	       },
+	       cancel: function () {
+	            // return false;
+	           // 用户取消分享后执行的回调函数
+	       }
+	    });
+	    wx.onMenuShareQQ({  //例如分享到QQ的API  
+	       title: '{$wx_endorse.wx_endorse_title}', // 分享标题
+	       link: '{$wx_endorse.wx_endorse_url}', // 分享链接
+	       desc: "{$wx_endorse.wx_endorse_desc}",
+	       imgUrl: '{$wx_endorse.wx_endorse_img}', // 分享图标
+	       success: function () {
+	           // 用户确认分享后执行的回调函数
+	       },
+	       cancel: function () {
+	            // return false;
+	           // 用户取消分享后执行的回调函数
+	       }
+	    });
+	    wx.onMenuShareWeibo({  //例如分享到微博的API  
+	       title: '{$wx_endorse.wx_endorse_title}', // 分享标题
+	       link: '{$wx_endorse.wx_endorse_url}', // 分享链接
+	       desc: "{$wx_endorse.wx_endorse_desc}",
+	       imgUrl: '{$wx_endorse.wx_endorse_img}', // 分享图标
+	       success: function () {
+	           // 用户确认分享后执行的回调函数
+	       },
+	       cancel: function () {
+	            // return false;
+	           // 用户取消分享后执行的回调函数
+	       }
+	    });	
+	}); 
+	wx.error(function (res) {
+	    var res = eval(res);
+	    console.log(res);
+	    alert(JSON.stringify(res));
+	    //打印错误消息。及把 debug:false,设置为debug:ture就可以直接在网页上看到弹出的错误提示
+	});
+
+	// 用户确认分享后执行的回调函数
+	function shareSuccess(endorse_type){
+	    
+	}
+</script>
+<body>
+	<div class="box">
+		<div class="your_info_container"> 
+			<img class="your_info_box" src="__PUBLIC__images/your_info_box.png" />
+			<div class="your_name"> <text class="name">姓名：{$userInfo.user_name}</text><text class="sex">性别：{$userInfo.sex==1?'女':'男'}</text></div>
+			<div class="your_birthday">生日：{$userInfo.birthday}</div>
+			<div class="your_birthhour">时辰：{$userInfo.birthhourText}</div>
+		</div> 
+		<img class="calculate_result_tag" src="__PUBLIC__images/calculate_result_tag.png" />
+		<img class="calculate_result_tag2" src="__PUBLIC__images/calculate_result_tag2.png" />
+		<div class="result_container">
+			{volist name="result" id="res" key="k"}
+			<div class="result_item">
+				<div class="result_title">
+					<text class="left_title">{$res.type}</text>
+					<text class="right_title">{$res.score}</text>
+				</div>
+				<div class="result_content">{$res.content}</div>
+			</div>
+			{/volist}
+		</div>
+		<div class="two_btn">
+			<div class="two_btn_lt">
+				<button id="create_card" class="create_card">生成卡片</button>
+			</div>
+			<div class="two_btn_rgt">
+				<button onclick="invite_friend()" class="invite_friend">邀请好友测试</button>
+			</div>
+			<a href="<?php echo $url.'/index'; ?>"><div class="test_again">再测一次</div></a>
+		</div>
+		<!-- <div class="more_game_box">
+			<div class="line"><text class="line_text"></text></div>
+			<div class="more_game">更多测算</div>
+			<div class="line"><text class="line_text"></text></div>
+			<div class="more_game_container">
+				<div class="game_item">
+					<div class="game_log_div"><img class="game_logo" src="__PUBLIC__images/game_logo_01.png" /></div>
+					<div class="game_cen">
+						<div class="game_name">年龄测测看</div>
+						<div class="game_des">00后的脸蛋，却怀着60后的心</div>
+					</div>
+					<div class="to_game" >去测算</div>
+				</div>
+			</div>
+		</div> -->
+	</div>
+	
+	<img hidden id="tulip" src="__PUBLIC__images/card_box.png" alt="The Tulip" />
+	<div id="cardModal" class="cardModal" style="display: none;">
+		<div class="card_box"> 
+			<div id="pngHolder"></div>
+			<canvas id="myCanvas" width="500" height="400"></canvas>
+		</div>
+		<div class="canvas-rank">长按保存图片</div>
+		<div style="text-align: center;margin-top:10px;"><button onclick="closeCanvas()" class="canvas-btn">关闭</button></div>
+	</div>
+</body>
+</html>
+<script>
+	//邀请好友
+	function invite_friend(){
+		WeixinJSBridge.invoke('sendAppMessage',{
+		//"appid":appId,
+		"img_url":'<?php echo $imageUrls; ?>',
+		//"img_width":"640",
+		//"img_height":"640",
+		"link":"<?php echo $url.'/index'; ?>",
+		"desc":'<?php echo $share_titles; ?>',
+		"title":'<?php echo $title; ?>',
+		});
+	}
+	/*
+	str:要绘制的字符串
+	canvas:canvas对象
+	initX:绘制字符串起始x坐标
+	initY:绘制字符串起始y坐标
+	lineHeight:字行高，自己定义个值即可
+	*/
+	function canvasTextAutoLine(text, ctx, font, color, textAlign, initX, initY, lineHeight, windowWidth) {
+		ctx.font = font;
+		ctx.fillStyle=color;
+		ctx.textAlign=textAlign;
+		var textArr = [];
+		var textRow = '';
+		var row_total = Math.ceil(text.length/20);
+		for (var i = 0; i < row_total;i++){
+			textRow = text.substring(20*i,(i+1)*20);
+			textArr.push(textRow);
+			ctx.fillText(textArr[i], initX, initY+lineHeight*i);
+		}
+	}
+	// 隐藏画布
+	function closeCanvas() {
+		$("#cardModal").css('display','none');
+		$('#pngHolder').children().remove();
+	}
+	// 生成图片
+	$("#create_card").click(function(){
+		// 测试
+		var card_title = '最准的八字测算，测测你的运势走向！';
+		// var card_head = '[' + 'weiwei' + '的结果]';
+		var card_head = '[' + '<?php echo ($userInfo['user_name']); ?>' + '的结果]';
+		// var card_content = '根据八字命盘分析，你今生福禄难全，财星拱照，受人引进，事业发达，大有良机，初年平常，中年运到，利路亨通，晚景荣幸，发福之命。';
+		var card_content = <?php echo ($card_content);?>;
+
+		console.log('card_content',card_content)
+		$("#cardModal").css('display','block');
+		// 获取屏幕宽高
+		var swidth = screen.width;
+		var sheight = screen.height;
+		var canImgWidth = screen.width*9/10;
+		var canImgHeight = canImgWidth*900/640;
+		console.log(canImgWidth,canImgHeight)
+		document.getElementById("myCanvas").width = swidth;  
+		document.getElementById("myCanvas").height = canImgHeight+30; 
+
+		document.getElementById("myCanvas").style.width=swidth+'px';
+		document.getElementById("myCanvas").style.height=canImgHeight+30+'px';
+		// 底图
+		var c=document.getElementById("myCanvas");
+		var ctx=c.getContext("2d");
+		var img=document.getElementById("tulip");
+		var left = (swidth-canImgWidth)/2;
+		ctx.drawImage(img,left,25,canImgWidth,canImgHeight);
+		// iphone x
+		if(sheight>736){
+			// 文字
+			ctx.font = 'normal normal bold 14px PingFangHK-Medium, sans-serif';
+			ctx.fillStyle='#1a1a1a';
+			ctx.textAlign='center';
+			ctx.fillText(card_title, swidth/2, sheight*10/37);
+			ctx.font = 'normal normal bold 16px PingFangHK-Medium, sans-serif';
+			ctx.fillStyle='#ff0e00';
+			ctx.textAlign='left';
+			ctx.fillText(card_head, (swidth - 125) / 2, sheight*3/10);
+			// 文字段
+			canvasTextAutoLine(card_content, ctx, 'normal normal bold 12px PingFangHK-Medium, sans-serif', '#1a1a1a', 'left', (swidth-240)/2, sheight/3, 20, swidth);
+			
+
+		}else{
+			// 文字
+			ctx.font = 'normal normal bold 14px PingFangHK-Medium, sans-serif';
+			ctx.fillStyle='#1a1a1a';
+			ctx.textAlign='center';
+			ctx.fillText(card_title, swidth/2, sheight/3);
+			ctx.font = 'normal normal bold 16px PingFangHK-Medium, sans-serif';
+			ctx.fillStyle='#ff0e00';
+			ctx.textAlign='left';
+			ctx.fillText(card_head, (swidth - 125) / 2, sheight*3/8);
+			// 文字段
+			canvasTextAutoLine(card_content, ctx, 'normal normal bold 12px PingFangHK-Medium, sans-serif', '#1a1a1a', 'left', (swidth-240)/2, sheight*30/73, 20, swidth);
+		}
+		// 将画布保存为图片
+		var oCanvas = document.getElementById("myCanvas");
+		var image = new Image();
+		image.src = oCanvas.toDataURL("image/png");
+		document.getElementById("pngHolder").appendChild(image);
+		$("#myCanvas").css('display','none');
+		console.log(image)
+	});
+</script>
